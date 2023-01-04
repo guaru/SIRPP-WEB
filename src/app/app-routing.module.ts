@@ -1,10 +1,35 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { LoginLayoutComponent } from '@sicatel/core/layout/login-layout/login.layout';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: 'auth',
+    component: LoginLayoutComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full'
+      }
+    ]/*, TODO: add implementation for loginGuard
+    canActivate: [ LoginGuard ]*/
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('@sicatel/core/layout/app-layout/app-layout.module').then(m => m.AppLayoutModule) 
+    /*, TODO: Add implementation for childrenguard
+    canActivate: [ LoginGuard ]*/
+  },
+  {
+    path: '**',
+    redirectTo: 'auth',
+    pathMatch: 'full'
+  }
+];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [ RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }) ],
+  exports: [ RouterModule ]
 })
 export class AppRoutingModule { }

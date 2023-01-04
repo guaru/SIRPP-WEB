@@ -3,6 +3,14 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
+    "paths": {
+      "@sicatel/*": ["src/app/*"],
+      "@sicatel/configs/*": ["src/app/configs/*"],
+      "@sicatel/env/*": ["src/environments/*"],
+      "@sicatel/core/*": ["src/app/core/*"],
+      "@sicatel/modules/*": ["src/app/modules/*"],
+      "@sicatel/tests/*": ["src/tests/*"]
+    },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,

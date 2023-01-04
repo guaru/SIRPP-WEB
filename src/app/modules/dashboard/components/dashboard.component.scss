@@ -1,0 +1,13 @@
+@import "/src/assets/scss/colors.scss";
+
+:host {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.empty-dashboard {
+    padding: 10px 10px 50px 10px;
+    margin-top: 25px;
+    border: 1px dashed $light
+}

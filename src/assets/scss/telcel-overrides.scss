@@ -1,0 +1,420 @@
+@import "./colors";
+@import "./fonts";
+
+// Bootstrap
+button:focus,
+button:active:focus,
+button.active:focus {
+  outline: none !important;
+  outline-style: none !important;
+}
+
+// Owl DateRange Picker
+.owl-dt-calendar-table .owl-dt-calendar-cell-selected {
+  color: $super-light !important;
+  background-color: $blue !important;
+}
+
+.owl-dt-container-info .owl-dt-container-info-active {
+  color: $black !important;
+}
+
+.owl-dt-container-buttons {
+  color: $darkgrey !important;
+}
+
+// Angular Material
+.mat-card {
+  border-radius: 0 !important;
+  box-shadow: 0 0 7px 0 rgba(107, 88, 53, 0.08) !important;
+}
+
+.mat-card-header-text {
+  margin: 0 !important;
+  width: 100% !important;
+}
+
+/**
+* border radius form components
+**/
+.mat-form-field-appearance-outline .mat-form-field-outline-end {
+  border-radius: 0 !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline-start {
+  border-radius: 0 !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: rgba(0, 0, 0, 0.22);
+}
+
+/**
+* Icon alignment
+**/
+.mat-form-field-infix {
+  top: -0.25em;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-prefix,
+.mat-form-field-appearance-outline .mat-form-field-suffix {
+  top: -0.25em !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-label {
+  margin-top: 0;
+}
+
+.mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-suffix .mat-icon-button {
+  top: 0.8em;
+}
+
+.mat-dialog-container {
+  overflow: hidden;
+  font-family: Lato-Regular, sans-serif;
+}
+
+.dispute-dialog-panel {
+  .mat-dialog-container {
+    padding-bottom: 0;
+    overflow: hidden;
+  }
+}
+
+.telcel-mat-tab-group {
+  .mat-tab-header {
+    background-color: $medium-gray;
+  }
+
+  .mat-ink-bar {
+    background-color: $blue !important;
+    height: 4px;
+  }
+
+  .mat-tab-label {
+    background-color: transparent;
+    color: $white;
+  }
+
+  .mat-tab-list .mat-tab-labels .mat-tab-label-active {
+    opacity: 1;
+  }
+}
+
+.telcel-mat-tab-group-secondary {
+  .mat-tab-header {
+    background-color: white;
+    border-bottom: none;
+  }
+
+  .mat-ink-bar {
+    background-color: $blue !important;
+    height: 4px;
+  }
+
+  .mat-tab-label {
+    background-color: transparent;
+    color: black;
+    margin: 0 30px;
+    padding: 0;
+    min-width: auto;
+    font-family: Lato-Regular, sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.43px;
+    font-weight: bolder;
+  }
+
+  .mat-tab-body-wrapper {
+    height: 100%;
+  }
+}
+
+
+/* mat form field padding and margins */
+.mat-form-field {
+  line-height: 1.145;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: 0.7em 0 0.7em 0;
+}
+
+.mat-form-field-label-wrapper {
+  top: -1.2em;
+}
+
+.mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+  transform: translateY(-1.3em) scale(.75);
+  width: 133.33333%;
+}
+
+/* mat form field required star color */
+.mat-form-field-required-marker {
+  color: $danger
+}
+
+
+/**
+* button border radius
+**/
+.mat-button,
+.mat-flat-button,
+.mat-icon-button,
+.mat-stroked-button {
+  border-radius: 0px !important;
+}
+
+a.mat-stroked-button, a.mat-button {
+  &.telcel-link {
+    text-decoration: underline;
+
+    &:hover {
+      color: $blue;
+    }
+  }
+}
+
+.mat-checkbox-frame {
+  border-color: $blue;
+}
+
+.menu {
+  &.mat-menu-panel {
+    background: $darkgrey;
+    max-width: 100% !important;
+    max-height: calc(100vh - 19vh) !important;
+    border-radius: 0;
+
+    .mat-menu-content {
+      border: 1px solid $blue;
+    }
+  }
+}
+
+.menu-profile {
+  &.mat-menu-panel {
+    background: $darkgrey;
+    border-radius: 0;
+
+    .mat-menu-content {
+      border: 1px solid $blue;
+      padding: 0;
+    }
+  }
+}
+
+.inventory-tooltip-menu {
+  &.mat-menu-panel {
+    max-width: 100% !important;
+    max-height: 256px;
+    min-height: 10px;
+  }
+}
+
+// Tab
+.mat-tab-body-content {
+  overflow-x: hidden !important;
+}
+
+/* IE10+ CSS styles go here */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  @media all and (min-width: 1200px) {
+    .menu {
+      &.mat-menu-panel {
+        max-width: 100% !important;
+        width: 1000px;
+        max-height: calc(100vh - 19vh) !important;
+      }
+    }
+  }
+
+  @media all and (min-width: 960px) {
+    .menu {
+      &.mat-menu-panel {
+        max-width: 100% !important;
+        width: 950px;
+        max-height: calc(100vh - 19vh) !important;
+      }
+    }
+  }
+}
+
+.menu-dropdown.mat-menu-panel {
+  max-width: 28rem;
+  width: 26rem;
+  height: 40rem;
+
+  & > .mat-menu-content {
+    height: 100%;
+  }
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .menu-dropdown.mat-menu-panel {
+    max-width: 40rem;
+    width: 39rem;
+  }
+}
+
+/* stepper */
+.mat-step-header {
+  .mat-step-icon {
+    height: 35px;
+    width: 35px;
+
+    .mat-step-icon-content {
+      display: flex;
+      height: 100%;
+      text-align: center;
+
+      .mat-icon {
+        align-self: center;
+        width: 24px;
+      }
+    }
+  }
+
+  .mat-step-icon-selected {
+    background-color: $blue;
+  }
+
+  .mat-step-icon-state-done {
+    background-color: $success;
+  }
+
+  .mat-step-icon-state-error {
+    background-color: $danger;
+    color: $white;
+
+    .mat-icon {
+      font-size: 16px;
+      height: 16px;
+      width: 16px;
+    }
+  }
+
+  .mat-step-label.mat-step-label-error {
+    color: $black;
+  }
+}
+
+.mat-horizontal-stepper-header-container {
+  .mat-stepper-horizontal-line {
+    top: 42px !important;
+  }
+
+  .mat-horizontal-stepper-header:not(:last-child)::after, .mat-horizontal-stepper-header:not(:first-child)::before {
+    top: 42px !important;
+  }
+}
+
+.telcel-mat-flex-option {
+  .mat-option-text.mat-option-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1em;
+    height: unset;
+  }
+}
+
+.telcel-select-flex-option {
+  .mat-option {
+    line-height: unset;
+    padding: 4px 16px;
+  }
+}
+
+.telcel-multi-select-panel {
+  min-width: calc(100% + 20px) !important;
+
+  &.small {
+    font-size: 12px;
+    transform: translate(30px, 30px) !important;
+  }
+
+  &.multi-text {
+    .mat-option {
+      height: 4em;
+    }
+
+    .mat-option-text {
+      display: flex;
+      white-space: break-spaces;
+      height: auto;
+      line-height: 15px;
+    }
+  }
+}
+
+/* list item - no padding */
+.no-padding-list-item .mat-list-item-content {
+  padding: 0 !important;
+}
+
+mat-tab-group.ns-dark {
+  .mat-tab-list .mat-tab-labels .mat-tab-label-active {
+    color: $blue;
+    opacity: 1;
+    background-color: transparent !important;
+  }
+
+  .mat-tab-body-wrapper {
+    flex-grow: 1;
+  }
+
+  .mat-tab-body-content {
+    height: 100%;
+  }
+}
+
+.filter-menu {
+  width: 770px;
+  min-width: 770px !important;
+  height: 400px;
+
+  & > .mat-menu-content {
+    height: 95%;
+    width: 100%;
+
+    & > div {
+      height: 100%;
+    }
+  }
+}
+
+/* customer select mat-options */
+.mat-option {
+  .customer-type-desc {
+    color: $white;
+
+    &-tag {
+      padding: 1px 3px;
+      border-radius: 2px;
+      background-color: $medium;
+      font-size: 12px;
+    }
+
+    &-tag-loa {
+      padding: 1px 3px;
+      border-radius: 2px;
+      background-color: $blue;
+      line-height: 15px;
+      margin-top: 12px;
+      font-size: 12px;
+    }
+  }
+}
+
+.customer-select-autocomplete {
+  max-height: calc(100vh - 450px) !important;
+}
+
+.button-small {
+  font-size: 12px;
+  line-height: 20px !important;
+}
+
+.button-lg {
+  font-size: 16px;
+  line-height: 42px !important;
+}

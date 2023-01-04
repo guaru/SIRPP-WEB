@@ -1,0 +1,40 @@
+// We use the woff because it's supported by all the browsers
+
+@font-face {
+    font-family: 'Lato-light';
+    src: url('~src/assets/fonts/lato-light-webfont.woff') format("woff"),
+    url('~src/assets/fonts/lato-light-webfont.woff2') format("woff2");
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Lato-regular';
+    src: url('..//fonts/lato-regular-webfont.woff') format("woff"),
+    url('..//fonts/lato-regular-webfont.woff2') format("woff2");
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Lato-semibold';
+    src: url('..//fonts/lato-semibold-webfont.woff') format("woff"),
+    url('..//fonts/lato-semibold-webfont.woff2') format("wof2");
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Lato-bold';
+    src: url('..//fonts/lato-bold-webfont.woff') format("woff"),
+    url('..//fonts/lato-bold-webfont.woff2') format("woff2");
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+  }
+  
+  $font-family-primary: 'Lato-light';
+  $font-family-secondary: 'sans-serif';
