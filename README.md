@@ -12,9 +12,9 @@
 
 ## Install
 
-sh
+```sh
 npm install
-
+```
 
 ## Usage
 
