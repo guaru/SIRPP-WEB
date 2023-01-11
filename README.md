@@ -1,27 +1,36 @@
-# SicatelWeb
+# Welcome to @Telcel/Sicatel-web  <img src="https://cdn1.iconfinder.com/data/icons/cash-coin-essentials-colored/48/JD-01-512.png" width="40">
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.4.
+![Version](https://img.shields.io/badge/version-0.0.1-blue.svg?cacheSeconds=2592000)
+![Dev Health Checks](https://github.com/Norfolk-Southern/accessns-ruby/workflows/Dev%20Health%20Checks/badge.svg?branch=develop)
+![Prod Health Checks](https://github.com/Norfolk-Southern/accessns-ruby/workflows/Prod%20Health%20Checks/badge.svg?branch=main)
 
-## Development server
+> Telcel Sicatel Web
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### URLS
+ - [Homepage](http://localhost:4200/)
+ - [Demo](http://localhost:4200/)
 
-## Code scaffolding
+## Install
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+sh
+npm install
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Usage
 
-## Running unit tests
+```sh
+npm start
+```
 
-Run `ng test` to execute the unit tests via [Jes]().
+## Run tests
 
-## Running end-to-end tests
+```sh
+npm run test | ng test
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Author
 
-## Further help
+👤 *SICATEL TEAM*
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+* Website: http://localhost:4200/
+* GitLab: [@Telcel/Sicatel](http://intranet.telcel.com:9045/gitlab/dsrvcte/0004010703_sicatel-web_0001/0004010703_sicatel-web_0001)
