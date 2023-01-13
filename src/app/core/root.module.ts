@@ -1,14 +1,12 @@
 import { Overlay } from '@angular/cdk/overlay';
-import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { MAT_TOOLTIP_SCROLL_STRATEGY } from '@angular/material/tooltip';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import { ToastrModule } from 'ngx-toastr';
-import { TokenInterceptor } from '@sicatel/core/interceptors/token.interceptor';
 import { RequestInterceptor } from '@sicatel/core/interceptors/request.interceptor';
 import { LoginLayoutModule } from '@sicatel/core/layout/login-layout/login-layout.module';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [],

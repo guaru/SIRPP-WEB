@@ -10,4 +10,4 @@ export const ROOT_REDUCERS = new InjectionToken<ActionReducerMap<AppState, Actio
     factory: () => ({
         router: fromRouter.routerReducer
     })
-})
+});

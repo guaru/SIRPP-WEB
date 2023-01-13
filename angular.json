@@ -45,12 +45,12 @@
             "styles": [
               "src/styles.scss"
             ],
-           /* "stylePreprocessorOptions": {
+            "stylePreprocessorOptions": {
               "includePaths": [
                 "node_modules",
                 "src/assets/scss"
                 ]
-            },*/
+            },
             "scripts": [],
             "vendorChunk": true,
             "extractLicenses": false,
@@ -81,7 +81,14 @@
               ],
               "outputHashing": "all",
               "buildOptimizer": true,
-              "optimization": true,
+              "optimization": {
+                  "scripts": true,
+                  "styles": {
+                      "minify": true,
+                      "inlineCritical": false
+                      },
+                  "fonts": true
+              },
               "vendorChunk": false,
               "extractLicenses": true,
               "sourceMap": false,
@@ -123,7 +130,6 @@
       }
     }
   },
-  "defaultProject": "sicatel-web",
   "cli": {
     "schematicCollections": [
       "@angular-eslint/schematics"

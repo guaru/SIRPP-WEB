@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
-import { IDashboardSettings } from '@sicatel/modules/dashboard/models/dashboard-settings.interface';
+import { Injectable } from '@angular/core';
 import { SicatelUrlsConstants } from '@sicatel/configs/urls.constants';
+import { IDashboardSettings } from '@sicatel/modules/dashboard/models/dashboard-settings.interface';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -18,6 +18,6 @@ export class DashboardService {
      * @returns Observable<IDashboardSettings>
      */
     loadCustomer(): Observable<IDashboardSettings> {
-        return this.http.get(SicatelUrlsConstants.DASHBOARD_GET_CUSTOMER_URL).pipe(map(response => response as IDashboardSettings));
+        return this.http.get(SicatelUrlsConstants.dashboardGetCustomerUrl).pipe(map(response => response as IDashboardSettings));
     }
 }

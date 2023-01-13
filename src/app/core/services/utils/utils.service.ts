@@ -1,6 +1,6 @@
-import { Injectable } from "@angular/core";
-import { IError } from "@sicatel/shared/models/request/error.interface";
-import { ToastrService } from "ngx-toastr";
+import { Injectable } from '@angular/core';
+import { IError } from '@sicatel/shared/models/request/error.interface';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
     providedIn: 'root'

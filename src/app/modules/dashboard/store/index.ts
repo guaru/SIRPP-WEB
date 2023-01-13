@@ -4,7 +4,7 @@ import * as fromDashboard from '@sicatel/modules/dashboard/store/reducers/dashbo
 export const featureKey = 'mainDashboard';
 
 export interface State {
-    [fromDashboard.featureKey]: fromDashboard.State
+    [fromDashboard.featureKey]: fromDashboard.State;
 };
 
 export const reducer: ActionReducerMap<State> = {

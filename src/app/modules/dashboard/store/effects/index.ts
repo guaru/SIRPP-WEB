@@ -3,4 +3,4 @@ import { DashboardEffects } from '@sicatel/modules/dashboard/store/effects/dashb
 
 export const effects = [
     DashboardEffects
-]
+];

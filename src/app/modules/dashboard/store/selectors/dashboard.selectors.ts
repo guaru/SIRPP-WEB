@@ -1,6 +1,6 @@
-import { createSelector } from "@ngrx/store";
+import { createSelector } from '@ngrx/store';
+import { selectMainDashboardState, State } from '@sicatel/modules/dashboard/store';
 import * as fromDashboard from '@sicatel/modules/dashboard/store/reducers/dashboard.reducer';
-import { selectMainDashboardState, State } from "@sicatel/modules/dashboard/store";
 
 export const selectDashoardState = createSelector(
     selectMainDashboardState,
