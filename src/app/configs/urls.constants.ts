@@ -1,7 +1,7 @@
 export class SicatelUrlsConstants {
-    private static readonly BASE_URL = '/api/v1';
+    static readonly baseUrl = '/api/v1';
 
     // Dashboard
-    private static readonly DASHBOARD_BASE_URL = `${ SicatelUrlsConstants.BASE_URL }/dashboard`;
-    static readonly DASHBOARD_GET_CUSTOMER_URL = `${ SicatelUrlsConstants.DASHBOARD_BASE_URL }/get-customer`;
+    static readonly dashboardBaseUrl = `${ SicatelUrlsConstants.baseUrl }/dashboard`;
+    static readonly dashboardGetCustomerUrl = `${ SicatelUrlsConstants.dashboardBaseUrl }/get-customer`;
 }

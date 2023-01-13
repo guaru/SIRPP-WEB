@@ -1,7 +1,7 @@
-import { createReducer, on } from "@ngrx/store";
+import { createReducer, on } from '@ngrx/store';
 import * as DashboardActions from '@sicatel/modules/dashboard/store/actions/dashboard.actions';
-import { ERole } from "@sicatel/shared/enums/roles.emun";
-import { IError } from "@sicatel/shared/models/request/error.interface";
+import { ERole } from '@sicatel/shared/enums/roles.emun';
+import { IError } from '@sicatel/shared/models/request/error.interface';
 
 export const featureKey = 'dashboard-reducer';
 
@@ -17,7 +17,7 @@ export const initialState: State = {
     age: undefined,
     role: undefined,
     error: undefined
-}
+};
 
 export const dashboardReducer = createReducer(
     initialState,
@@ -32,7 +32,7 @@ export const dashboardReducer = createReducer(
         ...state,
         name: action.data.name,
         age: action.data.age,
-        role: action.data.role,
+        role: action.data.role
     })),
     on(DashboardActions.loadCustomerFailure, (state, action) => ({
         ...state,

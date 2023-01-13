@@ -1,6 +1,6 @@
-import { NgModule, Optional, SkipSelf } from "@angular/core";
-import { MatNativeDateModule } from "@angular/material/core"
-import { RouterModule } from "@angular/router";
+import { NgModule, Optional, SkipSelf } from '@angular/core';
+import { MatNativeDateModule } from '@angular/material/core';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     declarations: [],

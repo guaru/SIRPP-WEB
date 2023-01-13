@@ -1,7 +1,7 @@
-import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { SicatelMessages } from "@sicatel/configs/messsages.constant";
-import { catchError, Observable, throwError } from "rxjs";
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { SicatelMessages } from '@sicatel/configs/messsages.constant';
+import { catchError, Observable, throwError } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -21,5 +21,5 @@ export class RequestInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(request).pipe(catchError((rawError: HttpErrorResponse) => throwError(SicatelMessages.unexpectedError)));
     }
-    
+
 }

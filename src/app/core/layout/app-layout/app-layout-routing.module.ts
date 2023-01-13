@@ -1,13 +1,13 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
-import { APPLICATION_ROUTES } from "@sicatel/core/routes/application.routes";
-import { AppLayoutComponent } from "@sicatel/core/layout/app-layout/app.layout";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { AppLayoutComponent } from '@sicatel/core/layout/app-layout/app.layout';
+import { applicationRoutes } from '@sicatel/core/routes/application.routes';
 
 const routes: Routes = [
     {
         path: '',
         component: AppLayoutComponent,
-        children: APPLICATION_ROUTES
+        children: applicationRoutes
     },
     {
         path: '**',

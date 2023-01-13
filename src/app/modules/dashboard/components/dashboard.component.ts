@@ -1,6 +1,5 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IDashboardSettings } from '@sicatel/modules/dashboard/models/dashboard-settings.interface';
-import { ERole } from '@sicatel/shared/enums/roles.emun';
 
 @Component({
   selector: 'sicatel-dashboard',
@@ -21,7 +20,7 @@ export class DashboardComponent implements OnInit {
    * @summary: Change customer data
    * @returns: void
    */
-  changeCustomerData(): void {    
+  changeCustomerData(): void {
     this.changeCustomerDataEvent.emit();
   }
 }

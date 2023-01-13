@@ -1,6 +1,6 @@
-import { Routes } from "@angular/router";
+import { Routes } from '@angular/router';
 
-export const APPLICATION_ROUTES: Routes = [
+export const applicationRoutes: Routes = [
     {
         path: 'dashboard',
         loadChildren: () => import('@sicatel/modules/dashboard/dashboard.module').then(m => m.DashboardModule)

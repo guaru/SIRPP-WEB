@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 import { RouterState, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
-
 import { AppRoutingModule } from '@sicatel/app-routing.module';
 import { AppComponent } from '@sicatel/app.component';
 import { RootModule } from '@sicatel/core/root.module';
@@ -13,7 +12,7 @@ import { ROOT_REDUCERS } from '@sicatel/store';
   declarations: [
     AppComponent
   ],
-  imports: [ 
+  imports: [
     AppRoutingModule,
     CommonModule,
     RootModule,
