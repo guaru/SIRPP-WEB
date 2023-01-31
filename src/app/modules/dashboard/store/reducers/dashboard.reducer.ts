@@ -6,15 +6,15 @@ import { IError } from '@sicatel/shared/models/request/error.interface';
 export const featureKey = 'dashboard-reducer';
 
 export interface State {
-    name?: string;
-    age?: number;
+    name: string;
+    age: number;
     role?: ERole;
     error?: IError;
 }
 
 export const initialState: State = {
-    name: undefined,
-    age: undefined,
+    name: '',
+    age: 0,
     role: undefined,
     error: undefined
 };
@@ -30,8 +30,8 @@ export const dashboardReducer = createReducer(
     })),
     on(DashboardActions.loadCustomerSuccess, (state, action) => ({
         ...state,
-        name: action.data.name,
-        age: action.data.age,
+        name: action.data.name!,
+        age: action.data.age!,
         role: action.data.role
     })),
     on(DashboardActions.loadCustomerFailure, (state, action) => ({

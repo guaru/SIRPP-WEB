@@ -1,6 +1,6 @@
 {
     "/api/v1/dashboard": {
-        "target": "http://localhost:8080/",
+        "target": "http://localhost:9090/sicatel-dashboard/api",
         "changeOrigin": true,
         "secure": false,
         "pathRewrite": {

@@ -14,8 +14,7 @@ export class DashboardEffects {
         ofType(DashboardActions.loadCustomer),
         exhaustMap(() => this.dashboardService.loadCustomer().pipe(
             map((response: IDashboardSettings) => DashboardActions.loadCustomerSuccess({ data: response })),
-            catchError((error: IError) => of(DashboardActions.loadCustomerFailure({ error }))
-            )
+            catchError((error: IError) => of(DashboardActions.loadCustomerFailure({ error })))
         ))
     ));
 
