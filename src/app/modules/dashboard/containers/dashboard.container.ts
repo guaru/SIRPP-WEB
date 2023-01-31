@@ -22,7 +22,6 @@ export class DashboardContainer implements OnInit {
   ngOnInit(): void {
     this.store$ = this.store.select(DashboardSelectors.selectDashoardState).pipe(
       tap((st: { state: fromDashboard.State }) => {
-        console.log(st);
         this.dashboardSettings = {
           age: st.state.age,
           name: st.state.name,
