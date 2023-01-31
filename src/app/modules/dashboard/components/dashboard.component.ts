@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IDashboardSettings } from '@sicatel/modules/dashboard/models/dashboard-settings.interface';
 
 @Component({
@@ -6,13 +6,10 @@ import { IDashboardSettings } from '@sicatel/modules/dashboard/models/dashboard-
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
   @Input() message?: string;
   @Input() userSettings?: IDashboardSettings;
   @Output() changeCustomerDataEvent = new EventEmitter();
-
-  ngOnInit(): void {
-  }
 
   /**
    * Change Customer Data
