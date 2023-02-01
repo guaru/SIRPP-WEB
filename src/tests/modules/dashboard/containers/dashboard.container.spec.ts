@@ -1,11 +1,10 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { MemoizedSelector, Store } from '@ngrx/store';
+import { MemoizedSelector } from '@ngrx/store';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { DashboardComponent } from '@sicatel/modules/dashboard/components/dashboard.component';
 import { DashboardContainer } from '@sicatel/modules/dashboard/containers/dashboard.container';
 import * as fromDashboard from '@sicatel/modules/dashboard/store/reducers/dashboard.reducer';
 import * as DashboardSelectors from '@sicatel/modules/dashboard/store/selectors/dashboard.selectors';
-import { DashboardTestConstants } from '@sicatel/tests/configs/dashboard-test.constants';
 import { MockComponent } from 'ng-mocks';
 
 describe('Dashboard Container', () => {
@@ -14,26 +13,27 @@ describe('Dashboard Container', () => {
   let selector: MemoizedSelector<{ state: fromDashboard.State }, { state: fromDashboard.State  }>;
   let store: MockStore<fromDashboard.State>;
 
-  beforeEach(waitForAsync( () =>
+  beforeEach(waitForAsync( () => {
     TestBed.configureTestingModule({
       declarations: [ DashboardContainer, MockComponent(DashboardComponent) ],
-      providers: [ provideMockStore({
-        initialState: fromDashboard.initialState,
-          selectors: [
-            { selector: DashboardSelectors.selectDashoardState, value: DashboardTestConstants.dashboardSettings }
-          ]
-        }) ]
-    })
-    .compileComponents())
-  );
+      imports: [],
+      providers: [
+        provideMockStore({
+          initialState: {
+            [fromDashboard.featureKey]: fromDashboard.initialState
+          }
+        })
+      ]
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
+    fixture = TestBed.createComponent(DashboardContainer);
+    component = fixture.componentInstance;
     store = TestBed.inject<MockStore<fromDashboard.State>>(MockStore);
     selector = store.overrideSelector(DashboardSelectors.selectDashoardState, {
       state: fromDashboard.initialState
     });
-    fixture = TestBed.createComponent(DashboardContainer);
-    component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
@@ -43,16 +43,6 @@ describe('Dashboard Container', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should load selector for dashboard', () => {
-    selector.setResult({
-      state: {
-        ...fromDashboard.initialState, age: DashboardTestConstants.dashboardSettings.age!
-      }
-    });
-    store.refreshState();
-    expect(component.dashboardSettings.age).toEqual(22);
   });
 
   it('should dispatch change customer data', () => {

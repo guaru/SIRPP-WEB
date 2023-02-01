@@ -1,5 +1,5 @@
 <sicatel-dashboard *ngIf="(store$ | async) as store"
     [message]="messageToShow"
-    [userSettings]="dashboardSettings"
+    [userSettings]="store.state.settings"
     (changeCustomerDataEvent)="changeCustomerDataEvent()"
 ></sicatel-dashboard>

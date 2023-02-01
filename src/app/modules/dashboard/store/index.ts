@@ -1,14 +1,5 @@
-import { ActionReducerMap, createFeatureSelector } from '@ngrx/store';
+import * as DashboardActions from '@sicatel/modules/dashboard/store/actions/dashboard.actions';
 import * as fromDashboard from '@sicatel/modules/dashboard/store/reducers/dashboard.reducer';
+import * as DashboardSelectors from '@sicatel/modules/dashboard/store/selectors/dashboard.selectors';
 
-export const featureKey = 'mainDashboard';
-
-export interface State {
-    [fromDashboard.featureKey]: fromDashboard.State;
-};
-
-export const reducer: ActionReducerMap<State> = {
-    [fromDashboard.featureKey]: fromDashboard.dashboardReducer
-};
-
-export const selectMainDashboardState = createFeatureSelector<State>(featureKey);
+export { fromDashboard, DashboardActions, DashboardSelectors };
