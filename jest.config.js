@@ -27,8 +27,7 @@ module.exports = {
     coveragePathIgnorePatterns: [
       "/node_modules/",
       "<rootDir>/src/app/configs",
-      "<rootDir>/src/tests/configs",
-      "<rootDir>/src/app/modules/dashboard/store/index.ts",
+      "<rootDir>/src/tests/configs"
     ],
     transformIgnorePatterns: [
       "<rootDir>/node_modules/(?!ngx-extended-pdf-viewer|exceljs|uuid/).+\\.js$"

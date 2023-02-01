@@ -9,8 +9,8 @@ import { StoreModule } from '@ngrx/store';
 import { DashboardComponent } from '@sicatel/modules/dashboard/components/dashboard.component';
 import { DashboardContainer } from '@sicatel/modules/dashboard/containers/dashboard.container';
 import { DashboardRoutingModule } from '@sicatel/modules/dashboard/dashboard-routing.module';
-import { featureKey, reducer } from '@sicatel/modules/dashboard/store';
-import { effects } from '@sicatel/modules/dashboard/store/effects';
+import { DashboardEffects } from '@sicatel/modules/dashboard/store/effects/dashboard.effects';
+import * as dashboardReducer from '@sicatel/modules/dashboard/store/reducers/dashboard.reducer';
 
 @NgModule({
     declarations: [ DashboardComponent, DashboardContainer ],
@@ -20,8 +20,8 @@ import { effects } from '@sicatel/modules/dashboard/store/effects';
         MatButtonModule,
         MatIconModule,
         MatTooltipModule,
-        StoreModule.forFeature(featureKey, reducer),
-        EffectsModule.forFeature(effects),
+        EffectsModule.forFeature([ DashboardEffects ]),
+        StoreModule.forFeature(dashboardReducer.featureKey, dashboardReducer.dashboardReducer),
         MatDividerModule
     ]
 })

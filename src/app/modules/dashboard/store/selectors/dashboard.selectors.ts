@@ -1,10 +1,11 @@
-import { createSelector } from '@ngrx/store';
-import { selectMainDashboardState, State } from '@sicatel/modules/dashboard/store';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as fromDashboard from '@sicatel/modules/dashboard/store/reducers/dashboard.reducer';
 
+export const selectReferenceDashboardState = createFeatureSelector<fromDashboard.State>(fromDashboard.featureKey);
+
 export const selectDashoardState = createSelector(
-    selectMainDashboardState,
-    (state: State) => ({
-        state: state[fromDashboard.featureKey]
+    selectReferenceDashboardState,
+    (state: fromDashboard.State) => ({
+        state
     })
 );
