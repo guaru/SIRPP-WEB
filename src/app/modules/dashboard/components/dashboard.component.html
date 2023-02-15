@@ -13,19 +13,23 @@
                             <div><strong>Name</strong></div>
                             <div>{{ userSettings!.name }}</div>
                         </div>
-                        <mat-divider [vertical]="true"></mat-divider>
+                    </div>
+                    <mat-divider [vertical]="true"></mat-divider>
+                    <div class="row"> 
                         <div class="col">
                             <div><strong>Age</strong></div>
                             <div>{{ userSettings!.age }}</div>
                         </div>
+                    </div>
+                    <mat-divider [vertical]="true"></mat-divider>
+                    <div class="row"> 
                         <div class="col">
                             <div><strong>Role</strong></div>
                             <div>{{ userSettings!.role }}</div>
                         </div>
-                        <mat-divider [vertical]="true"></mat-divider>
                     </div>
                 </div>
-                <button mat-flat-button class="w-100" aria-label="Change customer data" color="accent"
+                <button mat-flat-button class="w-100 btn" aria-label="Change customer data" color="accent"
                     matTooltip="Change customer data" (click)="changeCustomerData()">
                     Change customer data
                 </button>

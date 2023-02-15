@@ -9,6 +9,7 @@
       "@sicatel/env/*": ["src/environments/*"],
       "@sicatel/core/*": ["src/app/core/*"],
       "@sicatel/modules/*": ["src/app/modules/*"],
+      "@sicatel/shared/*": ["src/app/shared/*"],
       "@sicatel/tests/*": ["src/tests/*"]
     },
     "outDir": "./dist/out-tsc",
@@ -27,6 +28,7 @@
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,
+    "types": [ "jest" ],
     "lib": [
       "ES2022",
       "dom"

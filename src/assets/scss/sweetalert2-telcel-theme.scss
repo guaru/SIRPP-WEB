@@ -1,0 +1,24 @@
+@import '../../../node_modules/sweetalert2/src/variables';
+@import 'colors';
+
+// CONFIRM BUTTON
+$swal2-confirm-button-border-radius: 0;
+$swal2-confirm-button-background-color: $blue;
+$swal2-confirm-button-color: $black;
+
+// CANCEL BUTTON
+$swal2-cancel-button-border: 1px solid $light;
+$swal2-cancel-button-border-radius: 0;
+$swal2-confirm-button-background-color: $white;
+$swal2-confirm-button-color: $danger-dark;
+
+// CANCEL BUTTON
+$swal2-deny-button-border: $danger-dark !important;
+
+// COMMIN VARIABLES FOR CONFIRM AND CALCEL BUTTONS
+$swal2-button-focus-box-shadow: 0 0 0 1px $swal2-background, 0 0 0 2px $light-green;
+
+// loading icon
+$swal2-loader-border-color: $blue transparent $blue transparent !important;
+
+@import '../../../node_modules/sweetalert2/src/sweetalert2';

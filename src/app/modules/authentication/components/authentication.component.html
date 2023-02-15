@@ -1,0 +1,29 @@
+<form class="my-5" [formGroup]="loginForm">
+    <mat-form-field appearance="outline" class="font-weight-bold w-100" color="accent">
+        <mat-label>Usuario</mat-label>
+        <input #userInput matInput type="text" formControlName="userName" autocomplete="userName" ngTrimSpaces autofocus>
+        <mat-icon fontSet="fas" fontIcon="fa-user" matSuffix color="primary"></mat-icon>
+        <mat-error class="font-weight-bold" *ngIf="loginForm.controls.userName.invalid">Usuario inválido</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="font-weight-bold w-100" color="accent">
+        <mat-label>Contraseña</mat-label>
+        <input sicatelCapsLock (capsLock)="showPasswordCaps = $event" matInput [type]="showPassword ? 'text' : 'password'" formControlName="password"
+            autocomplete="current-password" ngTrimSpaces>
+            <mat-icon fontSet="fas" [fontIcon]="showPassword ? 'fa-eye-slash' :  'fa-eye'" matSuffix color="primary" (click)="showPassword = !showPassword"></mat-icon>
+            <mat-icon *ngIf="showPasswordCaps" fontSet="fas" fontIcon="fa-arrow-alt-circle-up" color="primary" matPrefix matTooltip="Caps Lock"></mat-icon>
+            <mat-error class="font-weight-bold" *ngIf="loginForm.controls.password.invalid">Contraseña inválida</mat-error>
+    </mat-form-field>
+    <div *ngIf="error" class="bg-danger text-center text-white p-2 mb-2">
+        {{ error.message }}
+    </div>
+    <div class="d-flex justify-content-center my-3">
+        <ng-container *ngIf="loading; else actions">
+            <mat-spinner class="align-self-center" color="accent" diameter="30"></mat-spinner>
+        </ng-container>
+        <ng-template #actions>
+            <button mat-flat-button class="w-100 btn btn-primary" color="accent" (click)="logIn(userInput)">
+                Entrar
+            </button>
+        </ng-template>
+    </div> 
+</form>

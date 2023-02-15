@@ -1,29 +1,21 @@
- @use '/node_modules/@angular/material' as mat; 
+@use '@angular/material' as mat;
 
-@import './colors.scss';
-@import './fonts.scss';
+@import 'colors';
+@import 'fonts';
 
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
+
 @include mat.core();
-
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$telcel-app-primary: mat.define-palette($telcel-blue, 900);
-$telcel-app-accent: mat.define-palette($telcel-accent, 700);
-
+$bluesky-primary: mat.define-palette($telcel-blue, 900);
+$bluesky-accent: mat.define-palette($telcel-accent, 700);
 // The warn palette is optional (defaults to red).
-$telcel-app-warn: mat.define-palette($telcel-red, 900);
-
-// Create the theme object (a Sass map containing all of the palettes).
-
-$telcel-app-theme: mat.define-light-theme((
+$bluesky-warn: mat.define-palette($telcel-red, 900);
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$bluesky-theme: mat.define-light-theme((
   color: (
-    primary: $telcel-app-primary,
-    accent: $telcel-app-accent,
-    warn: $telcel-app-warn
+    primary: $bluesky-primary,
+    accent: $bluesky-accent,
+    warn: $bluesky-warn,
   ),
   typography: mat.define-typography-config(
     $font-family: 'Lato-Regular, sans-serif',
@@ -31,9 +23,4 @@ $telcel-app-theme: mat.define-light-theme((
     $body-1: mat.define-typography-level(14px, 20px, 400)
   )
 ));
-
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-
-@include mat.all-component-themes($telcel-app-theme);
+@include mat.all-component-themes($bluesky-theme);

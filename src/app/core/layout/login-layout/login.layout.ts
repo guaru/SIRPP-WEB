@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 export class LoginLayoutComponent {
     version$: Observable<string>;
 
-    constructor(private http: HttpClient, private router: Router) {
+    constructor(private http: HttpClient) {
         this.version$ = this.http.get('assets/context/version', { responseType: 'text' });
     }
 
@@ -22,6 +22,6 @@ export class LoginLayoutComponent {
      * @returns void
      */
     navigateToDashboard(): void {
-        this.router.navigate([ 'home/dashboard' ], { queryParams: { name: 'Telcel_Sicatel' } });
+        
     }
 }
