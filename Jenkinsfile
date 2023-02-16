@@ -7,9 +7,14 @@ pipeline {
                 bat 'npm install'
             }
         }
-        stage('Test') {
+        stage('Lint') {
             steps {
                 bat 'ng lint'
+            }
+        }
+        stage('Unit test and coverage') {
+            steps {
+                bat 'npx jest --coverage'
             }
         }
     }   

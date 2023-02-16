@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -13,15 +12,5 @@ export class LoginLayoutComponent {
 
     constructor(private http: HttpClient) {
         this.version$ = this.http.get('assets/context/version', { responseType: 'text' });
-    }
-
-    /**
-     * Navigate To Dashboard
-     *
-     * @summary Navigate to dashboard
-     * @returns void
-     */
-    navigateToDashboard(): void {
-        
     }
 }

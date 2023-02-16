@@ -25,7 +25,7 @@ export class AuthenticationComponent {
   /**
    * LogIn
    *
-   * summary: Login into the application
+   * @summary: Login into the application
    * @param $userInput: HTMLInputElement
    * @returns void
    */
