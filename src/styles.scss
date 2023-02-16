@@ -1,10 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
-/* AccessNS material theme */
+/* Add application styles & imports to this file! */
 @import './assets/scss/telcel-material.scss';
+
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import "~bootstrap/dist/css/bootstrap.css";
 
 /* main variables */
 @import './assets/scss/colors';
-@import './assets/scss/fonts';
+@import './assets/scss/fonts'; 
 
 /* bootstrap utils */
 $theme-colors: (
@@ -28,19 +30,18 @@ $theme-colors: (
   "lavender": $lavender,
   "teal": $teal
 );
-@import "../node_modules/bootstrap/scss/functions";
-@import "../node_modules/bootstrap/scss/variables";
-@import "../node_modules/bootstrap/scss/mixins";
-@import "../node_modules/bootstrap/scss/reboot";
+
+/* custom ng-material */
+@import './assets/scss/telcel-overrides.scss';
+
+/* custom ng-material */
+@import './assets/scss/sweetalert2-telcel-theme.scss';
 
 /* NG Toastr */
 @import '/node_modules/ngx-toastr/toastr';
 
 /* icons */
 @import '/node_modules/@fortawesome/fontawesome-free/css/all.min.css';
-
-/* custom ng-material */
-@import './assets/scss/telcel-overrides.scss';
 
 html,
 body {
