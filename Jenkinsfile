@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                bat 'npm run ng build:cli'
+                bat 'npm run build:cli'
             }
         }
         stage('Unit Test') {
