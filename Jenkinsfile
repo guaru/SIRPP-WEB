@@ -2,19 +2,24 @@ pipeline {
     agent any
     
     stages {
-        stage('Build') {
+        stage('Install') {
             steps {
                 bat 'npm install'
             }
         }
-        stage('Test') {
+        stage('Build') {
             steps {
-                bat 'npm test'
+                bat 'npm run ng build:cli'
             }
         }
-        stage('Lint') {
+        stage('Unit Test') {
             steps {
-                bat 'npm run-script lint'
+                bat 'npm run test'
+            }
+        }
+        stage('Static code anaysis') {
+            steps {
+                bat 'npm run lint'
             }
         }
         stage('Unit test and coverage') {
