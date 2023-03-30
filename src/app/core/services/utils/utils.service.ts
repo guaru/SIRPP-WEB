@@ -11,7 +11,6 @@ export class UtilsService {
 
     /**
      * Show Error Message
-     *
      * @summary Show error message
      * @param error : IError
      * @returns void

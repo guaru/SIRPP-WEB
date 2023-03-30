@@ -1,0 +1,52 @@
+<div id="carousel" class="carousel slide" [class.carousel-dark]="dark" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true"
+      aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+
+    <ng-container *ngIf="(sliderData$ | async) else load">
+      <div class="carousel-item "
+            [class.active]="i==0"
+        *ngFor="let item of (sliderData$ | async) as slider; index as i  ">
+        <ng-container *ngTemplateOutlet="itemCarousel;context:{item}" ></ng-container>
+      </div>
+    </ng-container>
+
+
+
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<ng-template #load>
+  <div class="carousel-item active">
+    <img src="./assets/{{imgDefault}}" class="d-block w-100" height="{{height}}" alt="...">
+    <div class="carousel-caption d-none d-md-block">
+      <h5>Cargando...</h5>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #itemCarousel let-item="item">
+  <img src="./assets/{{!bgDefault ? item.image : imgDefault}}" class="d-block w-100" height="{{height}}" alt="...">
+  <div class="carousel-caption d-none d-md-block">
+    <h5 class="fw-bold">{{item.title}}</h5>
+    <h6>{{item.subtitle}}</h6>
+    <h6>{{item.body.mail}}</h6>
+    <h6>{{item.body.phone}}</h6>
+    <h6>{{item.body.text_1}}</h6>
+    <h6>{{item.body.text_2}}</h6>
+    <h5 *ngIf="item.link"> <a class="btn btn-link text-uppercase text-white fw-bold"
+        href="{{item.link.texto}}">{{item.link.ruta}}</a></h5>
+  </div>
+</ng-template>

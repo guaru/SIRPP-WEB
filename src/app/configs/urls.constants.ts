@@ -4,4 +4,8 @@ export class SicatelUrlsConstants {
     // Dashboard
     static readonly dashboardBaseUrl = `${ SicatelUrlsConstants.baseUrl }/dashboard`;
     static readonly dashboardGetCustomerUrl = `${ SicatelUrlsConstants.dashboardBaseUrl }/get-customer`;
+
+    //authentication
+    static readonly authenticationBaseUrl = `${ SicatelUrlsConstants.baseUrl }/authentication`;
+    static readonly dataSliderUrl = `${ SicatelUrlsConstants.authenticationBaseUrl }/slider`;
 }
