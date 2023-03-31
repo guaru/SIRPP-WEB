@@ -19,14 +19,4 @@ export class LoginLayoutComponent implements OnInit {
     ngOnInit(): void {
 
     }
-
-    /**
-     * Navigate To Dashboard
-     *
-     * @summary Navigate to dashboard
-     * @returns void
-     */
-    navigateToDashboard(): void {
-        
-    }
 }
