@@ -5,6 +5,7 @@ import { IError } from '@sicatel/shared/models/request/error.interface';
 import { ELoginType } from '../../../shared/enums/login-type.enum';
 import { TelcelErrorStateMatcher } from '@sicatel/configs/error-state-matcher';
 import { ValidatorsCustomService } from '../../../core/services/utils/validators-custom.service';
+import { UtilsService } from '../../../core/services/utils/utils.service';
 
 
 @Component({
@@ -31,7 +32,7 @@ export class AuthenticationComponent {
   });
 
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private utilService: UtilsService) {
 
   }
 
@@ -45,7 +46,7 @@ export class AuthenticationComponent {
    * @returns void
    */
   logIn($userInput: HTMLInputElement): void {
-    this.router.navigate(['home/dashboard'], { queryParams: { name: $userInput.value } });
+   
   }
 
   /**
@@ -57,9 +58,18 @@ export class AuthenticationComponent {
     this.position.updateValueAndValidity();
   }
 
+  
+  /**
+   * LogIn
+   *
+   * @summary: Login into the application
+   * @param $userInput: HTMLInputElement
+   * @returns void
+   */
   onSubmit() {
     if (this.loginForm.valid) {
-      console.log("valido");
+      this.utilService.showSuccessMessage();
+      this.router.navigate(['home/dashboard'], { queryParams: { name: this.userName } });
     }
   }
 
