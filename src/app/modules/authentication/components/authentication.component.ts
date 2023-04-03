@@ -69,7 +69,7 @@ export class AuthenticationComponent {
   onSubmit() {
     if (this.loginForm.valid) {
       this.utilService.showSuccessMessage();
-      this.router.navigate(['home/dashboard'], { queryParams: { name: this.userName } });
+      this.router.navigate(['caja/dashboard'], { queryParams: { name: this.userName } });
     }
   }
 

@@ -20,7 +20,7 @@ const routes: Routes = [
     canActivate: [ LoginGuard ]*/
   },
   {
-    path: 'home',
+    path: 'caja',
     loadChildren: () => import('@sicatel/core/layout/app-layout/app-layout.module').then(m => m.AppLayoutModule)
     /*, TODO: Add implementation for childrenguard
     canActivate: [ LoginGuard ]*/

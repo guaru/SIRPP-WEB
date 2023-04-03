@@ -9,6 +9,7 @@ import { AuthenticationRoutingModule } from '@sicatel/modules/authentication/aut
 import { AuthenticationComponent } from '@sicatel/modules/authentication/components/authentication.component';
 import { AuthenticationContainer } from '@sicatel/modules/authentication/containers/authentication.container';
 import { DirectivesModule } from '@sicatel/shared/directives/directives.module';
+import { CarouselModule } from '../carousel/carousel.module';
 
 
 @NgModule({

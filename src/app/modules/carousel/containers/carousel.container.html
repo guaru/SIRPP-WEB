@@ -1,0 +1,3 @@
+<sicatel-carousel 
+ *ngIf="(store$ | async) as store"
+ [bgDefault]="store.state.setting.bgDefault" [height]="store.state.setting.height" [sliderData]="store.state.data" ></sicatel-carousel>
