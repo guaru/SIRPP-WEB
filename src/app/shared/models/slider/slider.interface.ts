@@ -1,11 +1,11 @@
-import { SliderBody } from './slider-body.interface';
-import { SliderLink } from './slider-link.interface';
+import { ISliderBody } from '@sicatel/shared/models/slider/slider-body.interface';
+import { ISliderLink } from '@sicatel/shared/models/slider/slider-link.interface';
 
-export interface Slider {
+export interface ISlider {
     subtitle: string;
     title: string;
     image: string;
-    body: SliderBody;
-    link: SliderLink;
+    body: ISliderBody;
+    link: ISliderLink;
 }
 

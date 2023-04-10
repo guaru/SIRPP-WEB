@@ -3,7 +3,7 @@
  import { catchError, exhaustMap, map, of, tap } from 'rxjs'; 
 import { SliderService } from '@sicatel/core/http/slider/slider.service';
 import * as CarouselActions from '@sicatel/modules/carousel/store/actions/carousel.actios';
-import { Slider } from '@sicatel/shared/models/slider/slider.interface';
+import { ISlider } from '@sicatel/shared/models/slider/slider.interface';
 import { IError } from '@sicatel/shared/models/request/error.interface';
 import { UtilsService } from '@sicatel/core/services/utils/utils.service';
 
@@ -13,7 +13,7 @@ import { UtilsService } from '@sicatel/core/services/utils/utils.service';
  loadDataeffect$ = createEffect(() => this.actions$.pipe(
             ofType(CarouselActions.loadData),
             exhaustMap(() => this.sliderService.loadData().pipe(
-            map((data: Slider[]) => CarouselActions.loadSuccess({data}) ),
+            map((data: ISlider[]) => CarouselActions.loadSuccess({data}) ),
             catchError((error: IError) => of(CarouselActions.loadFailure({error})))
         ))));
 

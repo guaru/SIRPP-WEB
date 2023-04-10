@@ -1,33 +1,36 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes, CanActivate } from '@angular/router';
 import { LoginLayoutComponent } from '@sicatel/core/layout/login-layout/login.layout';
+import { LoginGuard } from '@sicatel/core/guards/login.guard';
+import { SessionGuard } from '@sicatel/core/guards/session.guard';
+import { SicatelCommons } from './configs/commons.constants';
 
 const routes: Routes = [
   {
-    path: 'auth',
+    path: SicatelCommons.AUTH,
     component: LoginLayoutComponent,
     children: [
       {
-        path: 'login',
+        path: SicatelCommons.LOGIN,
         loadChildren: () => import('./modules/authentication/authentication.module').then(m => m.AuthenticationModule)
       },
       {
         path: '',
-        redirectTo: 'login',
+        redirectTo: SicatelCommons.LOGIN,
         pathMatch: 'full'
       }
-    ]/*, TODO: add implementation for loginGuard
-    canActivate: [ LoginGuard ]*/
+    ],
+    canActivate: [SessionGuard]
+
   },
   {
-    path: 'caja',
-    loadChildren: () => import('@sicatel/core/layout/app-layout/app-layout.module').then(m => m.AppLayoutModule)
-    /*, TODO: Add implementation for childrenguard
-    canActivate: [ LoginGuard ]*/
+    path: SicatelCommons.CAJA,
+    loadChildren: () => import('@sicatel/core/layout/app-layout/app-layout.module').then(m => m.AppLayoutModule),
+    canLoad: [LoginGuard]
   },
   {
     path: '**',
-    redirectTo: 'auth',
+    redirectTo: SicatelCommons.AUTH,
     pathMatch: 'full'
   }
 ];

@@ -1,11 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { IError } from '@sicatel/shared/models/request/error.interface';
 import { ELoginType } from '../../../shared/enums/login-type.enum';
 import { TelcelErrorStateMatcher } from '@sicatel/configs/error-state-matcher';
 import { ValidatorsCustomService } from '../../../core/services/utils/validators-custom.service';
 import { UtilsService } from '../../../core/services/utils/utils.service';
+import { IUserRequest } from '@sicatel/shared/models/request/user.interface';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
+
+
+import * as AuthenticationActions from '@sicatel/modules/authentication/store/actions/authentication.actions';
+import * as fromAuthentication from '@sicatel/modules/authentication/store/reducers/authentication.reducers';
+import * as AuthenticationSelectors from '@sicatel/modules/authentication/store/selectors/authentication.selectors';
+import { Router } from '@angular/router';
+
+
 
 
 @Component({
@@ -13,8 +23,8 @@ import { UtilsService } from '../../../core/services/utils/utils.service';
   templateUrl: './authentication.component.html',
   styleUrls: ['./authentication.component.scss']
 })
-export class AuthenticationComponent {
-  error?: IError;
+export class AuthenticationComponent implements OnInit, OnDestroy  {
+
   loading?: boolean = false;
   matcher: TelcelErrorStateMatcher = new TelcelErrorStateMatcher();
   showPassword = false;
@@ -22,6 +32,7 @@ export class AuthenticationComponent {
   ELoginType = ELoginType;
   typesLogin: Array<ELoginType> = [ELoginType.CAC, ELoginType.DAT];
   selectedType: ELoginType = ELoginType.CAC;
+  storeSubscribe : Subscription;
 
   loginForm = new FormGroup({
     userName: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]),
@@ -32,22 +43,21 @@ export class AuthenticationComponent {
   });
 
 
-  constructor(private router: Router, private utilService: UtilsService) {
-
+  constructor(private store: Store<fromAuthentication.State>) {
+    this.storeSubscribe =  this.store.select(AuthenticationSelectors.selectAuthenticationStateLoading).subscribe( (loading)  => {
+      this.loading = loading;
+    });
   }
 
 
+  ngOnDestroy(): void {
+    this.storeSubscribe.unsubscribe();
+  }
 
-  /**
-   * LogIn
-   *
-   * @summary: Login into the application
-   * @param $userInput: HTMLInputElement
-   * @returns void
-   */
-  logIn($userInput: HTMLInputElement): void {
+  ngOnInit(): void {
    
   }
+
 
   /**
    * Control change type login
@@ -68,8 +78,15 @@ export class AuthenticationComponent {
    */
   onSubmit() {
     if (this.loginForm.valid) {
-      this.utilService.showSuccessMessage();
-      this.router.navigate(['caja/dashboard'], { queryParams: { name: this.userName } });
+      let userRequest =  {
+        userName : this.userName.value,
+        type: this.type.value,
+        phone: this.phone.value,
+        position: this.position.value,
+        userArrayKey: this.password.value
+      } as IUserRequest;
+
+      this.store.dispatch(AuthenticationActions.signIn({userRequest}));
     }
   }
 

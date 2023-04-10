@@ -1,4 +1,4 @@
-export interface SliderLink {
+export interface ISliderLink {
     texto: string;
     ruta: string;
 }

@@ -8,4 +8,5 @@ export class SicatelUrlsConstants {
     //authentication
     static readonly authenticationBaseUrl = `${ SicatelUrlsConstants.baseUrl }/authentication`;
     static readonly dataSliderUrl = `${ SicatelUrlsConstants.authenticationBaseUrl }/slider`;
+    static readonly signInUrl= `${ SicatelUrlsConstants.authenticationBaseUrl }/auth/signin`;
 }

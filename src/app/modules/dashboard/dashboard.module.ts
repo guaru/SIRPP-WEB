@@ -11,6 +11,7 @@ import { DashboardContainer } from '@sicatel/modules/dashboard/containers/dashbo
 import { DashboardRoutingModule } from '@sicatel/modules/dashboard/dashboard-routing.module';
 import { DashboardEffects } from '@sicatel/modules/dashboard/store/effects/dashboard.effects';
 import * as dashboardReducer from '@sicatel/modules/dashboard/store/reducers/dashboard.reducer';
+import { CarouselModule } from '../carousel/carousel.module';
 
 @NgModule({
     declarations: [ DashboardComponent, DashboardContainer ],
@@ -20,6 +21,7 @@ import * as dashboardReducer from '@sicatel/modules/dashboard/store/reducers/das
         MatButtonModule,
         MatIconModule,
         MatTooltipModule,
+        CarouselModule,
         EffectsModule.forFeature([ DashboardEffects ]),
         StoreModule.forFeature(dashboardReducer.featureKey, dashboardReducer.dashboardReducer),
         MatDividerModule

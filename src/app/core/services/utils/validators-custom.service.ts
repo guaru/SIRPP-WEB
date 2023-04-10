@@ -10,7 +10,6 @@ export class ValidatorsCustomService {
 
   public static conditionalRequired(fieldName: string, value: string): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
-      console.log(control.parent?.get('type')?.value);
       if (!control.parent)
         return null;
       if (control.parent.get(fieldName)?.value === value) {

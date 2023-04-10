@@ -11,4 +11,13 @@ export class SicatelMessages {
         message: 'Unexpected Error',
         status: StatusCodes.IM_A_TEAPOT
     };
+
+
+    static readonly   errorGeneral: IError = {
+        code: 'RB-001',
+        title: 'Algo salio mal, intente de nuevo',
+        message: '',
+        status: StatusCodes.IM_A_TEAPOT
+    };
+    
 }

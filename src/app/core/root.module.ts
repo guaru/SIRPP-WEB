@@ -7,6 +7,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RequestInterceptor } from '@sicatel/core/interceptors/request.interceptor';
 import { LoginLayoutModule } from '@sicatel/core/layout/login-layout/login-layout.module';
 import { ToastrModule } from 'ngx-toastr';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { AuthenticationEffects } from '@sicatel/modules/authentication/store/effects/authentication.effects';
+import * as authenticationReducer  from '@sicatel/modules/authentication/store/reducers/authentication.reducers';
+
 
 @NgModule({
   declarations: [],
@@ -15,6 +20,8 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserAnimationsModule,
     BrowserModule,
     HttpClientModule,
+    EffectsModule.forFeature([AuthenticationEffects]),
+    StoreModule.forFeature(authenticationReducer.featureKey,authenticationReducer.authenticationReducer),
     ToastrModule.forRoot({
       timeOut: 8000,
       positionClass: 'toast-bottom-right'

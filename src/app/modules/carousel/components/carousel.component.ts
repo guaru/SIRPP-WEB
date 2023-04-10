@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Slider } from '@sicatel/shared/models/slider/slider.interface';
+import { ISlider } from '@sicatel/shared/models/slider/slider.interface';
 
 @Component({
   selector: 'sicatel-carousel',
@@ -12,7 +12,7 @@ export class CarouselComponent implements OnInit {
   @Input('bgDefault') bgDefault: boolean = true;
   @Input('height') height: number = 200;
   @Input('dark') dark: boolean = false;
-  @Input('sliderData') sliderData: Slider[] = [];
+  @Input('sliderData') sliderData: ISlider[] = [];
   
   imgDefault: string = '/img/background-slider.png';
   

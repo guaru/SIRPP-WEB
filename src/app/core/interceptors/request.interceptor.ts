@@ -19,7 +19,13 @@ export class RequestInterceptor implements HttpInterceptor {
      * @returns Observable<HttpEvent<any>>
      */
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        return next.handle(request).pipe(catchError((rawError: HttpErrorResponse) => throwError(SicatelMessages.unexpectedError)));
+        return next.handle(request).pipe(catchError((rawError: HttpErrorResponse) =>{ 
+            if(rawError?.error?.code){
+                return throwError(rawError.error);
+            }
+            return throwError(SicatelMessages.unexpectedError) 
+        
+        }));
     }
 
 }
