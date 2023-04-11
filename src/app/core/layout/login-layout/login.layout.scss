@@ -1,4 +1,10 @@
- @import "../../../../assets/scss/colors";
+@import "../../../../assets/scss/colors";
+@import "../../../../assets/scss/fonts";
+
+* {
+    font-family: SourceSansPro, sans-serif;
+}
+
 
 .login-bg {
     width: 100%;

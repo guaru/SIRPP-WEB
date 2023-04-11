@@ -28,7 +28,8 @@
               "exceljs",
               "date-fns/locale",
               "@babel/runtime",
-              "core-js"
+              "core-js",
+              "sweetalert2"
             ],
             "outputPath": "dist/sicatel-web",
             "index": "src/index.html",
