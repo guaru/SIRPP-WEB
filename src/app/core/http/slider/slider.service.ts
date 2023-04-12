@@ -11,8 +11,8 @@ export class SliderService {
 
   constructor(private http:HttpClient) { }
 
-  loadData(): Observable<Array<ISlider>>{
-    return this.http.get<Array<ISlider>>(SicatelUrlsConstants.dataSliderUrl);
+  loadData(): Observable<ISlider[]>{
+    return this.http.get<ISlider[]>(SicatelUrlsConstants.dataSliderUrl).pipe(map(data => data as ISlider[]));;
   }
   
 }

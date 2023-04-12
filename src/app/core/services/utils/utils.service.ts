@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { IError } from '@sicatel/shared/models/request/error.interface';
-import { ToastrService } from 'ngx-toastr';
 import Swal  from 'sweetalert2';
 
 @Injectable({
@@ -8,7 +7,7 @@ import Swal  from 'sweetalert2';
 })
 export class UtilsService {
 
-    constructor(private messageService: ToastrService) {}
+    constructor() {}
 
     /**
      * Show Error Message
@@ -34,15 +33,13 @@ export class UtilsService {
      * @param error : IError
      * @returns void
      */
-     showSuccessMessage(msg: string = ''): void {
+     showSuccessMessage(msg: string = 'Listo'): void {
             Swal.fire({
-                position:'top-end',
                 title: 'Exito',
                 text : msg,
                 icon: 'success',
                 confirmButtonColor: '#0071d1',
-                confirmButtonText: 'Enterado',
-                timer: 3500
+                confirmButtonText: 'Enterado'
             });
     }
 

@@ -19,6 +19,10 @@ export class CarouselContainer implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadData();
+  }
+
+  loadData(): void {
     this.store.dispatch(CarouselActions.loadData());
   }
   

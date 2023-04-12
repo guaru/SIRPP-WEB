@@ -12,14 +12,14 @@ export interface IUser {
     nombreUsuario:            string;
     idGrupo:                  string;
     numeroEmpleado:           string;
-    fuerzaVenta:              null;
+    fuerzaVenta:              string;
     ip:                       string;
-    nivelFuerzaVenta:         null;
+    nivelFuerzaVenta:         string;
     posicion:                 string;
     telefono:                 number;
-    claveUsuarioDistribuidor: null;
+    claveUsuarioDistribuidor: string;
     tipo:                     string;
-    estatus:                  null;
+    estatus:                  string;
     uuid:                     string;
     region:                   string;
     centro:                   string;

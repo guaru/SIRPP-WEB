@@ -12,9 +12,9 @@ export const selectAuthenticationState = createSelector(
 
 export const selectAuthenticationStateUser = createSelector(
     selectReferenceAuthenticationState,
-            (state: fromAuthentication.State) => state?.token?.user
+            (state: fromAuthentication.State) => state.token!.user
 );
 
 export const selectAuthenticationStateLoading = createSelector(
     selectReferenceAuthenticationState,
-            (state: fromAuthentication.State) => state?.loading );
+            (state: fromAuthentication.State) => state.loading );

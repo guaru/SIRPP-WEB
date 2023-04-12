@@ -12,7 +12,8 @@ export class ValidatorsCustomService {
     return (control: AbstractControl): ValidationErrors | null => {
       if (!control.parent)
         return null;
-      if (control.parent.get(fieldName)?.value === value) {
+        
+      if (control.parent.get(fieldName)!.value === value) {
         return Validators.required(control);
       }
       return null;

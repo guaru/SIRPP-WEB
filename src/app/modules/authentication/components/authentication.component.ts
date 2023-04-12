@@ -32,7 +32,7 @@ export class AuthenticationComponent implements OnInit, OnDestroy  {
   ELoginType = ELoginType;
   typesLogin: Array<ELoginType> = [ELoginType.CAC, ELoginType.DAT];
   selectedType: ELoginType = ELoginType.CAC;
-  storeSubscribe : Subscription;
+  storeSubscribe : Subscription = new Subscription();
 
   loginForm = new FormGroup({
     userName: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]),
@@ -55,7 +55,7 @@ export class AuthenticationComponent implements OnInit, OnDestroy  {
   }
 
   ngOnInit(): void {
-   
+  
   }
 
 
