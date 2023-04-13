@@ -20,7 +20,23 @@ export class CarouselTestConstants {
                     text_2: 'Test texto 2'
                 } as ISliderBody
 
-    } as ISlider ];
+    } as ISlider, {
+        title : 'DATA 1',
+        subtitle: 'Subtitle 1',
+        image : '',
+        link : {
+            texto: 'Ruta',
+            ruta: 'http://test.com'
+        } as ISliderLink,
+        body:  {
+            componentGui : '',
+            mail: 'test@yopmail.com',
+            phone: '559959955',
+            text_1: 'Test texto 1' ,
+            text_2: 'Test texto 2'
+        } as ISliderBody
+
+} as ISlider];
 
 
     static readonly config: ISliderConfig = {

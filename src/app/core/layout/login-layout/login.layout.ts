@@ -11,7 +11,7 @@ import { ISliderConfig } from '@sicatel/shared/models/slider/slider-config.inter
     templateUrl: './login.layout.html',
     styleUrls: [ './login.layout.scss' ]
 })
-export class LoginLayoutComponent implements OnInit {
+export class LoginLayoutComponent  {
     
     version$: Observable<string>;
     date$: Observable<string>;
@@ -21,9 +21,12 @@ export class LoginLayoutComponent implements OnInit {
     constructor(private http: HttpClient, private store: Store<fromCarousel.State>) {
         this.version$ = this.http.get('assets/context/version', { responseType: 'text' });
         this.date$ = this.http.get('assets/context/date', { responseType: 'text' });
+        this.initConfigCarousel();
     }
 
-    ngOnInit(): void {
+
+    initConfigCarousel(): void{
         this.store.dispatch(CarouselActions.init({ setting: { bgDefault: true,dark:true,height:200 } as ISliderConfig }));
     }
+
 }

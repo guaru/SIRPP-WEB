@@ -16,7 +16,7 @@
     "build:ci": "npx jest --ci --verbose=false --runInBand",
     "dev:test": "npx jest --watchAll --maxWorkers=25%",
     "dev:lint": "ng lint",
-    "analyze": "webpack-bundle-analyzer dist/SicatelWeb/stats.json",
+    "analyze": "webpack-bundle-analyzer dist/sicatel-web/stats.json",
     "lint": "ng lint"
   },
   "private": true,

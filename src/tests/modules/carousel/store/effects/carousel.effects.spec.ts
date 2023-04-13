@@ -12,7 +12,7 @@ import { SicatelTestMessages } from "@sicatel/tests/configs/messages-test.consta
 import { Observable, of, throwError } from "rxjs";
 
 describe('Carousel Effects', () =>{
-    const sliderSpy = {loadData: jest.fn()};
+    const sliderSpy = { loadData: jest.fn() };
     const utilServiceSpy = { showErrorMessage: jest.fn() };
     let actions$: Observable<Action>;
     let effects: CarouselEffects;
@@ -24,7 +24,7 @@ describe('Carousel Effects', () =>{
                 provideMockActions(() => actions$),
                 {
                     provide: SliderService,
-                    userValue: sliderSpy
+                    useValue: sliderSpy
                 },
                 {
                     provide: UtilsService,

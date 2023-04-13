@@ -12,17 +12,13 @@ import * as AuthenticationSelectors from '@sicatel/modules/authentication/store/
     templateUrl: './app.layout.html',
     styleUrls: [ './app.layout.scss' ]
 })
-export class AppLayoutComponent implements OnInit {
+export class AppLayoutComponent {
 
     user$ : Observable<IUser>;
 
     constructor(private store: Store<fromAuthentication.State>){
         
         this.user$ =  this.store.select(AuthenticationSelectors.selectAuthenticationStateUser);
-    }
-
-
-    ngOnInit(): void {
     }
 
     signOff(){

@@ -32,7 +32,8 @@ export class AuthService {
 
     public  isAuthenticate(): boolean {
          let _token = this.readToken();
-        if(_token !== undefined && _token !== null && _token.user && !this.isExpiredToken(_token) ){
+          const expired = this.isExpiredToken(_token)
+        if(_token !== undefined && _token !== null && _token.user  &&  !expired){
           return true;  
         }
         return false;
