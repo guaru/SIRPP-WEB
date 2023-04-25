@@ -79,6 +79,12 @@ describe('AuthenticationComponent', () => {
     expect(component.selectedType).toEqual(ELoginType.DAT);
   });
 
+  it('should change Type not defined', () => {
+    component.loginForm.controls.type.setValue(null);
+    component.changeType();
+    expect(component.selectedType).toEqual(ELoginType.CAC);
+  });
+
   it('should Login validators cac', () => {
     component.loginForm.controls.type.setValue(ELoginType.CAC);
     component.loginForm.controls.userName.setValue('USERNAME');

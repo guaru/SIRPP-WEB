@@ -28,7 +28,7 @@ describe('NavbarComponent', () =>{
     it('should be close sesion ', () => {
 
         jest.spyOn(component.signOffEvent,'emit');
-        component.onClicksignOff();
+        component.onClickSignOff();
         expect(component.signOffEvent.emit).toBeCalled();
     });
 
