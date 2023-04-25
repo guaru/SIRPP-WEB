@@ -1,10 +1,12 @@
-import { ISlider } from '../../app/shared/models/slider/slider.interface';
-import { ISliderLink } from '../../app/shared/models/slider/slider-link.interface';
-import { ISliderBody } from '../../app/shared/models/slider/slider-body.interface';
 import { ISliderConfig } from '@sicatel/shared/models/slider/slider-config.interface';
+
+import { ISliderBody } from '../../app/shared/models/slider/slider-body.interface';
+import { ISliderLink } from '../../app/shared/models/slider/slider-link.interface';
+import { ISlider } from '../../app/shared/models/slider/slider.interface';
+
 export class CarouselTestConstants {
-     
-    static readonly sliderData: ISlider[] =  [ {
+
+    static readonly sliderData: Array<ISlider> =  [ {
                 title : 'DATA 1',
                 subtitle: 'Subtitle 1',
                 image : '',

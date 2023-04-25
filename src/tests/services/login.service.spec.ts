@@ -1,9 +1,9 @@
-import { HttpClient } from "@angular/common/http";
-import { TestBed, waitForAsync } from "@angular/core/testing";
-import { LoginService } from "@sicatel/core/http/login/login.service";
-import { AuthenticationTestConstants } from "../configs/authentication-test.constants";
-import { of } from "rxjs";
-import { IUserResponse } from "@sicatel/shared/models/response/User.response";
+import { HttpClient } from '@angular/common/http';
+import { TestBed, waitForAsync } from '@angular/core/testing';
+import { LoginService } from '@sicatel/core/http/login/login.service';
+import { IUserResponse } from '@sicatel/shared/models/response/user.response';
+import { AuthenticationTestConstants } from '@sicatel/tests/configs/authentication-test.constants';
+import { of } from 'rxjs';
 
 describe('LoginService', () => {
     const spy = { post: jest.fn() };
@@ -18,7 +18,7 @@ describe('LoginService', () => {
                     useValue: spy
                 }
             ]
-        })
+        });
         service = TestBed.inject(LoginService);
     }));
 
@@ -37,4 +37,4 @@ describe('LoginService', () => {
             expect(response).toBe(AuthenticationTestConstants.userResponse);
         });
     });
-})
+});

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ISlider } from '@sicatel/shared/models/slider/slider.interface';
 
 @Component({
@@ -6,22 +6,13 @@ import { ISlider } from '@sicatel/shared/models/slider/slider.interface';
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.scss']
 })
-export class CarouselComponent implements OnInit {
+export class CarouselComponent {
 
+  @Input() bgDefault = true;
+  @Input() height = 200;
+  @Input() dark = false;
+  @Input() sliderData: Array<ISlider> = [];
+  imgDefault = '/img/background-slider.png';
 
-  @Input('bgDefault') bgDefault: boolean = true;
-  @Input('height') height: number = 200;
-  @Input('dark') dark: boolean = false;
-  @Input('sliderData') sliderData: ISlider[] = [];
-  
-  imgDefault: string = '/img/background-slider.png';
-  
-
-  constructor() { 
-  }
-
-  ngOnInit(): void {
-   
-  }
-  
+  constructor() {}
 }

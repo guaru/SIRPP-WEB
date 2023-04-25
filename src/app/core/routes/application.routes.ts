@@ -3,12 +3,12 @@ import { SicatelCommons } from '@sicatel/configs/commons.constants';
 
 export const applicationRoutes: Routes = [
     {
-        path: SicatelCommons.DASHBOARD,
+        path: SicatelCommons.dashboard,
         loadChildren: () => import('@sicatel/modules/dashboard/dashboard.module').then(m => m.DashboardModule)
     },
     {
         path: '',
-        redirectTo: SicatelCommons.DASHBOARD,
+        redirectTo: SicatelCommons.dashboard,
         pathMatch: 'full'
     }
 ];

@@ -1,20 +1,20 @@
 import { createReducer, on } from '@ngrx/store';
+import * as AuthenticationActions from '@sicatel/modules/authentication/store/actions/authentication.actions';
 import { IError } from '@sicatel/shared/models/request/error.interface';
 import { IUserRequest } from '@sicatel/shared/models/request/user.interface';
-import * as AuthenticationActions from '@sicatel/modules/authentication/store/actions/authentication.actions';
-import { IUserResponse } from '@sicatel/shared/models/response/User.response';
-import { IToken } from '@sicatel/shared/models/user/User';
+import { IUserResponse } from '@sicatel/shared/models/response/user.response';
+import { IToken } from '@sicatel/shared/models/user/user';
 
 export const  featureKey  =  'authenticationReducer';
 
 
-export interface  State{
-    userRequest: IUserRequest,
-    loading: boolean,
-    error: IError
-    userResponse: IUserResponse,
-    token: IToken,
-    isAuthenticate: boolean
+export interface  State {
+    userRequest: IUserRequest;
+    loading: boolean;
+    error: IError;
+    userResponse: IUserResponse;
+    token: IToken;
+    isAuthenticate: boolean;
 }
 
 export const initialState: State = {
@@ -30,14 +30,14 @@ export const authenticationReducer = createReducer(
 initialState,
  on(AuthenticationActions.signIn, (state, {userRequest}) => ({
     ...state,
-    userRequest: userRequest,
+    userRequest,
     loading: true
  })),
  on(AuthenticationActions.signInSuccess, (state,{userResponse}) => ({
     ...state,
     loading: false,
     userRequest: {} as IUserRequest,
-    userResponse: userResponse,
+    userResponse,
     error: {}  as IError
  })),
  on(AuthenticationActions.signInFailure, (state,{error}) => ({
@@ -45,11 +45,11 @@ initialState,
     loading: false,
     userRequest: {} as IUserRequest,
     userResponse: {} as IUserResponse,
-    error: error
+    error
  })),
  on(AuthenticationActions.setToken, (state,{token}) => ({
    ...state,
-   token: token,
+   token,
    isAuthenticate: true,
    userResponse: {} as IUserResponse
  })),

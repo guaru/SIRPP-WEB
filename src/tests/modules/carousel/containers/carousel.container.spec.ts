@@ -1,12 +1,12 @@
-import { CommonModule } from "@angular/common";
-import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
-import { MemoizedSelector, select } from "@ngrx/store";
-import { MockStore, provideMockStore } from "@ngrx/store/testing";
-import { CarouselComponent } from "@sicatel/modules/carousel/components/carousel.component";
-import { CarouselContainer } from "@sicatel/modules/carousel/containers/carousel.container";
+import { CommonModule } from '@angular/common';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { MemoizedSelector } from '@ngrx/store';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { CarouselComponent } from '@sicatel/modules/carousel/components/carousel.component';
+import { CarouselContainer } from '@sicatel/modules/carousel/containers/carousel.container';
 import * as fromCarousel from '@sicatel/modules/carousel/store/reducers/carousel.reducer';
 import * as CarouselSelectors from '@sicatel/modules/carousel/store/selectors/carousel.selectors';
-import { MockComponent } from "ng-mocks";
+import { MockComponent } from 'ng-mocks';
 
 describe('CarouselContainer', () => {
     let store: MockStore<fromCarousel.State>;
@@ -51,5 +51,4 @@ describe('CarouselContainer', () => {
         component.loadData();
         expect(store.dispatch).toBeCalled();
     });
-
 });

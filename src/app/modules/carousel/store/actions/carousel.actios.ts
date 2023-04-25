@@ -8,6 +8,6 @@ export const init = createAction('[Carousel] Init ', props<{setting: ISliderConf
 
 export const loadData = createAction('[Carousel] Load Data ');
 
-export const loadSuccess = createAction('[Carousel] Load Data Success ', props<{ data: ISlider[] }>());
+export const loadSuccess = createAction('[Carousel] Load Data Success ', props<{ data: Array<ISlider> }>());
 
 export const loadFailure = createAction('[Carousel] Load Data Failure ', props<{ error: IError }>());

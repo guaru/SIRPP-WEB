@@ -1,15 +1,14 @@
-import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
-import { RouterModule } from "@angular/router";
-import { MemoizedSelector, select } from "@ngrx/store";
-import { MockStore, provideMockStore } from "@ngrx/store/testing";
-import { CoreModule } from "@sicatel/core/core.module";
-import { AppLayoutComponent } from "@sicatel/core/layout/app-layout/app.layout";
-import { NavbarComponent } from "@sicatel/core/layout/app-layout/navbar/navbar.component";
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { RouterModule } from '@angular/router';
+import { MemoizedSelector } from '@ngrx/store';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { AppLayoutComponent } from '@sicatel/core/layout/app-layout/app.layout';
+import { NavbarComponent } from '@sicatel/core/layout/app-layout/navbar/navbar.component';
 import * as fromAuthentication from '@sicatel/modules/authentication/store/reducers/authentication.reducers';
 import * as AuthenticationSelectors from '@sicatel/modules/authentication/store/selectors/authentication.selectors';
-import { IUser } from "@sicatel/shared/models/user/User";
-import { AuthenticationTestConstants } from "@sicatel/tests/configs/authentication-test.constants";
-import { MockComponent } from "ng-mocks";
+import { IUser } from '@sicatel/shared/models/user/user';
+import { AuthenticationTestConstants } from '@sicatel/tests/configs/authentication-test.constants';
+import { MockComponent } from 'ng-mocks';
 
 describe('AppLayout', () => {
 

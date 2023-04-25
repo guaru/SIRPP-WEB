@@ -1,16 +1,16 @@
-import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
-import { NavbarComponent } from "@sicatel/core/layout/app-layout/navbar/navbar.component"
-import { AuthenticationTestConstants } from "@sicatel/tests/configs/authentication-test.constants";
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { NavbarComponent } from '@sicatel/core/layout/app-layout/navbar/navbar.component';
+import { AuthenticationTestConstants } from '@sicatel/tests/configs/authentication-test.constants';
 
 describe('NavbarComponent', () =>{
 
     let component: NavbarComponent;
-    let fixture  : ComponentFixture<NavbarComponent>;
+    let fixture: ComponentFixture<NavbarComponent>;
 
     beforeEach(waitForAsync(() =>{
 
         TestBed.configureTestingModule({
-             declarations:[ NavbarComponent],
+             declarations:[ NavbarComponent]
         }).compileComponents();
     }));
 
@@ -26,11 +26,11 @@ describe('NavbarComponent', () =>{
     });
 
     it('should be close sesion ', () => {
-        
+
         jest.spyOn(component.signOffEvent,'emit');
         component.onClicksignOff();
         expect(component.signOffEvent.emit).toBeCalled();
     });
 
-    
-})
+
+});

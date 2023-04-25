@@ -1,7 +1,7 @@
 export interface IUserResponse {
-    idUsuario: string,
-    username: string,
-    roles: string[],
-    type: string,
-    accessToken:  string
-}   
+    idUsuario: string;
+    username: string;
+    roles: Array<string>;
+    type: string;
+    accessToken:  string;
+}

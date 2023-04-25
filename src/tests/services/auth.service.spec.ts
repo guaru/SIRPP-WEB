@@ -1,14 +1,14 @@
-import { TestBed, waitForAsync } from "@angular/core/testing";
-import { MockStore, provideMockStore } from "@ngrx/store/testing";
-import { AuthService } from "@sicatel/core/services/auth.service";
+import { TestBed, waitForAsync } from '@angular/core/testing';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { AuthService } from '@sicatel/core/services/auth.service';
 import * as fromAuthentication from '@sicatel/modules/authentication/store/reducers/authentication.reducers';
-import { AuthenticationTestConstants } from "../configs/authentication-test.constants";
-import { IUserResponse } from "@sicatel/shared/models/response/User.response";
+import { IUserResponse } from '@sicatel/shared/models/response/user.response';
+import { AuthenticationTestConstants } from '@sicatel/tests/configs/authentication-test.constants';
 
 
 describe('AuthService', () =>{
     let store: MockStore<fromAuthentication.State>;
-    let service : AuthService;
+    let service: AuthService;
     beforeEach(waitForAsync(() =>{
          TestBed.configureTestingModule({
             providers: [
@@ -24,11 +24,9 @@ describe('AuthService', () =>{
          store = TestBed.inject<MockStore<fromAuthentication.State>>(MockStore);
     }));
 
-
     afterEach(() =>{
         jest.clearAllMocks();
     });
-
 
     it('should be created', () =>{
         expect(service).toBeTruthy();
@@ -51,7 +49,6 @@ describe('AuthService', () =>{
         expect(isAuthenticate).toEqual(true);
     });
 
-
     it('should be signin faild', ()=>{
         jest.spyOn(store, 'dispatch');
         service.signIn({} as IUserResponse);
@@ -69,6 +66,4 @@ describe('AuthService', () =>{
         service.signOff();
         expect(removeItem).toHaveBeenCalled();
     });
-    
-
 });

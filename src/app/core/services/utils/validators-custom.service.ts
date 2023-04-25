@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AbstractControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from "@angular/forms";
+import { AbstractControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -8,16 +8,16 @@ export class ValidatorsCustomService {
 
   constructor() { }
 
-  public static conditionalRequired(fieldName: string, value: string): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
+  static conditionalRequired(fieldName: string, value: string): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors => {
       if (!control.parent)
-        return null;
-        
+        {return {};}
+
       if (control.parent.get(fieldName)!.value === value) {
-        return Validators.required(control);
+        return Validators.required(control) || {};
       }
-      return null;
-    }
+      return {};
+    };
   }
 
 }

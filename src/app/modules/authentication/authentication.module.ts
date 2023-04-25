@@ -3,9 +3,8 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import {MatSelectModule} from '@angular/material/select';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
+import { MatSelectModule } from '@angular/material/select';
 import { AuthenticationRoutingModule } from '@sicatel/modules/authentication/authentication-routing.module';
 import { AuthenticationComponent } from '@sicatel/modules/authentication/components/authentication.component';
 import { AuthenticationContainer } from '@sicatel/modules/authentication/containers/authentication.container';
@@ -26,7 +25,6 @@ import { DirectivesModule } from '@sicatel/shared/directives/directives.module';
         MatProgressSpinnerModule,
         MatSelectModule,
         DirectivesModule
-      
     ]
 })
 export class AuthenticationModule {}

@@ -1,13 +1,12 @@
-import { CommonModule } from "@angular/common";
-import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
-import { CarouselComponent } from "@sicatel/modules/carousel/components/carousel.component";
-import { MockModule } from "ng-mocks";
-import { CarouselTestConstants } from '../../../configs/carousel-test.constants';
+import { CommonModule } from '@angular/common';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { CarouselComponent } from '@sicatel/modules/carousel/components/carousel.component';
+import { CarouselTestConstants } from '@sicatel/tests/configs/carousel-test.constants';
+import { MockModule } from 'ng-mocks';
 
 describe('CarouselComponente', ()=>{
-    let component :  CarouselComponent;
-    let fixture : ComponentFixture<CarouselComponent>;
-
+    let component:  CarouselComponent;
+    let fixture: ComponentFixture<CarouselComponent>;
 
     beforeEach(waitForAsync(() => {
 
@@ -28,9 +27,7 @@ describe('CarouselComponente', ()=>{
         fixture.detectChanges();
     });
 
-
     it('should create', () => {
         expect(component).toBeTruthy();
     });
-
 });

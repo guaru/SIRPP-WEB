@@ -1,72 +1,24 @@
-import * as keyCodes  from '@angular/cdk/keycodes';
-import {
-  Directive,
-  ElementRef,
-  forwardRef,
-  HostListener,
-  OnInit,
-  Renderer2,
-  Self,
-} from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Directive, ElementRef,  HostListener, SecurityContext } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Directive({
-  selector: '[sicatelUppercase]',
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => UppercaseDirective),
-      multi: true,
-    },
-  ],
+  selector: '[sicatelUppercase]'
 })
-export class UppercaseDirective implements ControlValueAccessor {
-  /** implements ControlValueAccessorInterface */
-  _onChange: (_: any) => void;
+export class UppercaseDirective {
+  lastValue = '';
+  constructor(public ref: ElementRef, public sanitizer: DomSanitizer){}
 
-  /** implements ControlValueAccessorInterface */
-  _touched: () => void;
+  @HostListener('input',['$event']) onInput($event: any)
+  {
+    const start =  $event.target.selectionStart;
+    const end =  $event.target.selectionEnd;
+    $event.target.value = this.sanitizer.sanitize(SecurityContext.NONE, $event.target.value.toUpperCase());
+    $event.target.setSelectionRange(start,end);
+    $event.preventDefault();
 
-  constructor( @Self() private _el: ElementRef, private _renderer: Renderer2) { 
-    this._onChange = ()=>{};
-    this._touched = () =>{};
-  }
-
-  /** Trata as teclas */
-  @HostListener('keyup', ['$event'])
-  onKeyDown(evt: KeyboardEvent) {
-    const keyCode = evt.keyCode;
-    const key = evt.key;
-    if(keyCode !== keyCodes.ENTER && keyCode !== keyCodes.SPACE){
-      const value = this._el.nativeElement.value.toUpperCase();
-      this._renderer.setProperty(this._el.nativeElement, 'value', value);
-      this._onChange(value);
-      evt.preventDefault();
+    if (!this.lastValue || (this.lastValue && $event.target.value.length > 0 && this.lastValue !== $event.target.value)) {
+      this.lastValue = this.ref.nativeElement.value =  this.sanitizer.sanitize(SecurityContext.NONE,$event.target.value) || '';
+      $event.stopPropagation();
     }
-  }
-
-  @HostListener('blur', ['$event'])
-  onBlur() {
-    this._touched();
-  }
-
-  /** Implementation for ControlValueAccessor interface */
-  writeValue(value: any): void {
-    this._renderer.setProperty(this._el.nativeElement, 'value', value);
-  }
-
-  /** Implementation for ControlValueAccessor interface */
-  registerOnChange(fn: (_: any) => void): void {
-    this._onChange = fn;
-  }
-
-  /** Implementation for ControlValueAccessor interface */
-  registerOnTouched(fn: () => void): void {
-    this._touched = fn;
-  }
-
-  /** Implementation for ControlValueAccessor interface */
-  setDisabledState(isDisabled: boolean): void {
-    this._renderer.setProperty(this._el.nativeElement, 'disabled', isDisabled);
   }
 }

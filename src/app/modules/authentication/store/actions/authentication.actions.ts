@@ -1,8 +1,8 @@
 import { createAction, props } from '@ngrx/store';
 import { IError } from '@sicatel/shared/models/request/error.interface';
 import { IUserRequest } from '@sicatel/shared/models/request/user.interface';
-import { IUserResponse } from '@sicatel/shared/models/response/User.response';
-import { IToken } from '@sicatel/shared/models/user/User';
+import { IUserResponse } from '@sicatel/shared/models/response/user.response';
+import { IToken } from '@sicatel/shared/models/user/user';
 
 
 export const isAuthenticate =  createAction('[Authentication] is authenticate ');

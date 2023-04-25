@@ -1,15 +1,13 @@
-@import "../../../../assets/scss/colors";
-@import "../../../../assets/scss/fonts";
+@import "src/assets/scss/colors";
+@import "src/assets/scss/fonts";
 
 * {
     font-family: SourceSansPro, sans-serif;
 }
 
-
 .login-bg {
     width: 100%;
 }
-
 
 .bg{
     background: url(../../../../assets/img/Chica-Sicatel.png) no-repeat !important;
@@ -17,13 +15,10 @@
     min-height: 100vh;
 }
 
-
 .login-title img{
   width: 50%;
 }
 
 .login-title h3 {
-   // font-family: telcelnovaobscura !important;
     font-weight: bold !important;
-
 }

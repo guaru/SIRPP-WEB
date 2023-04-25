@@ -14,7 +14,7 @@ describe('Dashboard Component', () => {
       declarations: [ DashboardComponent ],
       imports: [
         MockModule(MatDividerModule),
-        MockModule(CarouselModule),
+        MockModule(CarouselModule)
       ]
     })
     .compileComponents();

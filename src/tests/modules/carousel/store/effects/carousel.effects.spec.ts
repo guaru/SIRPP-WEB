@@ -1,15 +1,15 @@
-import { HttpClientModule } from "@angular/common/http";
-import { TestBed } from "@angular/core/testing";
-import { provideMockActions } from "@ngrx/effects/testing";
-import { Action } from "@ngrx/store";
-import { SicatelMessages } from "@sicatel/configs/messsages.constant";
-import { SliderService } from "@sicatel/core/http/slider/slider.service";
-import { UtilsService } from "@sicatel/core/services/utils/utils.service";
-import { CarouselActions } from "@sicatel/modules/carousel/store";
-import { CarouselEffects } from "@sicatel/modules/carousel/store/effects/carousel.effects";
-import { CarouselTestConstants } from "@sicatel/tests/configs/carousel-test.constants";
-import { SicatelTestMessages } from "@sicatel/tests/configs/messages-test.constants";
-import { Observable, of, throwError } from "rxjs";
+import { HttpClientModule } from '@angular/common/http';
+import { TestBed } from '@angular/core/testing';
+import { provideMockActions } from '@ngrx/effects/testing';
+import { Action } from '@ngrx/store';
+import { SicatelMessages } from '@sicatel/configs/messsages.constant';
+import { SliderService } from '@sicatel/core/http/slider/slider.service';
+import { UtilsService } from '@sicatel/core/services/utils/utils.service';
+import { CarouselActions } from '@sicatel/modules/carousel/store';
+import { CarouselEffects } from '@sicatel/modules/carousel/store/effects/carousel.effects';
+import { CarouselTestConstants } from '@sicatel/tests/configs/carousel-test.constants';
+import { SicatelTestMessages } from '@sicatel/tests/configs/messages-test.constants';
+import { Observable, of, throwError } from 'rxjs';
 
 describe('Carousel Effects', () =>{
     const sliderSpy = { loadData: jest.fn() };
@@ -32,7 +32,6 @@ describe('Carousel Effects', () =>{
                 }
             ],
             imports: [HttpClientModule]
-            
         });
 
         effects =  TestBed.inject(CarouselEffects);
@@ -43,8 +42,8 @@ describe('Carousel Effects', () =>{
     });
 
     describe('Load data slider actions', () =>{
-         
-        it('Should dispatch a success effect', () =>{
+
+        it('Should dispatch a success effect', () => {
             actions$ =  of(CarouselActions.loadData());
             sliderSpy.loadData.mockReturnValue(of(CarouselTestConstants.sliderData));
 
@@ -64,14 +63,11 @@ describe('Carousel Effects', () =>{
             });
         });
 
-
         it('should dispatch a falure effect', () => {
             actions$ = of(CarouselActions.loadFailure({ error: SicatelTestMessages.unexpectedError }));
             effects.loadFailure$.subscribe(action => {
                 expect(utilServiceSpy.showErrorMessage).toBeCalled();
             });
         });
-
     });
-
 });

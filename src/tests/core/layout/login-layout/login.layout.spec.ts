@@ -1,12 +1,11 @@
-import { LoginLayoutComponent } from "@sicatel/core/layout/login-layout/login.layout";
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { MockStore, provideMockStore } from "@ngrx/store/testing";
+import { RouterModule } from '@angular/router';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { LoginLayoutComponent } from '@sicatel/core/layout/login-layout/login.layout';
+import { CarouselModule } from '@sicatel/modules/carousel/carousel.module';
 import * as fromCarousel from '@sicatel/modules/carousel/store/reducers/carousel.reducer';
-import { HttpClientModule } from "@angular/common/http";
-import { CarouselModule } from "@sicatel/modules/carousel/carousel.module";
-import { EffectsRootModule } from "@ngrx/effects";
 import { MockModule } from 'ng-mocks';
-import { RouterModule } from "@angular/router";
 
 describe('LoginLayout', () =>{
 
@@ -38,12 +37,12 @@ describe('LoginLayout', () =>{
     });
 
     afterEach(()=>{
-        jest.clearAllMocks()
+        jest.clearAllMocks();
     });
 
     it('Should be created', () =>{
         expect(component).toBeTruthy();
-    })
+    });
 
     it('Should be dispach init carousel', () =>{
         jest.spyOn(store,'dispatch');

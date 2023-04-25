@@ -1,18 +1,17 @@
+import { HttpClientModule } from '@angular/common/http';
+import { TestBed, waitForAsync } from '@angular/core/testing';
+import { Router } from '@angular/router';
+import { provideMockActions } from '@ngrx/effects/testing';
 import { Action } from '@ngrx/store';
-import { Observable, of, throwError } from 'rxjs';
+import { SicatelCommons } from '@sicatel/configs/commons.constants';
+import { LoginService } from '@sicatel/core/http/login/login.service';
+import { AuthService } from '@sicatel/core/services/auth.service';
+import { UtilsService } from '@sicatel/core/services/utils/utils.service';
 import * as AuthenticationActions from '@sicatel/modules/authentication/store/actions/authentication.actions';
 import { AuthenticationEffects } from '@sicatel/modules/authentication/store/effects/authentication.effects';
-import { TestBed, waitForAsync } from '@angular/core/testing';
-import { provideMockActions } from '@ngrx/effects/testing';
-import { LoginService } from '@sicatel/core/http/login/login.service';
-import { UtilsService } from '@sicatel/core/services/utils/utils.service';
-import { HttpClientModule } from '@angular/common/http';
-import { AuthService } from '@sicatel/core/services/auth.service';
 import { AuthenticationTestConstants } from '@sicatel/tests/configs/authentication-test.constants';
-import { Router } from '@angular/router';
 import { MockProvider } from 'ng-mocks';
-import { SicatelCommons } from '@sicatel/configs/commons.constants';
-
+import { Observable, of, throwError } from 'rxjs';
 
 describe('Authentication Effects', () =>{
     const  httpLoginServiceSpy =  { signIn : jest.fn()};
@@ -87,17 +86,17 @@ describe('Authentication Effects', () =>{
         });
 
         it('should dispatch setToken', () =>{
-            actions$ =  of(AuthenticationActions.setToken({token : AuthenticationTestConstants.token}))
-            effects.setToken$.subscribe(action =>{
-                expect(routerSpy.navigate).toHaveBeenCalledWith([SicatelCommons.PATH_DASHBOARD]);
+            actions$ =  of(AuthenticationActions.setToken({token : AuthenticationTestConstants.token}));
+            effects.setToken$.subscribe(action => {
+                expect(routerSpy.navigate).toHaveBeenCalledWith([SicatelCommons.pathDashboard]);
             });
         });
 
         it('should dispatch isAuthenticate', () =>{
-            actions$ =  of(AuthenticationActions.isAuthenticate())
+            actions$ =  of(AuthenticationActions.isAuthenticate());
             effects.isAuthenticate$.subscribe(action =>{
                 expect(authServiceSpy.existToken).toBeCalled();
-                expect(routerSpy.navigate).toHaveBeenCalledWith([SicatelCommons.PATH_DASHBOARD]);
+                expect(routerSpy.navigate).toHaveBeenCalledWith([SicatelCommons.pathDashboard]);
             });
         });
 
@@ -105,17 +104,9 @@ describe('Authentication Effects', () =>{
             actions$ =  of(AuthenticationActions.signOff());
             effects.signOff$.subscribe(action =>{
                 expect(authServiceSpy.signOff).toBeCalled();
-                expect(routerSpy.navigate).toHaveBeenCalledWith([SicatelCommons.PATH_LOGIN]);
+                expect(routerSpy.navigate).toHaveBeenCalledWith([SicatelCommons.pathLogin]);
             });
 
         });
-
-
-
-
     });
-
-    
-
-
 });

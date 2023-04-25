@@ -1,9 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { IUser } from '@sicatel/shared/models/user/User';
 import { ELoginType } from '@sicatel/shared/enums/login-type.enum';
-import { signOff } from '@sicatel/modules/authentication/store/actions/authentication.actions';
-
+import { IUser } from '@sicatel/shared/models/user/user';
 
 @Component({
   selector: 'sicatel-navbar',
@@ -11,16 +8,20 @@ import { signOff } from '@sicatel/modules/authentication/store/actions/authentic
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-
-   @Input('user') user: IUser = {} as IUser;
+   @Input() user: IUser = {} as IUser;
    @Output() signOffEvent =  new EventEmitter();
    date = new Date();
-   ELoginType = ELoginType;
-   constructor(){
-   
-   }
+   eLoginType = ELoginType;
 
-   onClicksignOff(){
+   constructor(){}
+
+   /**
+    * Close sesión user
+    *
+    * @summary Make event close session
+    * @returns void
+    */
+   onClickSignOff(): void{
       this.signOffEvent.emit();
    }
 }

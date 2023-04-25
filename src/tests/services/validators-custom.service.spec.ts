@@ -1,5 +1,5 @@
-import { TestBed, waitForAsync } from "@angular/core/testing";
-import { ValidatorsCustomService } from "@sicatel/core/services/utils/validators-custom.service";
+import { TestBed, waitForAsync } from '@angular/core/testing';
+import { ValidatorsCustomService } from '@sicatel/core/services/utils/validators-custom.service';
 
 describe('ValidatorsCustomService', () =>{
 
@@ -21,7 +21,4 @@ describe('ValidatorsCustomService', () =>{
     it('should be created', () => {
         expect(service).toBeTruthy();
     });
-
-
-
 });

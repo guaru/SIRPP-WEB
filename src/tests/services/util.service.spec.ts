@@ -1,23 +1,20 @@
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { UtilsService } from '@sicatel/core/services/utils/utils.service';
-import { SicatelTestMessages } from '../configs/messages-test.constants';
+import { SicatelTestMessages } from '@sicatel/tests/configs/messages-test.constants';
 
 describe('UtilService', () => {
-    
-    const mockAlert = jest.fn()
-    
+    const mockAlert = jest.fn();
+
     jest.mock('sweetalert2', () => ({
-        default: mockAlert,
-      }))
+        default: mockAlert
+    }));
 
     let service: UtilsService;
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             imports: [],
-            providers: [
-               
-            ]
+            providers: []
         });
         service = TestBed.inject(UtilsService);
     }));
@@ -32,16 +29,13 @@ describe('UtilService', () => {
 
     it('should open an error swal', () => {
         service.showErrorMessage(SicatelTestMessages.unexpectedError);
-        
     });
 
     it('should open an success swal', () => {
-        service.showSuccessMessage("Exitoso");
-        
+        service.showSuccessMessage('Exitoso');
     });
 
     it('should open an success default', () => {
         service.showSuccessMessage();
-        
     });
 });

@@ -9,9 +9,9 @@
 
     <ng-container *ngIf="sliderData else load">
       <div class="carousel-item "
-            [class.active]="i==0"
-        *ngFor="let item of sliderData; index as i  ">
-        <ng-container *ngTemplateOutlet="itemCarousel;context:{item}" ></ng-container>
+            [class.active]="i===0"
+        *ngFor="let item of sliderData; index as i">
+        <ng-container *ngTemplateOutlet="itemCarousel;context:{ item }" ></ng-container>
       </div>
     </ng-container>
 
@@ -30,7 +30,7 @@
 
 <ng-template #load>
   <div class="carousel-item active">
-    <img src="./assets/{{imgDefault}}" class="d-block w-100" height="{{height}}" alt="...">
+    <img src="./assets/{{ imgDefault }}" class="d-block w-100" height="{{ height }}" alt="...">
     <div class="carousel-caption d-none d-md-block">
       <h5>Cargando...</h5>
     </div>
@@ -38,15 +38,15 @@
 </ng-template>
 
 <ng-template #itemCarousel let-item="item">
-  <img src="./assets/{{!bgDefault ? item.image : imgDefault}}" class="d-block w-100" height="{{height}}" alt="...">
+  <img src="./assets/{{ !bgDefault ? item.image : imgDefault }}" class="d-block w-100" height="{{ height }}" alt="...">
   <div class="carousel-caption d-none d-md-block">
     <h5 class="fw-bold">{{item.title}}</h5>
     <h6>{{item.subtitle}}</h6>
     <h6>{{item.body.mail}}</h6>
     <h6>{{item.body.phone}}</h6>
-    <h6>{{item.body.text_1}}</h6>
-    <h6>{{item.body.text_2}}</h6>
+    <h6>{{item.body.text1}}</h6>
+    <h6>{{item.body.text2}}</h6>
     <h5 *ngIf="item.link"> <a class="btn btn-link text-uppercase text-white fw-bold"
-        href="{{item.link.texto}}">{{item.link.ruta}}</a></h5>
+        href="{{ item.link.texto }}">{{ item.link.ruta }}</a></h5>
   </div>
 </ng-template>

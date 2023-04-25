@@ -17,30 +17,26 @@ describe('Carousel Reducer', () =>{
         it('Should init config carousel', () =>{
             const result =  fromCarousel.carouselReducer(fromCarousel.initialState, CarouselActions.init({setting: CarouselTestConstants.config}));
             customState.setting =  CarouselTestConstants.config;
-            expect(result).toEqual(customState);            
+            expect(result).toEqual(customState);
         });
 
         it('Should load data', () =>{
             const result =  fromCarousel.carouselReducer(fromCarousel.initialState, CarouselActions.loadData());
             customState.loadings = true;
-            expect(result).toEqual(customState);            
+            expect(result).toEqual(customState);
         });
 
         it('Should  load data success', () =>{
             const result =  fromCarousel.carouselReducer(fromCarousel.initialState, CarouselActions.loadSuccess({data: CarouselTestConstants.sliderData}));
             customState.loadings = false;
             customState.data =  CarouselTestConstants.sliderData;
-            expect(result).toEqual(customState);            
+            expect(result).toEqual(customState);
         });
-
-        
         it('Should  load data error', () =>{
             const result =  fromCarousel.carouselReducer(fromCarousel.initialState, CarouselActions.loadFailure({error: SicatelMessages.unexpectedError}));
             customState.loadings = false;
             customState.error =  SicatelMessages.unexpectedError;
-            expect(result).toEqual(customState);            
+            expect(result).toEqual(customState);
         });
-
-
     });
 });

@@ -6,12 +6,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { CarouselModule } from '@sicatel/modules/carousel/carousel.module';
 import { DashboardComponent } from '@sicatel/modules/dashboard/components/dashboard.component';
 import { DashboardContainer } from '@sicatel/modules/dashboard/containers/dashboard.container';
 import { DashboardRoutingModule } from '@sicatel/modules/dashboard/dashboard-routing.module';
 import { DashboardEffects } from '@sicatel/modules/dashboard/store/effects/dashboard.effects';
 import * as dashboardReducer from '@sicatel/modules/dashboard/store/reducers/dashboard.reducer';
-import { CarouselModule } from '../carousel/carousel.module';
 
 @NgModule({
     declarations: [ DashboardComponent, DashboardContainer ],

@@ -11,6 +11,7 @@ export class UtilsService {
 
     /**
      * Show Error Message
+     *
      * @summary Show error message
      * @param error : IError
      * @returns void
@@ -26,13 +27,13 @@ export class UtilsService {
         });
     }
 
-
      /**
-     * Show Error Message
-     * @summary Show error message
-     * @param error : IError
-     * @returns void
-     */
+      * Show Error Message
+      *
+      * @summary Show error message
+      * @param error : IError
+      * @returns void
+      */
      showSuccessMessage(msg: string = 'Listo'): void {
             Swal.fire({
                 title: 'Exito',
@@ -42,8 +43,4 @@ export class UtilsService {
                 confirmButtonText: 'Enterado'
             });
     }
-
-
-
-
 }

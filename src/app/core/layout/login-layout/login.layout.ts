@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import * as fromCarousel from '@sicatel/modules/carousel/store/reducers/carousel.reducer';
 import * as CarouselActions from '@sicatel/modules/carousel/store/actions/carousel.actios';
+import * as fromCarousel from '@sicatel/modules/carousel/store/reducers/carousel.reducer';
 import { ISliderConfig } from '@sicatel/shared/models/slider/slider-config.interface';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'sicatel-login-layout',
@@ -12,11 +12,9 @@ import { ISliderConfig } from '@sicatel/shared/models/slider/slider-config.inter
     styleUrls: [ './login.layout.scss' ]
 })
 export class LoginLayoutComponent  {
-    
+
     version$: Observable<string>;
     date$: Observable<string>;
-
-
 
     constructor(private http: HttpClient, private store: Store<fromCarousel.State>) {
         this.version$ = this.http.get('assets/context/version', { responseType: 'text' });
@@ -24,9 +22,13 @@ export class LoginLayoutComponent  {
         this.initConfigCarousel();
     }
 
-
+    /**
+     * Init config carousel
+     *
+     * @summary Make dispatch init configuration carousel
+     * @returns void
+     */
     initConfigCarousel(): void{
         this.store.dispatch(CarouselActions.init({ setting: { bgDefault: true,dark:true,height:200 } as ISliderConfig }));
     }
-
 }

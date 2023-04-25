@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {  Store } from '@ngrx/store';
-import { IUser } from '@sicatel/shared/models/user/User';
-import { Observable } from 'rxjs';
-import * as fromAuthentication from '@sicatel/modules/authentication/store/reducers/authentication.reducers';
 import * as AuthenticationActions from '@sicatel/modules/authentication/store/actions/authentication.actions';
+import * as fromAuthentication from '@sicatel/modules/authentication/store/reducers/authentication.reducers';
 import * as AuthenticationSelectors from '@sicatel/modules/authentication/store/selectors/authentication.selectors';
+import { IUser } from '@sicatel/shared/models/user/user';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -14,10 +14,9 @@ import * as AuthenticationSelectors from '@sicatel/modules/authentication/store/
 })
 export class AppLayoutComponent {
 
-    user$ : Observable<IUser>;
+    user$: Observable<IUser>;
 
     constructor(private store: Store<fromAuthentication.State>){
-        
         this.user$ =  this.store.select(AuthenticationSelectors.selectAuthenticationStateUser);
     }
 
@@ -25,5 +24,5 @@ export class AppLayoutComponent {
         this.store.dispatch(AuthenticationActions.signOff());
     }
 
-   
+
 }

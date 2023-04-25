@@ -1,11 +1,10 @@
 export class SicatelCommons
 {
-    static readonly PUNTO = '.';
-    static readonly CAJA = 'caja';
-    static readonly DASHBOARD = 'dashboard';
-    static readonly AUTH = 'auth';
-    static readonly LOGIN = 'login';
-    
-    static readonly PATH_DASHBOARD = `/${SicatelCommons.CAJA}/${SicatelCommons.DASHBOARD}`;
-    static readonly PATH_LOGIN = `/${SicatelCommons.AUTH}/${SicatelCommons.LOGIN}`;
+    static readonly punto = '.';
+    static readonly caja = 'caja';
+    static readonly dashboard = 'dashboard';
+    static readonly auth = 'auth';
+    static readonly login = 'login';
+    static readonly pathDashboard = `/${SicatelCommons.caja}/${SicatelCommons.dashboard}`;
+    static readonly pathLogin = `/${SicatelCommons.auth}/${SicatelCommons.login}`;
 }
