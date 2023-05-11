@@ -2,14 +2,13 @@ import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { TelcelErrorStateMatcher } from '@sicatel/configs/error-state-matcher';
+import { ValidatorsCustomService } from '@sicatel/core/services/utils/validators-custom.service';
 import * as AuthenticationActions from '@sicatel/modules/authentication/store/actions/authentication.actions';
 import * as fromAuthentication from '@sicatel/modules/authentication/store/reducers/authentication.reducers';
 import * as AuthenticationSelectors from '@sicatel/modules/authentication/store/selectors/authentication.selectors';
 import { ELoginType } from '@sicatel/shared/enums/login-type.enum';
 import { IUserRequest } from '@sicatel/shared/models/request/user.interface';
 import { Subscription } from 'rxjs';
-
-import { ValidatorsCustomService } from '../../../core/services/utils/validators-custom.service';
 
 @Component({
   selector: 'sicatel-authentication',
@@ -71,7 +70,6 @@ export class AuthenticationComponent implements OnDestroy  {
         position: this.loginForm.controls.position.value,
         userArrayKey: this.loginForm.controls.password.value
       } as IUserRequest;
-
       this.store.dispatch(AuthenticationActions.signIn({userRequest}));
     }
   }

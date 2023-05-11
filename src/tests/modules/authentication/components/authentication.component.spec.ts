@@ -80,7 +80,7 @@ describe('AuthenticationComponent', () => {
   });
 
   it('should change Type not defined', () => {
-    component.loginForm.controls.type.setValue(null);
+    component.loginForm.controls.type.reset();
     component.changeType();
     expect(component.selectedType).toEqual(ELoginType.CAC);
   });

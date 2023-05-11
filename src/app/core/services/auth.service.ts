@@ -12,8 +12,8 @@ import { IToken } from '@sicatel/shared/models/user/user';
 })
 export class AuthService {
 
-    private  tokenKey = 'token';
-    private  typeKey  = 'type';
+    private  token = 'token';
+    private  type  = 'type';
 
     constructor(private store: Store<fromAuthentication.State>){}
 
@@ -80,7 +80,7 @@ export class AuthService {
      * @returns Itoken
      */
     private  readToken(): IToken {
-        const tokenString: string | null = sessionStorage.getItem(this.tokenKey);
+        const tokenString: string | null = localStorage.getItem(this.token);
         return  this.parseToken(tokenString||'');
     }
 
@@ -91,18 +91,18 @@ export class AuthService {
      * @param type: string
      */
     private writeToken(token: string, type: string): void {
-        sessionStorage.setItem(this.tokenKey, token);
-        sessionStorage.setItem(this.typeKey, type);
+        localStorage.setItem(this.token, token);
+        localStorage.setItem(this.type, type);
     }
 
     /**
      * Remove token
-     *
+     *s
      * @summary Make remove token from sessionStorage
      */
     private removeToken(): void {
-        sessionStorage.removeItem(this.tokenKey);
-        sessionStorage.removeItem(this.typeKey);
+        localStorage.removeItem(this.token);
+        localStorage.removeItem(this.type);
     }
 
     /**
