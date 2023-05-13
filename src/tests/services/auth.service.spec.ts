@@ -62,7 +62,7 @@ describe('AuthService', () =>{
     });
 
     it('should be signOff', ()=>{
-        const removeItem =  jest.spyOn(sessionStorage,'removeItem');
+        const removeItem =  jest.spyOn(localStorage,'removeItem');
         service.signOff();
         expect(removeItem).toHaveBeenCalled();
     });

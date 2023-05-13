@@ -1,8 +1,7 @@
+import { ISliderBody } from '@sicatel/shared/models/slider/slider-body.interface';
 import { ISliderConfig } from '@sicatel/shared/models/slider/slider-config.interface';
-
-import { ISliderBody } from '../../app/shared/models/slider/slider-body.interface';
-import { ISliderLink } from '../../app/shared/models/slider/slider-link.interface';
-import { ISlider } from '../../app/shared/models/slider/slider.interface';
+import { ISliderLink } from '@sicatel/shared/models/slider/slider-link.interface';
+import { ISlider } from '@sicatel/shared/models/slider/slider.interface';
 
 export class CarouselTestConstants {
 

@@ -12,6 +12,7 @@ export class LoginGuard implements CanActivate,CanLoad {
     constructor(private router: Router, private authService: AuthService) { }
 
     /**
+     * canActivate
      *
      * @summary If user is not authenticated redirect to Login, if user is authenticated active Path
      * @param route
@@ -26,6 +27,7 @@ export class LoginGuard implements CanActivate,CanLoad {
     }
 
      /**
+      * canLoad
       *
       * @summary If user is not authenticated redirect to Login, if user is authenticated Load Path
       * @param route

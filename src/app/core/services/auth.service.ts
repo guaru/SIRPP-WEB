@@ -21,12 +21,12 @@ export class AuthService {
      * Authenticated logic for user
      *
      * @summary Make signIn, parse token
-     * @returns void
      * @param user:IUserResponse
+     * @returns void
      */
      signIn(user: IUserResponse): void {
         const token = this.parseToken(user.accessToken);
-        if(token !== undefined && token.user) {
+        if(token!.user) {
             this.writeToken(user.accessToken,user.type);
             this.existToken();
         } else {
@@ -41,18 +41,15 @@ export class AuthService {
      * @returns boolean
      */
     isAuthenticate(): boolean {
-         const token = this.readToken();
-          const expired = this.isExpiredToken(token);
-        if(token !== undefined && token.user  &&  !expired){
-          return true;
-        }
-        return false;
+        const token = this.readToken();
+        const expired = this.isExpiredToken(token);
+        return (token !== undefined && token.user  &&  !expired) ? true : false;
     }
 
     /**
      * Logic start session is token exist in session storage
      *
-     * @sumary Make start session is token exist in session storage
+     * @summary Make start session is token exist in session storage
      * @returns void
      */
     existToken(): void {
@@ -85,6 +82,7 @@ export class AuthService {
     }
 
     /**
+     * write token
      *
      * @summary Make write token in sessionStorage
      * @param token: string
@@ -97,7 +95,7 @@ export class AuthService {
 
     /**
      * Remove token
-     *s
+     *
      * @summary Make remove token from sessionStorage
      */
     private removeToken(): void {
@@ -132,9 +130,6 @@ export class AuthService {
      */
     private isExpiredToken(token: IToken): boolean {
         const now =  new Date().getTime() / 1000;
-        if(token.exp < now){
-          return true;
-        }
-        return false;
+        return token.exp < now;
     }
 }

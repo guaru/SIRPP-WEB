@@ -20,7 +20,7 @@ export class AppLayoutComponent {
         this.user$ =  this.store.select(AuthenticationSelectors.selectAuthenticationStateUser);
     }
 
-    signOff(){
+    signOff(): void{
         this.store.dispatch(AuthenticationActions.signOff());
     }
 

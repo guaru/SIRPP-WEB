@@ -21,6 +21,12 @@ export class CarouselContainer implements OnInit {
     this.loadData();
   }
 
+  /**
+   * Load data carousel
+   *
+   * @summary Load data for carousel dispatch
+   * @returns void
+   */
   loadData(): void {
     this.store.dispatch(CarouselActions.loadData());
   }

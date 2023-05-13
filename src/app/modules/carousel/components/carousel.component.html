@@ -40,12 +40,12 @@
 <ng-template #itemCarousel let-item="item">
   <img src="./assets/{{ !bgDefault ? item.image : imgDefault }}" class="d-block w-100" height="{{ height }}" alt="...">
   <div class="carousel-caption d-none d-md-block">
-    <h5 class="fw-bold">{{item.title}}</h5>
-    <h6>{{item.subtitle}}</h6>
-    <h6>{{item.body.mail}}</h6>
-    <h6>{{item.body.phone}}</h6>
-    <h6>{{item.body.text1}}</h6>
-    <h6>{{item.body.text2}}</h6>
+    <h5 class="fw-bold">{{ item.title }}</h5>
+    <h6>{{ item.subtitle }}</h6>
+    <h6>{{ item.body.mail }}</h6>
+    <h6>{{ item.body.phone }}</h6>
+    <h6>{{ item.body.text1 }}</h6>
+    <h6>{{ item.body.text2 }}</h6>
     <h5 *ngIf="item.link"> <a class="btn btn-link text-uppercase text-white fw-bold"
         href="{{ item.link.texto }}">{{ item.link.ruta }}</a></h5>
   </div>
