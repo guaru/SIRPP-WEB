@@ -92,8 +92,10 @@ export class AuthService {
      * @param type: string
      */
     private writeToken(token: string, type: string): void {
-        localStorage.setItem('token', this.utilService.encrypt(token));
-        localStorage.setItem('type', this.utilService.encrypt(type));
+        token = this.utilService.encrypt(token);
+        type =  this.utilService.encrypt(type);
+        localStorage.setItem('token', token);
+        localStorage.setItem('type', type);
     }
 
     /**
