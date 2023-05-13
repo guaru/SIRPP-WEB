@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { IError } from '@sicatel/shared/models/request/error.interface';
-import Swal  from 'sweetalert2';
-import  *  as CryptoJS from  'crypto-js';
 import { environment } from '@sicatel/env/environment';
+import { IError } from '@sicatel/shared/models/request/error.interface';
+import  *  as CryptoJS from  'crypto-js';
+import Swal  from 'sweetalert2';
 
 @Injectable({
     providedIn: 'root'
@@ -50,7 +50,7 @@ export class UtilsService {
      * encrypt
      *
      * @summary encrypt with cryptojs
-     * @param value 
+     * @param value
      * @returns  string
      */
     encrypt(value: string): string {
@@ -58,10 +58,10 @@ export class UtilsService {
     }
 
     /**
-     * decrypt 
+     * decrypt
      *
      * @summary decrypt with  cryptojs
-     * @param valueEncrypt 
+     * @param valueEncrypt
      * @returns string
      */
     decrypt(valueEncrypt: string): string {

@@ -2,19 +2,17 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { SicatelCommons } from '@sicatel/configs/commons.constants';
 import { SicatelMessages } from '@sicatel/configs/messsages.constant';
+import { UtilsService } from '@sicatel/core/services/utils/utils.service';
 import * as AuthenticationActions from '@sicatel/modules/authentication/store/actions/authentication.actions';
 import * as fromAuthentication from '@sicatel/modules/authentication/store/reducers/authentication.reducers';
 import { IUserResponse } from '@sicatel/shared/models/response/user.response';
 import { IToken } from '@sicatel/shared/models/user/user';
-import { UtilsService } from '@sicatel/core/services/utils/utils.service';
 
 @Injectable({
      providedIn: 'root'
 })
 export class AuthService {
 
-    private  token = 'token';
-    private  type  = 'type';
 
     constructor(private store: Store<fromAuthentication.State>, private utilService: UtilsService){}
 
@@ -79,13 +77,12 @@ export class AuthService {
      */
     readToken(): IToken {
         try {
-            const tokenString: string | null = this.utilService.decrypt(localStorage.getItem(this.token)||'');
-         return  this.parseToken(tokenString||'');    
-        }catch(e){
-          return {} as IToken;
-        }   
+            const tokenString: string | null = this.utilService.decrypt(localStorage.getItem('token') || '');
+            return  this.parseToken(tokenString || '');
+        } catch(e) {
+            return { } as IToken;
+        }
     }
-
 
     /**
      * write token
@@ -95,8 +92,8 @@ export class AuthService {
      * @param type: string
      */
     private writeToken(token: string, type: string): void {
-        localStorage.setItem(this.token, this.utilService.encrypt(token));
-        localStorage.setItem(this.type, this.utilService.encrypt(type));
+        localStorage.setItem('token', this.utilService.encrypt(token));
+        localStorage.setItem('type', this.utilService.encrypt(type));
     }
 
     /**
@@ -105,8 +102,8 @@ export class AuthService {
      * @summary Make remove token from sessionStorage
      */
     private removeToken(): void {
-        localStorage.removeItem(this.token);
-        localStorage.removeItem(this.type);
+        localStorage.removeItem('token');
+        localStorage.removeItem('type');
     }
 
     /**
