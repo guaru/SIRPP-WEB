@@ -6,6 +6,7 @@ import * as AuthenticationActions from '@sicatel/modules/authentication/store/ac
 import * as fromAuthentication from '@sicatel/modules/authentication/store/reducers/authentication.reducers';
 import { IUserResponse } from '@sicatel/shared/models/response/user.response';
 import { IToken } from '@sicatel/shared/models/user/user';
+import { UtilsService } from '@sicatel/core/services/utils/utils.service';
 
 @Injectable({
      providedIn: 'root'
@@ -15,7 +16,7 @@ export class AuthService {
     private  token = 'token';
     private  type  = 'type';
 
-    constructor(private store: Store<fromAuthentication.State>){}
+    constructor(private store: Store<fromAuthentication.State>, private utilService: UtilsService){}
 
     /**
      * Authenticated logic for user
@@ -43,7 +44,7 @@ export class AuthService {
     isAuthenticate(): boolean {
         const token = this.readToken();
         const expired = this.isExpiredToken(token);
-        return (token !== undefined && token.user  &&  !expired) ? true : false;
+        return (token!.user  &&  !expired) ? true : false;
     }
 
     /**
@@ -76,10 +77,15 @@ export class AuthService {
      * @summary Make read token from session storage
      * @returns Itoken
      */
-    private  readToken(): IToken {
-        const tokenString: string | null = localStorage.getItem(this.token);
-        return  this.parseToken(tokenString||'');
+    readToken(): IToken {
+        try {
+            const tokenString: string | null = this.utilService.decrypt(localStorage.getItem(this.token)||'');
+         return  this.parseToken(tokenString||'');    
+        }catch(e){
+          return {} as IToken;
+        }   
     }
+
 
     /**
      * write token
@@ -89,8 +95,8 @@ export class AuthService {
      * @param type: string
      */
     private writeToken(token: string, type: string): void {
-        localStorage.setItem(this.token, token);
-        localStorage.setItem(this.type, type);
+        localStorage.setItem(this.token, this.utilService.encrypt(token));
+        localStorage.setItem(this.type, this.utilService.encrypt(type));
     }
 
     /**

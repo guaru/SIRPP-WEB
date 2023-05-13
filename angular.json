@@ -29,7 +29,8 @@
               "date-fns/locale",
               "@babel/runtime",
               "core-js",
-              "sweetalert2"
+              "sweetalert2",
+              "crypto-js"
             ],
             "outputPath": "dist/sicatel-web",
             "index": "src/index.html",

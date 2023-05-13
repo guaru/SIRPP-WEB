@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { IError } from '@sicatel/shared/models/request/error.interface';
 import Swal  from 'sweetalert2';
+import  *  as CryptoJS from  'crypto-js';
+import { environment } from '@sicatel/env/environment';
 
 @Injectable({
     providedIn: 'root'
@@ -42,5 +44,27 @@ export class UtilsService {
                 confirmButtonColor: '#0071d1',
                 confirmButtonText: 'Enterado'
             });
+    }
+
+    /**
+     * encrypt
+     *
+     * @summary encrypt with cryptojs
+     * @param value 
+     * @returns  string
+     */
+    encrypt(value: string): string {
+      return CryptoJS.AES.encrypt(value, environment.key).toString();
+    }
+
+    /**
+     * decrypt 
+     *
+     * @summary decrypt with  cryptojs
+     * @param valueEncrypt 
+     * @returns string
+     */
+    decrypt(valueEncrypt: string): string {
+      return  CryptoJS.AES.decrypt(valueEncrypt, environment.key).toString(CryptoJS.enc.Utf8);
     }
 }
