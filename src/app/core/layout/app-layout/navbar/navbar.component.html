@@ -1,0 +1,85 @@
+<nav class="navbar navbar-expand-lg fixed-top">
+	<div class="container-fluid">
+		<div class="d-flex flex-row">
+			<div class="navbar-brand logo-telcel px-5 col-8">
+				<img src="./assets/icons/logo_Telcel.png" alt="Logo" height="24"
+					class="d-inline-block align-text-top">
+			</div>
+			<button class="navbar-toggler ms-5 col-4" type="button" data-bs-toggle="collapse"
+				data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+		</div>
+		<div class="d-flex flex-row"></div>
+		<div class="d-flex flex-row">
+			<ul class="navbar-nav me-auto  mb-lg-0 row">
+				<li class="nav-item dropdown col-4 ">
+					<a class="nav-link dropdown-toggle fw-bold" href="#" role="button" data-bs-toggle="dropdown"
+						aria-expanded="false">
+						Shortcuts
+					</a>
+					<ul class="dropdown-menu dropdown-menu-end "></ul>
+				</li>
+				<li class="nav-item col-4">
+					<a class="nav-link px-4" href="">
+						<img class="user-image margin-right-sm" height="20" width="20" alt="User Image"
+							src="./assets/icons/info.svg">
+					</a>
+				</li>
+				<li class="nav-item dropdown col-4">
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+						aria-expanded="false">
+						<img class="user-image margin-right-sm" height="28" width="28" alt="User Image"
+							src="./assets/icons/user.png">
+					</a>
+					<ul class="dropdown-menu dropdown-menu-end">
+						<li>
+							<a class="dropdown-item">
+								{{ user.nombreUsuario }}
+								{{ user.numeroEmpleado }}
+								{{ user.idUsuario }}
+							</a>
+						</li>
+						<li>
+							<a class="dropdown-item">
+								<span class="fw-bold">Región:</span> {{ user.region }} ({{ user.idRegion }})
+							</a>
+						</li>
+						<li>
+							<a class="dropdown-item">
+								<span class="fw-bold">Posición:</span> {{ user.posicion }}
+							</a>
+						</li>
+						<li>
+							<a class="dropdown-item">
+								<span class="fw-bold">Caja:</span> {{ user.numCaja }}
+							</a>
+						</li>
+						<li>
+							<a class="dropdown-item">
+								<span class="fw-bold">Centro:</span> {{ user.centro }}
+							</a>
+						</li>
+						<li>
+							<a class="dropdown-item" *ngIf="user.tipo === eLoginType.CAC">
+								<span class="fw-bold">Oficina:</span> {{ user.oficinaVentas }}
+							</a>
+
+							<a class="dropdown-item" *ngIf="user.tipo === eLoginType.DAT">
+								<span class="fw-bold">Oficina:</span> (DAT)
+							</a>
+						</li>
+						<li>
+							<a class="dropdown-item">
+								<span class="fw-bold">Fecha:</span> {{ date| date :'dd/MM/yyyy' }}
+							</a>
+						</li>
+						<li><hr class="dropdown-divider"></li>
+						<li><a class="dropdown-item btn btn-link" (click)="onClickSignOff()">Cerrar Sesión</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>

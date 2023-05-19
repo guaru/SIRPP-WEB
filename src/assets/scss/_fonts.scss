@@ -35,6 +35,16 @@
     font-weight: 800;
     font-display: swap;
   }
+
+  @font-face {
+    font-family: SourceSansPro-Bold;
+    src: url(..//fonts/Source_Sans_Pro/SourceSansPro-Bold.ttf);
+  }
+  
+  @font-face {
+    font-family: SourceSansPro;
+    src: url(..//fonts/Source_Sans_Pro/SourceSansPro-Regular.ttf);
+  }
   
   $font-family-primary: 'Lato-light';
   $font-family-secondary: 'sans-serif';

@@ -1,9 +1,18 @@
-<!--
 
-Add Menu here
+<sicatel-navbar *ngIf="user$ | async as user" [user]="user" (signOffEvent)="signOff()" ></sicatel-navbar>
+<div class="container-fluid telcel-content" >
+        <div class="row flex-nowrap">
+            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                    
+                    <!--  MENU -->
+    
+                </div>
+            </div>
+            <div class="col py-3 mt-2">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
 
--->
-<div class="d-flex flex-column flex-fill overflow-auto h-100">
-    <router-outlet></router-outlet>
-</div>
 

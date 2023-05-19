@@ -120,3 +120,19 @@ body {
 .mat-tooltip-lg {
   font-size: 12px !important;
 }
+
+.btn-telcel-warning{
+ background-color: $warning;
+ border-color: $warning;
+}
+
+.btn-telcel-confirm {
+  background-color: #0071d1;
+  border-color: #0071d1;
+}
+
+.mt {
+  &-5-1{
+    margin-top: 5.1em !important;
+  }
+}

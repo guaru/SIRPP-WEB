@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { MatDividerModule } from '@angular/material/divider';
+import { CarouselModule } from '@sicatel/modules/carousel/carousel.module';
 import { DashboardComponent } from '@sicatel/modules/dashboard/components/dashboard.component';
 import { DashboardTestConstants } from '@sicatel/tests/configs/dashboard-test.constants';
 import { MockModule } from 'ng-mocks';
@@ -12,7 +13,8 @@ describe('Dashboard Component', () => {
     TestBed.configureTestingModule({
       declarations: [ DashboardComponent ],
       imports: [
-        MockModule(MatDividerModule)
+        MockModule(MatDividerModule),
+        MockModule(CarouselModule)
       ]
     })
     .compileComponents();

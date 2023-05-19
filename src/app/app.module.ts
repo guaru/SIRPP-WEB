@@ -3,9 +3,11 @@ import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 import { RouterState, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
+import  { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppRoutingModule } from '@sicatel/app-routing.module';
 import { AppComponent } from '@sicatel/app.component';
 import { RootModule } from '@sicatel/core/root.module';
+import { environment } from '@sicatel/env/environment';
 import { ROOT_REDUCERS } from '@sicatel/store';
 
 @NgModule({
@@ -27,7 +29,11 @@ import { ROOT_REDUCERS } from '@sicatel/store';
     StoreRouterConnectingModule.forRoot({
       routerState: RouterState.Minimal
     }),
-    EffectsModule.forRoot()
+    EffectsModule.forRoot(),
+    StoreDevtoolsModule.instrument({
+       maxAge: 25,
+       logOnly: environment.production
+    })
   ],
   providers: [],
   bootstrap: [ AppComponent ]

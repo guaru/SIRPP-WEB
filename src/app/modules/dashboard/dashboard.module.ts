@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { CarouselModule } from '@sicatel/modules/carousel/carousel.module';
 import { DashboardComponent } from '@sicatel/modules/dashboard/components/dashboard.component';
 import { DashboardContainer } from '@sicatel/modules/dashboard/containers/dashboard.container';
 import { DashboardRoutingModule } from '@sicatel/modules/dashboard/dashboard-routing.module';
@@ -20,6 +21,7 @@ import * as dashboardReducer from '@sicatel/modules/dashboard/store/reducers/das
         MatButtonModule,
         MatIconModule,
         MatTooltipModule,
+        CarouselModule,
         EffectsModule.forFeature([ DashboardEffects ]),
         StoreModule.forFeature(dashboardReducer.featureKey, dashboardReducer.dashboardReducer),
         MatDividerModule

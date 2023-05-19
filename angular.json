@@ -28,7 +28,9 @@
               "exceljs",
               "date-fns/locale",
               "@babel/runtime",
-              "core-js"
+              "core-js",
+              "sweetalert2",
+              "crypto-js"
             ],
             "outputPath": "dist/sicatel-web",
             "index": "src/index.html",
@@ -43,7 +45,7 @@
               "./node_modules/bootstrap/dist/css/bootstrap.css",
               "src/styles.scss"
             ],
-            "scripts": [],
+            "scripts": ["./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"],
             "vendorChunk": true,
             "extractLicenses": false,
             "buildOptimizer": false,

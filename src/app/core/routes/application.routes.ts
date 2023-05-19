@@ -1,13 +1,14 @@
 import { Routes } from '@angular/router';
+import { SicatelCommons } from '@sicatel/configs/commons.constants';
 
 export const applicationRoutes: Routes = [
     {
-        path: 'dashboard',
+        path: SicatelCommons.dashboard,
         loadChildren: () => import('@sicatel/modules/dashboard/dashboard.module').then(m => m.DashboardModule)
     },
     {
         path: '',
-        redirectTo: 'dashboard',
+        redirectTo: SicatelCommons.dashboard,
         pathMatch: 'full'
     }
 ];

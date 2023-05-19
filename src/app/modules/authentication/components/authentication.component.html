@@ -1,10 +1,12 @@
-<form class="my-5" [formGroup]="loginForm">
+<h4 class="font-weight-bold">Login</h4>
+<form class="my-5" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <mat-form-field appearance="outline" class="font-weight-bold w-100" color="accent">
         <mat-label>Usuario</mat-label>
         <input #userInput matInput type="text" formControlName="userName" autocomplete="userName" ngTrimSpaces autofocus>
         <mat-icon fontSet="fas" fontIcon="fa-user" matSuffix color="primary"></mat-icon>
         <mat-error class="font-weight-bold" *ngIf="loginForm.controls.userName.invalid">Usuario inválido</mat-error>
     </mat-form-field>
+
     <mat-form-field appearance="outline" class="font-weight-bold w-100" color="accent">
         <mat-label>Contraseña</mat-label>
         <input sicatelCapsLock (capsLock)="showPasswordCaps = $event" matInput [type]="showPassword ? 'text' : 'password'" formControlName="password"
@@ -13,15 +15,37 @@
             <mat-icon *ngIf="showPasswordCaps" fontSet="fas" fontIcon="fa-arrow-alt-circle-up" color="primary" matPrefix matTooltip="Caps Lock"></mat-icon>
             <mat-error class="font-weight-bold" *ngIf="loginForm.controls.password.invalid">Contraseña inválida</mat-error>
     </mat-form-field>
-    <div *ngIf="error" class="bg-danger text-center text-white p-2 mb-2">
-        {{ error.message }}
-    </div>
+    
+    <mat-form-field appearance="outline" class="font-weight-bold w-100" color="accent">
+        <mat-label>Tipo</mat-label>
+        <mat-select formControlName="type" [errorStateMatcher]="matcher" (selectionChange)="changeType()">
+           <mat-option *ngFor="let type of typesLogin" [value]="type">
+                {{ type }}
+           </mat-option>
+        </mat-select>
+        <mat-error class="font-weight-bold" *ngIf="loginForm.controls.type.invalid">
+            Seleccione un tipo valido
+        </mat-error>
+    </mat-form-field>
+      
+    <mat-form-field *ngIf="selectedType === eLoginType.CAC" appearance="outline" class="font-weight-bold w-100" color="accent">
+        <mat-label>Posición</mat-label>
+        <input #positionInput sicatelUppercase  matInput type="text" formControlName="position" autocomplete="position" ngTrimSpaces autofocus>
+        <mat-error class="font-weight-bold" *ngIf="loginForm.controls.position.invalid">Posición Invalida</mat-error>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="selectedType === eLoginType.DAT" appearance="outline" class="font-weight-bold w-100" color="accent">
+        <mat-label>Teléfono</mat-label>
+        <input #phoneInput matInput sicatelNumber  type="text" formControlName="phone" autocomplete="phone" ngTrimSpaces autofocus maxlength="12">
+        <mat-error class="font-weight-bold" *ngIf="loginForm.controls.phone.invalid">Teléfono Invalido</mat-error>
+    </mat-form-field>
+
     <div class="d-flex justify-content-center my-3">
         <ng-container *ngIf="loading; else actions">
             <mat-spinner class="align-self-center" color="accent" diameter="30"></mat-spinner>
         </ng-container>
         <ng-template #actions>
-            <button mat-flat-button class="w-100 btn btn-primary" color="accent" (click)="logIn(userInput)">
+            <button type="submit" mat-flat-button class="w-50 btn btn-primary btn-telcel-confirm text-white" color="accent" >
                 Entrar
             </button>
         </ng-template>

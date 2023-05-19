@@ -1,14 +1,24 @@
- @import "../../../../assets/scss/colors";
+@import "src/assets/scss/colors";
+@import "src/assets/scss/fonts";
+
+* {
+    font-family: SourceSansPro, sans-serif;
+}
 
 .login-bg {
     width: 100%;
-    height: 100%;
 }
 
-:host ::ng-deep {
-    .mat-form-field-outline {
-        color: $medium;
-        background-color: $darkgrey;
-    }
+.bg{
+    background: url(../../../../assets/img/Chica-Sicatel.png) no-repeat !important;
+    background-size: cover !important;
+    min-height: 100vh;
 }
 
+.login-title img{
+  width: 50%;
+}
+
+.login-title h3 {
+    font-weight: bold !important;
+}
