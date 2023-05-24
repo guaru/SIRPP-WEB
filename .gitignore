@@ -5,7 +5,9 @@
 /tmp
 /out-tsc
 /bazel-out
-
+/sicatel-web/target
+/sicatel-web-ear/target
+/target
 # Node
 /node_modules
 /package-lock.json

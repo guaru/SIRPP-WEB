@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+    <groupId>mx.com.telcel.di.sds.gsce.dsrvcte.sicatel</groupId>
+    <artifactId>sicatel-web-parent</artifactId>
+    <version>1.0.0</version>
+    <name>sicatel web parent</name>
+    <packaging>pom</packaging>
+    
+    <build>
+        <!-- Extensión para descargar las dependencias del DSSC compartidas por 
+			FTP -->
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ftp</artifactId>
+				<version>3.4.2</version>
+			</extension>
+		</extensions>
+		
+    </build>
+    
+    <modules>
+		<module>sicatel-web-ear</module>
+		<module>sicatel-web</module>
+	</modules>
+    
+    <distributionManagement>
+		<repository>
+			<id>telcel-maven-dssc</id>
+			<url>http://10.191.211.185:8081/dssc-nexus/</url>
+		</repository>
+		<snapshotRepository>
+			<id>telcel-maven-dssc</id>
+			<url>http://10.191.211.185:8081/dssc-nexus/</url>
+		</snapshotRepository>
+	</distributionManagement>
+	
+</project>
