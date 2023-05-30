@@ -11,7 +11,7 @@
     "start": "node --max_old_space_size=8000 ./node_modules/@angular/cli/bin/ng serve --o --proxy-config proxy.conf.json",
     "test": "node --max_old_space_size=4096 \"./node_modules/jest/bin/jest\" --ci --verbose=false --maxWorkers=5 --env=jsdom --collectCoverage",
     "build:stats": "ng build --stats-json",
-    "build:prod": "node --max_old_space_size=4096 ./node_modules/@angular/cli/bin/ng build --configuration production --source-map=false",
+    "build:prod": "node --max_old_space_size=4096 ./node_modules/@angular/cli/bin/ng build --configuration production --source-map=false --base-href /sicatel-web/ ",
     "build:lint": "ng lint",
     "build:ci": "npx jest --ci --verbose=false --runInBand",
     "dev:test": "npx jest --watchAll --maxWorkers=25%",

@@ -1,6 +1,6 @@
 {
     "/api/v1/dashboard": {
-        "target": "http://localhost:9090/sicatel-dashboard/api",
+        "target": "http://localhost:9090/sicatel-dashboard-api",
         "changeOrigin": true,
         "secure": false,
         "pathRewrite": {
@@ -8,7 +8,7 @@
         }
     },
     "/api/v1/authentication": {
-        "target": "http://localhost:9090/sicatel-authentication/api",
+        "target": "http://10.55.143.166:9090/sicatel-authentication-api",
         "changeOrigin": true,
         "secure": false,
         "pathRewrite": {
