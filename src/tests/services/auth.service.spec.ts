@@ -3,6 +3,7 @@ import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { AuthService } from '@sicatel/core/services/auth.service';
 import * as fromAuthentication from '@sicatel/modules/authentication/store/reducers/authentication.reducers';
 import { IUserResponse } from '@sicatel/shared/models/response/user.response';
+import { IToken } from '@sicatel/shared/models/user/user';
 import { AuthenticationTestConstants } from '@sicatel/tests/configs/authentication-test.constants';
 
 
@@ -59,6 +60,13 @@ describe('AuthService', () =>{
         service.signIn(AuthenticationTestConstants.userResponseInvalid);
         const isAuthenticate = service.isAuthenticate();
         expect(isAuthenticate).toEqual(false);
+    });
+
+
+    it('should be exception read token', ()=>{
+        service.signOff();
+        const token = service.readToken();
+        expect(token).toEqual({} as IToken);
     });
 
     it('should be signOff', ()=>{

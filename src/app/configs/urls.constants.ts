@@ -1,4 +1,4 @@
-import { environment } from "@sicatel/env/environment";
+import { environment } from '@sicatel/env/environment';
 
 export class SicatelUrlsConstants {
     static readonly baseUrl = '/api/v1';
