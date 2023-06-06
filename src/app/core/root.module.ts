@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { RequestInterceptor } from '@sicatel/core/interceptors/request.interceptor';
+import { TokenInterceptor } from  '@sicatel/core/interceptors/token.interceptor';
 import { LoginLayoutModule } from '@sicatel/core/layout/login-layout/login-layout.module';
 import { AuthenticationEffects } from '@sicatel/modules/authentication/store/effects/authentication.effects';
 import * as authenticationReducer  from '@sicatel/modules/authentication/store/reducers/authentication.reducers';
@@ -26,12 +27,12 @@ import { ToastrModule } from 'ngx-toastr';
       positionClass: 'toast-bottom-right'
     })
   ],
-  providers: [/*
+  providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    }, */
+    }, 
     {
       provide: HTTP_INTERCEPTORS,
       useClass: RequestInterceptor,

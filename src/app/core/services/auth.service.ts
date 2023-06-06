@@ -7,6 +7,7 @@ import * as AuthenticationActions from '@sicatel/modules/authentication/store/ac
 import * as fromAuthentication from '@sicatel/modules/authentication/store/reducers/authentication.reducers';
 import { IUserResponse } from '@sicatel/shared/models/response/user.response';
 import { IToken } from '@sicatel/shared/models/user/user';
+import { throwError } from 'rxjs';
 
 @Injectable({
      providedIn: 'root'
@@ -78,7 +79,13 @@ export class AuthService {
     readToken(): IToken {
         try {
             const tokenString: string | null = this.utilService.decrypt(localStorage.getItem('token') || '');
-            return  this.parseToken(tokenString || '');
+            let token = this.parseToken(tokenString || '');
+            if(token.user){
+                token.accessToken =  tokenString;
+            }else{
+                throw new Error('Not Authenticated');
+            }
+            return token;
         } catch(e) {
             return { } as IToken;
         }
