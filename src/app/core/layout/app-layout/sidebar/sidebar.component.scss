@@ -1,0 +1,19 @@
+span, li, a {
+    letter-spacing: 0.02rem;
+    color: #8aa4af;
+    font-size: 16px;
+}
+
+li > ul > li > a > span {
+    font-size: 14px;
+}
+
+li > ul > li > a > span > i {
+    font-size:  7px;
+}
+
+ul { padding: 0px; }
+
+a:hover, span:hover {
+    color: #ffff;
+}
