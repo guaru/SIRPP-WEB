@@ -1,0 +1,38 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ReportMoveComponent } from './components/report-move.component';
+import { ReportMoveContainer } from './containers/report-move.container';
+import { ReportMoveRoutingModule } from './report-move-routing.module';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
+import { DirectivesModule } from '@sicatel/shared/directives/directives.module';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
+
+@NgModule({
+  declarations: [
+    ReportMoveContainer,
+    ReportMoveComponent
+  ],
+  imports: [
+    CommonModule, 
+    ReportMoveRoutingModule,
+    MatPaginatorModule,
+    MatTableModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
+    MatSelectModule,
+    DirectivesModule,
+    MatDatepickerModule,
+    MatNativeDateModule
+  ]
+})
+export class ReportMoveModule { }

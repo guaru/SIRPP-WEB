@@ -7,6 +7,10 @@ export const applicationRoutes: Routes = [
         loadChildren: () => import('@sicatel/modules/dashboard/dashboard.module').then(m => m.DashboardModule)
     },
     {
+        path: SicatelCommons.reports,
+        loadChildren: () => import('@sicatel/modules/reports/report-move/report-move.module').then(m => m.ReportMoveModule)
+    },
+    {
         path: '',
         redirectTo: SicatelCommons.dashboard,
         pathMatch: 'full'

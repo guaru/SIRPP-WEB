@@ -36,7 +36,7 @@ export class LoginGuard implements CanActivate,CanLoad {
       */
     canLoad(route: Route, segments: Array<UrlSegment>): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
         if(!this.authService.isAuthenticate()) {
-            this.router.navigate(Array(SicatelCommons.pathLogin));
+           // this.router.navigate(Array(SicatelCommons.pathLogin));
         }
         return true;
     }

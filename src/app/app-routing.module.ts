@@ -29,6 +29,11 @@ const routes: Routes = [
     canLoad: [LoginGuard]
   },
   {
+    path: SicatelCommons.reports,
+    loadChildren: () => import('@sicatel/modules/reports/report-move/report-move.module').then(m => m.ReportMoveModule),
+    canLoad: [LoginGuard]
+  },
+  {
     path: '**',
     redirectTo: SicatelCommons.auth,
     pathMatch: 'full'
