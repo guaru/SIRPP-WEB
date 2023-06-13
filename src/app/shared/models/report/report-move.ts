@@ -5,10 +5,11 @@ export interface IreportMoveDetail {
     idRegion: number;
     folioSicatel: number;
     plataforma: string;
-    concepto: Array<IDetail> ;
+    concepto: Array<IDetailConcept> ;
+    formaPago:Array<IDetailMethodPayment>
   }
   
-  export interface IDetail {
+  export interface IDetailConcept {
     cCaja : string;
     cCantidad : string;
     cConcepto : string;
@@ -30,5 +31,14 @@ export interface IreportMoveDetail {
     cPlataforma : string;
     cEstatusBes : string;
     
+  }
+
+  export interface IDetailMethodPayment{
+    fTipoPago: number;
+    fInstitucion: string;
+    fEstatus: number;
+    fAbonado: number;
+    fNumDoc: number;
+    fIdInstitucion: string;
   }
   

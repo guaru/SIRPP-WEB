@@ -13,12 +13,14 @@ import { MatSelectModule } from '@angular/material/select';
 import { DirectivesModule } from '@sicatel/shared/directives/directives.module';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-
+import { ModalDetailMoveComponent } from './components/modals/modal-detail-move.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     ReportMoveContainer,
-    ReportMoveComponent
+    ReportMoveComponent,
+    ModalDetailMoveComponent
   ],
   imports: [
     CommonModule, 
@@ -32,7 +34,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatSelectModule,
     DirectivesModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatDialogModule
   ]
 })
 export class ReportMoveModule { }

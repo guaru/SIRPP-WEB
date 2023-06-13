@@ -6,7 +6,11 @@ import { MatTableDataSource } from '@angular/material/table';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TelcelErrorStateMatcher } from '@sicatel/configs/error-state-matcher';
 import { Subscription } from 'rxjs';
-
+import { ModalDetailMoveComponent } from './modals/modal-detail-move.component';
+import { MatDialog } from '@angular/material/dialog';
+import { SelectionModel } from '@angular/cdk/collections';
+import { UtilsService } from '@sicatel/core/services/utils/utils.service';
+import Swal  from 'sweetalert2';
 
 @Component({
   selector: 'sicatel-report-move',
@@ -15,22 +19,25 @@ import { Subscription } from 'rxjs';
 })
 export class ReportMoveComponent {
 
+  constructor( private _dialog: MatDialog) {}
+
   loading?: boolean = false;
   matcher: TelcelErrorStateMatcher = new TelcelErrorStateMatcher();
-  plataform = '';
+
   showTableDetail = false;
   ePlataformaType = EPlataformType;
   typesPlataforma: Array<EPlataformType> = [this.ePlataformaType.TODAS, this.ePlataformaType.MOBILE, this.ePlataformaType.BES];
   selectedType: string = this.ePlataformaType.TODAS;
+  plataform = this.ePlataformaType.TODAS;
   storeSubscribe: Subscription = new Subscription();
   searchReportForm = new FormGroup({
-    fechaInicio: new FormControl('', Validators.required),
-    fechaFin: new FormControl('', Validators.required),
-    type: new FormControl('', Validators.required)
+    fechaInicio: new FormControl(new Date(), Validators.required),
+    fechaFin: new FormControl(new Date(), Validators.required),
+    type: new FormControl(this.ePlataformaType.TODAS, Validators.required)
   });
-
   displayedColumns: string[] = ['sec', 'folio', 'fecha-Hora', 'id-centro', 'id-region', 'folio-sicatel', 'plataforma', 'detalle'];
-  dataSource = new MatTableDataSource<IreportMoveDetail>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<IreportMoveDetail>();
+  selection = new SelectionModel<any>(true, []);
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -64,18 +71,48 @@ export class ReportMoveComponent {
   * @returns void
   */
   onSubmit(): void {
+
     if (this.searchReportForm.valid) {
       console.log("data validate: ", this.searchReportForm)
       //this.store.dispatch(AuthenticationActions.signIn({userRequest}));
-      this.showTableDetail= true;
+      if (ELEMENT_DATA.length===0) {
+        Swal.fire({
+          title: '',
+          text : 'No se encontraron registros',
+          icon: 'error',
+          confirmButtonColor: '#f39c12',
+          confirmButtonText: 'Aceptar',
+          footer: ''
+      });
+      }else{
+        this.showTableDetail= true;
+        this.dataSource = new MatTableDataSource<IreportMoveDetail>(ELEMENT_DATA);
+      }
+      
+      
     }
-    console.log("data: ", this.searchReportForm)
+    
   }
+
+
+  openModalShowDetail(data: any): void{
+    //TODO definir selection
+    let dataObject: any = { 'data': (data !== null? [data]: this.selection.selected) };
+    const dialogRef = this._dialog.open(ModalDetailMoveComponent,{
+      panelClass:'custom-dialog-container-user',
+      width: ('120%'),
+      data: dataObject,
+      disableClose: true
+});
+  }
+
 }
 
+//const ELEMENT_DATA: IreportMoveDetail[] =[];
 
-
-const ELEMENT_DATA: IreportMoveDetail[] = [
+const ELEMENT_DATA: IreportMoveDetail[] =
+[
+  
   {
     folio: 1, fecha: '09-24-2024 09:44:21', idCentro: 10079, idRegion: 111, folioSicatel: 111111, plataforma: 'BES', concepto: [
       {
@@ -99,6 +136,15 @@ const ELEMENT_DATA: IreportMoveDetail[] = [
         cNumeroOrden: 'detalle1',
         cPlataforma: 'detalle1',
         cEstatusBes: 'detalle1'
+      }
+    ],formaPago:[
+      {
+        fTipoPago: 1,
+        fInstitucion: '1',
+        fEstatus: 2,
+        fAbonado: 1000.00,
+        fNumDoc: 111101,
+        fIdInstitucion: '001',
       }
     ]
   },
@@ -126,6 +172,15 @@ const ELEMENT_DATA: IreportMoveDetail[] = [
         cPlataforma: 'detalle1',
         cEstatusBes: 'detalle1'
       }
+    ],formaPago:[
+      {
+        fTipoPago: 1,
+        fInstitucion: '1',
+        fEstatus: 2,
+        fAbonado: 1000.00,
+        fNumDoc: 111101,
+        fIdInstitucion: '001',
+      }
     ]
   },
   {
@@ -152,9 +207,18 @@ const ELEMENT_DATA: IreportMoveDetail[] = [
         cPlataforma: 'detalle1',
         cEstatusBes: 'detalle1'
       }
+    ],formaPago:[
+      {
+        fTipoPago: 1,
+        fInstitucion: '1',
+        fEstatus: 2,
+        fAbonado: 1000.00,
+        fNumDoc: 111101,
+        fIdInstitucion: '001',
+      }
     ]
   }
-];
+]
 
 /*
 @Pipe({ name: "reversed" })
