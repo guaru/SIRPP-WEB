@@ -25,14 +25,11 @@ export class LoginService {
 
   /**
    * Load menu user
-   * 
+   *
    * @summary Load menu for user authenticate
    * @returns Array<Menu>
    */
   loadMenu(): Observable<Array<Menu>> {
     return  this.http.get<Array<Menu>>(`${SicatelUrlsConstants.loadMenuUrl}`);
   }
-
-  
-
 }

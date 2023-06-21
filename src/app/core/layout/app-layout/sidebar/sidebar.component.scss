@@ -17,3 +17,11 @@ ul { padding: 0px; }
 a:hover, span:hover {
     color: #ffff;
 }
+
+.active  {
+   background: none !important;
+}
+
+.active > a > span ,.active > a > i {
+  color: #ffff;
+}

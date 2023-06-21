@@ -31,14 +31,10 @@ export class AuthenticationEffects {
     tap(({ error }) => { this.utilService.showErrorMessage(error); })
   ), { dispatch: false });
 
-  setToken$ = createEffect(() => this.actions$.pipe(ofType(AuthenticationActions.setToken),
-    tap(({ token }) => { this.router.navigate([SicatelCommons.pathDashboard]); }))
-    , { dispatch: false });
-
-
   isAuthenticate$ = createEffect(() => this.actions$.pipe(ofType(AuthenticationActions.isAuthenticate),
-    tap(() => { this.authService.existToken(); }))
-    , { dispatch: false });
+    tap(() => {
+     this.authService.setTokenIsAuthenticated();
+    })),{ dispatch: false });
 
   signOff$ = createEffect(() => this.actions$.pipe(ofType(AuthenticationActions.signOff),
     tap(() => {

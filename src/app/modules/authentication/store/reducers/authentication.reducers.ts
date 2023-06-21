@@ -15,7 +15,7 @@ export interface  State {
     error: IError;
     userResponse: IUserResponse;
     token: IToken;
-    menu: Array<Menu>
+    menu: Array<Menu>;
     isAuthenticate: boolean;
 }
 
@@ -72,7 +72,7 @@ initialState,
  on(AuthenticationActions.loadMenuSuccess, (state,{menu}) => ({
   ...state,
   loading: false,
-  menu: menu
+  menu
  })),
  on(AuthenticationActions.loadMenuFailure, (state) => ({
   ...state,

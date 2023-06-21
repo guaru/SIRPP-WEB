@@ -16,7 +16,7 @@ import { Observable } from 'rxjs';
 export class AppLayoutComponent {
 
     user$: Observable<IUser>;
-    menu$: Observable<Menu[]>;
+    menu$: Observable<Array<Menu>>;
 
     constructor(private store: Store<fromAuthentication.State>){
         this.user$ =  this.store.select(AuthenticationSelectors.selectAuthenticationStateUser);
@@ -27,5 +27,5 @@ export class AppLayoutComponent {
     signOff(): void {
         this.store.dispatch(AuthenticationActions.signOff());
     }
-    
+
 }
