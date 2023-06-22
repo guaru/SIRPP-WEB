@@ -10,5 +10,5 @@ export class SidebarComponent {
 
   @Input() menu: Array<Menu> =  [];
 
-  constructor(){console.log(this.menu);}
+  constructor(){}
 }
