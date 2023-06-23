@@ -8,7 +8,7 @@ import * as fromAuthentication from '@sicatel/modules/authentication/store/reduc
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit  {
+export class AppComponent implements OnInit {
   showMask = false;
 
   constructor(private store: Store<fromAuthentication.State>){}

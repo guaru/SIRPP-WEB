@@ -52,14 +52,14 @@ export class AuthService {
     /**
      * Set token is authenticated user
      *
-     * @summary  Validate exist token valid and save token in store state
+     * @summary  if user is authenticated save token in store state
+     * @return void
      */
     setTokenIsAuthenticated(): void {
       if (this.isAuthenticate()) {
         this.store.dispatch(AuthenticationActions.setToken({ token: this.readToken() }));
       }
     }
-
 
     /**
      * Close sessión
