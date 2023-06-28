@@ -1,7 +1,11 @@
 import { TestBed, waitForAsync } from '@angular/core/testing';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { SicatelCommons } from '@sicatel/configs/commons.constants';
 import { AuthService } from '@sicatel/core/services/auth.service';
 import * as fromAuthentication from '@sicatel/modules/authentication/store/reducers/authentication.reducers';
+import { DashboardContainer } from '@sicatel/modules/dashboard/containers/dashboard.container';
 import { IUserResponse } from '@sicatel/shared/models/response/user.response';
 import { IToken } from '@sicatel/shared/models/user/user';
 import { AuthenticationTestConstants } from '@sicatel/tests/configs/authentication-test.constants';
@@ -10,8 +14,15 @@ import { AuthenticationTestConstants } from '@sicatel/tests/configs/authenticati
 describe('AuthService', () =>{
     let store: MockStore<fromAuthentication.State>;
     let service: AuthService;
+    let router: Router;
+
     beforeEach(waitForAsync(() =>{
          TestBed.configureTestingModule({
+           imports : [
+            RouterTestingModule.withRoutes(
+              [{path: 'caja/dashboard', component: DashboardContainer} ]
+            )
+           ],
             providers: [
                 provideMockStore({
                     initialState :  {
@@ -23,6 +34,7 @@ describe('AuthService', () =>{
 
          service =  TestBed.inject(AuthService);
          store = TestBed.inject<MockStore<fromAuthentication.State>>(MockStore);
+         router = TestBed.inject(Router);
     }));
 
     afterEach(() =>{
@@ -34,11 +46,16 @@ describe('AuthService', () =>{
     });
 
     it('should be signin success', ()=>{
+        jest.spyOn(store, 'dispatch');
         const writeTokenSpy =  jest.spyOn(AuthService.prototype as any,'writeToken');
-        const existTokenSpy =  jest.spyOn(AuthService.prototype as any,'existToken');
+        const isAuthenticateSpy = jest.spyOn(AuthService.prototype as any,'isAuthenticate');
+        const navigateSpy = jest.spyOn(router, 'navigate');
+
         service.signIn(AuthenticationTestConstants.userResponse);
         expect(writeTokenSpy).toHaveBeenCalled();
-        expect(existTokenSpy).toHaveBeenCalled();
+        expect(isAuthenticateSpy).toHaveBeenCalled();
+        expect(store.dispatch).toBeCalled();
+        expect(navigateSpy).toHaveBeenCalledWith([SicatelCommons.pathDashboard]);
     });
 
     it('should be is authenticated', ()=>{
@@ -69,9 +86,19 @@ describe('AuthService', () =>{
         expect(token).toEqual({} as IToken);
     });
 
-    it('should be signOff', ()=>{
+    it('should be signOff', ()=> {
         const removeItem =  jest.spyOn(localStorage,'removeItem');
         service.signOff();
         expect(removeItem).toHaveBeenCalled();
     });
+
+    it('should be set token is authenticated init app component', () => {
+      jest.spyOn(store, 'dispatch');
+      const isAuthenticateSpy = jest.spyOn(AuthService.prototype as any, 'isAuthenticate');
+      isAuthenticateSpy.mockReturnValue(true);
+      service.setTokenIsAuthenticated();
+      expect(isAuthenticateSpy).toHaveBeenCalled();
+      expect(store.dispatch).toBeCalled();
+    });
+
 });

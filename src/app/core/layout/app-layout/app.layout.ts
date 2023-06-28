@@ -3,6 +3,7 @@ import {  Store } from '@ngrx/store';
 import * as AuthenticationActions from '@sicatel/modules/authentication/store/actions/authentication.actions';
 import * as fromAuthentication from '@sicatel/modules/authentication/store/reducers/authentication.reducers';
 import * as AuthenticationSelectors from '@sicatel/modules/authentication/store/selectors/authentication.selectors';
+import { Menu } from '@sicatel/shared/models/menu/menu.interface';
 import { IUser } from '@sicatel/shared/models/user/user';
 import { Observable } from 'rxjs';
 
@@ -15,14 +16,16 @@ import { Observable } from 'rxjs';
 export class AppLayoutComponent {
 
     user$: Observable<IUser>;
+    menu$: Observable<Array<Menu>>;
 
     constructor(private store: Store<fromAuthentication.State>){
         this.user$ =  this.store.select(AuthenticationSelectors.selectAuthenticationStateUser);
+        this.menu$ =  this.store.select(AuthenticationSelectors.selectAuthenticationMenu);
+        this.store.dispatch(AuthenticationActions.loadMenu());
     }
 
-    signOff(): void{
+    signOff(): void {
         this.store.dispatch(AuthenticationActions.signOff());
     }
-
 
 }

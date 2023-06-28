@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { SicatelCommons } from '@sicatel/configs/commons.constants';
 import { SicatelMessages } from '@sicatel/configs/messsages.constant';
@@ -7,7 +8,6 @@ import * as AuthenticationActions from '@sicatel/modules/authentication/store/ac
 import * as fromAuthentication from '@sicatel/modules/authentication/store/reducers/authentication.reducers';
 import { IUserResponse } from '@sicatel/shared/models/response/user.response';
 import { IToken } from '@sicatel/shared/models/user/user';
-import { throwError } from 'rxjs';
 
 @Injectable({
      providedIn: 'root'
@@ -15,7 +15,7 @@ import { throwError } from 'rxjs';
 export class AuthService {
 
 
-    constructor(private store: Store<fromAuthentication.State>, private utilService: UtilsService){}
+    constructor(private store: Store<fromAuthentication.State>, private utilService: UtilsService, private router: Router) {}
 
     /**
      * Authenticated logic for user
@@ -28,7 +28,10 @@ export class AuthService {
         const token = this.parseToken(user.accessToken);
         if(token!.user) {
             this.writeToken(user.accessToken,user.type);
-            this.existToken();
+            if(this.isAuthenticate()){
+              this.store.dispatch(AuthenticationActions.setToken({ token: this.readToken() }));
+              this.router.navigate([SicatelCommons.pathDashboard]);
+            }
         } else {
             this.store.dispatch(AuthenticationActions.signInFailure({error : SicatelMessages.errorGeneral }));
         }
@@ -47,17 +50,15 @@ export class AuthService {
     }
 
     /**
-     * Logic start session is token exist in session storage
+     * Set token is authenticated user
      *
-     * @summary Make start session is token exist in session storage
-     * @returns void
+     * @summary  if user is authenticated save token in store state
+     * @return void
      */
-    existToken(): void {
-        if(this.isAuthenticate()){
-            this.store.dispatch(AuthenticationActions.setToken({token: this.readToken()}));
-        }else{
-            this.removeToken();
-        }
+    setTokenIsAuthenticated(): void {
+      if (this.isAuthenticate()) {
+        this.store.dispatch(AuthenticationActions.setToken({ token: this.readToken() }));
+      }
     }
 
     /**
@@ -79,7 +80,7 @@ export class AuthService {
     readToken(): IToken {
         try {
             const tokenString: string | null = this.utilService.decrypt(localStorage.getItem('token') || '');
-            let token = this.parseToken(tokenString || '');
+            const token = this.parseToken(tokenString || '');
             if(token.user){
                 token.accessToken =  tokenString;
             }else{
