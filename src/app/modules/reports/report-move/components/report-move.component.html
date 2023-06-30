@@ -7,6 +7,7 @@
 
       <mat-label>Fecha Inicial</mat-label>
       <input formControlName="fechaInicio"  matInput [matDatepicker]="fechaInicio">
+      <mat-hint>YYYY/MM/DD</mat-hint>
       <mat-datepicker-toggle matIconSuffix [for]="fechaInicio"></mat-datepicker-toggle>
       <mat-datepicker #fechaInicio></mat-datepicker>
       <mat-error class="font-weight-bold" *ngIf="searchReportForm.controls.fechaInicio.invalid">Fecha inválida</mat-error>
@@ -34,7 +35,7 @@
     <!--<div class="d-flex justify-content-center my-3">-->
    
       <ng-template #actions>
-        <button type="submit" mat-flat-button class="w-40 btn btn-warm btn-telcel-confirm text-white" color="warm">
+        <button type="submit" mat-flat-button class="w-40 btn btn-warning" color="warm">
           Consultar
         </button>
       </ng-template>

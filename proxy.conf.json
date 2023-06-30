@@ -14,5 +14,13 @@
         "pathRewrite": {
             "^/api/v1/authentication": "/v1/"
         }
+    },
+    "/api/v1/reportmove": {
+        "target": "http://localhost:9091/sicatel-reporte-movimientos-api",
+        "changeOrigin": true,
+        "secure": false,
+        "pathRewrite": {
+            "^/api/v1/reportmove": "/v1/report/move"
+        }
     }
 }

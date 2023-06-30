@@ -31,7 +31,7 @@ export class AuthenticationEffects {
   ), { dispatch: false });
 
   setToken$ = createEffect(() => this.actions$.pipe(ofType(AuthenticationActions.setToken),
-    tap(({ token }) => { this.router.navigate([SicatelCommons.pathDashboard]); }))
+    tap(({ token }) => { /*this.router.navigate([SicatelCommons.pathDashboard]);*/ }))
     , { dispatch: false });
 
 

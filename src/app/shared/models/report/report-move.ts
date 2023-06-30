@@ -42,3 +42,12 @@ export interface IreportMoveDetail {
     fIdInstitucion: string;
   }
   
+
+  export interface IReportRequest {
+    userName: string;
+    region: number;
+    dateInit: string;
+    dateEnd: string;
+    tokenJwt: string;
+    plataformSelect: string;
+}

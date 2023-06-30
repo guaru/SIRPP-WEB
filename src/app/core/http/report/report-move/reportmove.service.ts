@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { SicatelUrlsConstants } from '@sicatel/configs/urls.constants';
 import { IUserRequest } from '@sicatel/shared/models/request/user.interface';
-import { IUserResponse } from '@sicatel/shared/models/response/user.response';
+
 import { Observable, map } from 'rxjs';
 import { IreportMoveDetail } from '@sicatel/shared/models/report/report-move';
 

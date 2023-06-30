@@ -1,5 +1,5 @@
 {
     "svn.ignoreMissingSvnWarning": true,
     "editor.guides.bracketPairs": "active",
-    "files.autoSave": "off"
+    "files.autoSave": "afterDelay"
 }

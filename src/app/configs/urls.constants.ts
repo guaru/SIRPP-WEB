@@ -14,5 +14,5 @@ export class SicatelUrlsConstants {
 
     //authentication
     static readonly reportMoveBaseUrl = environment.sicatel_report_move_api;
-    static readonly dataGetReportMove= `${ SicatelUrlsConstants.reportMoveBaseUrl }/get-report-move`;
+    static readonly dataGetReportMove= `${ SicatelUrlsConstants.reportMoveBaseUrl }/report/move`;
 }
