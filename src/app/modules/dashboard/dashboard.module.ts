@@ -13,6 +13,7 @@ import { DashboardRoutingModule } from '@sicatel/modules/dashboard/dashboard-rou
 import { DashboardEffects } from '@sicatel/modules/dashboard/store/effects/dashboard.effects';
 import * as dashboardReducer from '@sicatel/modules/dashboard/store/reducers/dashboard.reducer';
 
+
 @NgModule({
     declarations: [ DashboardComponent, DashboardContainer ],
     imports: [

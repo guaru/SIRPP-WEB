@@ -11,8 +11,9 @@ export class SicatelUrlsConstants {
     static readonly authenticationBaseUrl = environment.sicatel_authentication_api;
     static readonly dataSliderUrl = `${ SicatelUrlsConstants.authenticationBaseUrl }/slider`;
     static readonly signInUrl= `${ SicatelUrlsConstants.authenticationBaseUrl }/auth/signin`;
+    static readonly loadMenuUrl= `${ SicatelUrlsConstants.authenticationBaseUrl }/menu`;
 
-    //authentication
+    //Report move
     static readonly reportMoveBaseUrl = environment.sicatel_report_move_api;
     static readonly dataGetReportMove= `${ SicatelUrlsConstants.reportMoveBaseUrl }/report/move`;
 }

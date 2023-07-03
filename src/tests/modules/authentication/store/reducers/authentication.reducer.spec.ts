@@ -60,5 +60,25 @@ describe('Authentication Reducer', () => {
                  AuthenticationActions.signOff());
             expect(result).toEqual(customState);
         });
+
+        it('should load menu', () => {
+          const  result =  fromAuthentication.authenticationReducer(fromAuthentication.initialState, AuthenticationActions.loadMenu());
+          customState.loading =  true;
+          expect(result).toEqual(customState);
+        });
+
+      it('should load menu success', () => {
+        const result = fromAuthentication.authenticationReducer(fromAuthentication.initialState, AuthenticationActions.loadMenuSuccess({menu : AuthenticationTestConstants.menu}));
+        customState.loading = false;
+        customState.menu =  AuthenticationTestConstants.menu;
+        expect(result).toEqual(customState);
+      });
+
+      it('should load menu failed', () => {
+        const result = fromAuthentication.authenticationReducer(fromAuthentication.initialState, AuthenticationActions.loadMenuFailure());
+        customState.loading = false;
+        customState.menu = [];
+        expect(result).toEqual(customState);
+      });
     });
 });

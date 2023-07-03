@@ -10,12 +10,13 @@ import { UtilsService } from '@sicatel/core/services/utils/utils.service';
 import * as AuthenticationActions from '@sicatel/modules/authentication/store/actions/authentication.actions';
 import { AuthenticationEffects } from '@sicatel/modules/authentication/store/effects/authentication.effects';
 import { AuthenticationTestConstants } from '@sicatel/tests/configs/authentication-test.constants';
+import { SicatelTestMessages } from '@sicatel/tests/configs/messages-test.constants';
 import { MockProvider } from 'ng-mocks';
 import { Observable, of, throwError } from 'rxjs';
 
 describe('Authentication Effects', () =>{
-    const  httpLoginServiceSpy =  { signIn : jest.fn()};
-    const  authServiceSpy = {signIn: jest.fn(), existToken: jest.fn(), signOff: jest.fn()};
+    const  httpLoginServiceSpy =  { signIn : jest.fn(), loadMenu: jest.fn()};
+    const authServiceSpy = { signIn: jest.fn(), signOff: jest.fn(), setTokenIsAuthenticated: jest.fn() };
     const  utilServiceSpy =  {showErrorMessage: jest.fn()};
     const routerSpy = { navigate: jest.fn() };
     let actions$: Observable<Action>;
@@ -70,7 +71,6 @@ describe('Authentication Effects', () =>{
             });
         });
 
-
         it('Should dispatch success auth ',() =>{
             actions$ =  of(AuthenticationActions.signInSuccess({userResponse: AuthenticationTestConstants.userResponse}));
             effects.signInSuccess$.subscribe(action =>{
@@ -85,28 +85,38 @@ describe('Authentication Effects', () =>{
             });
         });
 
-        it('should dispatch setToken', () =>{
-            actions$ =  of(AuthenticationActions.setToken({token : AuthenticationTestConstants.token}));
-            effects.setToken$.subscribe(action => {
-                expect(routerSpy.navigate).toHaveBeenCalledWith([SicatelCommons.pathDashboard]);
-            });
-        });
-
-        it('should dispatch isAuthenticate', () =>{
-            actions$ =  of(AuthenticationActions.isAuthenticate());
-            effects.isAuthenticate$.subscribe(action =>{
-                expect(authServiceSpy.existToken).toBeCalled();
-                expect(routerSpy.navigate).toHaveBeenCalledWith([SicatelCommons.pathDashboard]);
-            });
-        });
-
         it('should dispatch signOff', () =>{
             actions$ =  of(AuthenticationActions.signOff());
             effects.signOff$.subscribe(action =>{
                 expect(authServiceSpy.signOff).toBeCalled();
                 expect(routerSpy.navigate).toHaveBeenCalledWith([SicatelCommons.pathLogin]);
             });
-
         });
+
+        it('should dispath is authenticated', () => {
+          actions$ =  of(AuthenticationActions.isAuthenticate());
+          effects.isAuthenticate$.subscribe(action =>{
+            expect(authServiceSpy.setTokenIsAuthenticated).toBeCalled();
+          });
+        });
+
+       it('should dispath load menu success', () => {
+        actions$ =  of(AuthenticationActions.loadMenu());
+        httpLoginServiceSpy.loadMenu.mockReturnValue(of(AuthenticationTestConstants.menu));
+        effects.loadMenu$.subscribe(actions => {
+          expect(httpLoginServiceSpy.loadMenu.mock.calls.length).toBe(1);
+          expect(actions).toEqual(AuthenticationActions.loadMenuSuccess({ menu: AuthenticationTestConstants.menu }));
+         });
+       });
+
+      it('should dispath load menu success', () => {
+        actions$ = of(AuthenticationActions.loadMenu());
+        httpLoginServiceSpy.loadMenu.mockReturnValue(throwError(() => SicatelTestMessages.unexpectedError));
+        effects.loadMenu$.subscribe(actions => {
+          expect(httpLoginServiceSpy.loadMenu.mock.calls.length).toBe(1);
+          expect(actions).toEqual(AuthenticationActions.loadMenuFailure());
+        });
+      });
+
     });
 });

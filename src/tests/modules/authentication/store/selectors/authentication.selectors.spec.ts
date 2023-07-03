@@ -1,6 +1,7 @@
 import * as fromAuthentication from '@sicatel/modules/authentication/store/reducers/authentication.reducers';
 import * as AuthenticationSelectors from '@sicatel/modules/authentication/store/selectors/authentication.selectors';
 import { IToken, IUser } from '@sicatel/shared/models/user/user';
+import { AuthenticationTestConstants } from '@sicatel/tests/configs/authentication-test.constants';
 
 describe('Authentication selectors', () => {
 
@@ -37,4 +38,15 @@ describe('Authentication selectors', () => {
     });
     expect(result).toBeUndefined();
  });
+
+ it('should select menu', () => {
+  const result = AuthenticationSelectors.selectAuthenticationMenu({
+    [fromAuthentication.featureKey] : {
+      ...fromAuthentication.initialState,
+      menu: AuthenticationTestConstants.menu
+    }
+  });
+   expect(result).toEqual(AuthenticationTestConstants.menu);
+ });
+
 });

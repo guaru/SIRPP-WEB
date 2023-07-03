@@ -1,3 +1,4 @@
+import { Menu } from '@sicatel/shared/models/menu/menu.interface';
 import { IError } from '@sicatel/shared/models/request/error.interface';
 import { IUserRequest } from '@sicatel/shared/models/request/user.interface';
 import { IUserResponse } from '@sicatel/shared/models/response/user.response';
@@ -140,4 +141,16 @@ export class AuthenticationTestConstants {
             uuid: 'e2213-123123-343414123'
         } as IUser
     } as IToken;
+
+
+  static readonly menu: Array<Menu> = [
+    {
+      idTarea: 'BTN_LINK1',
+      icon: 'fa fa-icon',
+      name: 'Movimientos',
+      permisos: '1,2,3',
+      url: '/caja',
+      items: []
+    } as Menu
+  ];
 }

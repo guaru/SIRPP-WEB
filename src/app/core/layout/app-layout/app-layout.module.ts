@@ -4,9 +4,10 @@ import { CoreModule } from '@sicatel/core/core.module';
 import { AppLayoutRoutingModule } from '@sicatel/core/layout/app-layout/app-layout-routing.module';
 import { AppLayoutComponent } from '@sicatel/core/layout/app-layout/app.layout';
 import { NavbarComponent } from '@sicatel/core/layout/app-layout/navbar/navbar.component';
+import { SidebarComponent } from '@sicatel/core/layout/app-layout/sidebar/sidebar.component';
 
 @NgModule({
-    declarations: [ AppLayoutComponent, NavbarComponent ],
+    declarations: [ AppLayoutComponent, NavbarComponent, SidebarComponent ],
     imports: [
         AppLayoutRoutingModule,
         CoreModule,
