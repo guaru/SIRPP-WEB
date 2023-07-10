@@ -1,45 +1,44 @@
 import { createReducer, on } from '@ngrx/store';
 import  * as ReportMoveActions from '@sicatel/modules/reports/report-move/store/actions/report-move.actios';
 import { IError } from '@sicatel/shared/models/request/error.interface';
-import { ISliderConfig } from '@sicatel/shared/models/slider/slider-config.interface';
-import { ISlider } from '@sicatel/shared/models/slider/slider.interface';
+import { IreportResponse } from '@sicatel/shared/models/report/report-move';
+import { IreportRequest } from '@sicatel/shared/models/report/report-move';
 
 export const  featureKey =  'reporMoveReducer';
 
 export interface State {
-   setting: ISliderConfig;
-   data: Array<ISlider>;
-   loadings: boolean;
+   reportRequest: IreportRequest;
+   loading: boolean;
    error: IError;
+   reportResponse: IreportResponse;
+   
 };
 
 export const initialState: State = {
-    setting : {} as ISliderConfig,
-    data: [],
-    loadings: false,
-    error:  {} as IError
+   reportRequest: {} as IreportRequest,
+   loading: false,
+   error:  {} as IError,
+   reportResponse: {} as IreportResponse
 };
 
 export const reporMoveReducer = createReducer(
 initialState,
- on(ReportMoveActions.init, (state) => ({
-        ...state,
-        loadings:false,
-    })),
- on(ReportMoveActions.loadData, (state) => ({
+ on(ReportMoveActions.loadData, (state, {reportRequest}) => ({
     ...state,
-    loadings: true,
-    error: {} as IError
+    reportRequest,
+    loading: true
  })),
- on(ReportMoveActions.loadSuccess, (state) => ({
+ on(ReportMoveActions.loadSuccess, (state, {reportResponse}) => ({
     ...state,
-    loadings: false,
+    reportResponse,
+    loading: false,
     error: {} as IError
  })),
  on(ReportMoveActions.loadFailure, (state,{error}) => ({
     ...state,
-    loadings: false,
-    data: [],
+    reportRequest: {} as IreportRequest,
+    reportResponse: {} as IreportResponse,
+    loading: false,
     error
  }))
 );

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { ReportMoveComponent } from '@sicatel/modules/reports/report-move/components/report-move.component';
 import { ReportMoveContainer } from '@sicatel/modules/reports/report-move/containers/report-move.container';
 import { ReportMoveRoutingModule } from '@sicatel/modules/reports/report-move/report-move-routing.module';
@@ -35,7 +35,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     DirectivesModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatDialogModule
+    MatDialogModule,
+    DatePipe
   ]
 })
 export class ReportMoveModule { }

@@ -8,8 +8,7 @@ const routes: Routes = [{
   component: ReportMoveContainer,
   pathMatch: 'full'
 }];
-// component: ReportMoveContainer,
-//component: ReportMoveComponent,
+
 @NgModule({
   imports: [
       RouterModule.forChild(routes)

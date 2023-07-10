@@ -1,5 +1,5 @@
 export enum EPlataformType {
-    TODAS= 'Todas',
-    MOBILE=  'Mobile',
+    TODAS= 'TODAS',
+    MOBILE=  'MOBILE',
     BES = 'BES'
 }

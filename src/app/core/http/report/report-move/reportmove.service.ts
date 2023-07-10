@@ -1,29 +1,30 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { SicatelUrlsConstants } from '@sicatel/configs/urls.constants';
-import { IUserRequest } from '@sicatel/shared/models/request/user.interface';
-
-import { Observable, map } from 'rxjs';
-import { IreportMoveDetail } from '@sicatel/shared/models/report/report-move';
+import { IreportResponse } from '@sicatel/shared/models/report/report-move';
+import { IreportRequest } from '@sicatel/shared/models/report/report-move';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ReportmoveService {
+export class ReportMoveService {
 
   constructor(private http: HttpClient) { }
 
   /**
-   * Authenticate user, generate token
+   * generate Report move from service
    *
-   * @summary Make a call ms authenticate
+   * @summary Make a call ms report
    * @returns
    */
-  loadData(userRequest: IUserRequest): Observable<Array<IreportMoveDetail>>{
-    //return this.http.post<IUserResponse>(`${SicatelUrlsConstants.signInUrl}`,userRequest); Array<IreportMoveDetail>
-    //return this.http.get<Array<ISlider>>(SicatelUrlsConstants.dataSliderUrl).pipe(map(data => data as Array<ISlider>));
-    return this.http.get<Array<IreportMoveDetail>>(`${SicatelUrlsConstants.signInUrl}`).pipe(map(data => data as unknown as Array<IreportMoveDetail>));
+  loadDataReport(reportRequest: IreportRequest,token: String): Observable<IreportResponse>{
+    console.log("loadDataReport ", reportRequest, `${SicatelUrlsConstants.dataGetReportMove}`);
+    let headers = new HttpHeaders().set('Authorization','Bearer '+token.trim)
+    return this.http.post<IreportResponse>(`${SicatelUrlsConstants.dataGetReportMove}`,reportRequest ,
+    { headers: headers});
   }
+
 
 
 }

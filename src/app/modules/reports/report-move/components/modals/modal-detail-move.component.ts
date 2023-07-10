@@ -2,9 +2,9 @@ import {Component, Inject, OnInit} from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {MatDialogModule } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { IDetailConcept } from '@sicatel/shared/models/report/report-move';
-import { IreportMoveDetail } from '@sicatel/shared/models/report/report-move';
-import { IDetailMethodPayment } from '@sicatel/shared/models/report/report-move';
+import { IInfoConceptoList } from '@sicatel/shared/models/report/report-move';
+import { IMovimiento } from '@sicatel/shared/models/report/report-move';
+import { IInfoFormaList } from '@sicatel/shared/models/report/report-move';
 
 @Component({
   selector: 'sicatel-modal-detail-move',
@@ -19,10 +19,10 @@ export class ModalDetailMoveComponent implements OnInit  {
   displayedColumns: string[] = ['cCaja', 'cCantidad', 'cConcepto', 'cCuenta', 'cCuentaOriginal', 'cFacturaSap', 'cFolioIni',
    'cFolioFin','cNombreCliente','cRegionCliente','cTelefono','cTotal','cnumBatch','cIdPosicion',
    'cFolioEcac','cEstatus','cCodigoM2K','cNumeroOrden','cPlataforma','cEstatusBes'];
-  dataSourceDetail = new MatTableDataSource<IDetailConcept>();
+  dataSourceDetail = new MatTableDataSource<IInfoConceptoList>();
 
   displayedColumnsPayment: string[] = ['fTipoPago', 'fInstitucion', 'fEstatus', 'fAbonado', 'fNumDoc', 'fIdInstitucion'];
-  dataSourceDetailPayment = new MatTableDataSource<IDetailMethodPayment>();
+  dataSourceDetailPayment = new MatTableDataSource<IInfoFormaList>();
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -31,11 +31,11 @@ export class ModalDetailMoveComponent implements OnInit  {
 
   ngOnInit() {
     this.itemTable = this.data.data[0];
-    console.log("itemTable ->",this.itemTable);
-    this.dataSourceDetail = new MatTableDataSource<IDetailConcept>(this.itemTable.concepto);
-    console.log("this.itemTable.concepto ->",this.itemTable.concepto);
-    this.dataSourceDetailPayment = new MatTableDataSource<IDetailMethodPayment>(this.itemTable.formaPago);
-    console.log("this.itemTable.formaPago ->",this.itemTable.formaPago);
+    console.log("itemTable ->",this.itemTable.infoConceptoList);
+    this.dataSourceDetail = new MatTableDataSource<IInfoConceptoList>(this.itemTable.infoConceptoList);
+    console.log("this.itemTable.concepto ->",this.itemTable.infoConceptoList);
+    this.dataSourceDetailPayment = new MatTableDataSource<IInfoFormaList>(this.itemTable.infoFormaList);
+    console.log("this.itemTable.formaPago ->",this.itemTable.infoFormaList);
   }
 
   /** Método para cerrar la modal **/

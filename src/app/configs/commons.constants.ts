@@ -8,6 +8,6 @@ export class SicatelCommons
     static readonly pathDashboard = `/${SicatelCommons.caja}/${SicatelCommons.dashboard}`;
     static readonly pathLogin = `/${SicatelCommons.auth}/${SicatelCommons.login}`;
     static readonly reports = 'report';
-    static readonly reportMove  = 'report-move';///report/report-move
+    static readonly reportMove  = 'reporte-de-movimientos';
     static readonly pathReportMove = `${SicatelCommons.reports}/${SicatelCommons.reportMove}`;
 }
