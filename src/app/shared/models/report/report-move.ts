@@ -7,7 +7,6 @@ export interface IreportRequest {
   userName: String;
   dateInit: string;
   dateEnd: string;
-  region: string;
   plataformSelect: String;
 }
 

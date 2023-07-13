@@ -1,152 +1,161 @@
-<h2 mat-dialog-title>Detalle de movimientos</h2>
+<h3 mat-dialog-title class="header-title-modal">Detalle de movimientos</h3>
+<div class="divSeparator"></div>
+
 <mat-dialog-content class="mat-typography">
-    <h4> Concepto </h4>
-  <table mat-table [dataSource]="dataSourceDetail" class="mat-elevation-z6">
+  <div class="header-title-div">
+    <h4 class="spacerLeft"> Concepto </h4>
+  </div>
+  <div class="divContainer">
+    <table mat-table [dataSource]="dataSourceDetail">
+
+      <!-- Caja Column -->
+      <ng-container matColumnDef="cCaja">
+        <th mat-header-cell *matHeaderCellDef> Caja </th>
+        <td mat-cell *matCellDef="let element"> {{element.CAJA}} </td>
+      </ng-container>
+      <!-- Cantidad Column -->
+      <ng-container matColumnDef="cCantidad">
+        <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+        <td mat-cell *matCellDef="let element"> {{element.CANTIDAD}} </td>
+      </ng-container>
+      <!-- Concepto Column -->
+      <ng-container matColumnDef="cConcepto">
+        <th mat-header-cell *matHeaderCellDef> Concepto </th>
+        <td mat-cell *matCellDef="let element"> {{element.CONCEPTO_DESC}} </td>
+      </ng-container>
+      <!-- Cuenta Column -->
+      <ng-container matColumnDef="cCuenta">
+        <th mat-header-cell *matHeaderCellDef> Cuenta </th>
+        <td mat-cell *matCellDef="let element"> {{element.CUENTA}} </td>
+      </ng-container>
+      <!-- Cuenta Original Column -->
+      <ng-container matColumnDef="cCuentaOriginal">
+        <th mat-header-cell *matHeaderCellDef> Cuenta Original </th>
+        <td mat-cell *matCellDef="let element"> {{element.cCuentaOriginal}} </td>
+      </ng-container>
+      <!-- Factura SAP Column -->
+      <ng-container matColumnDef="cFacturaSap">
+        <th mat-header-cell *matHeaderCellDef> Factura SAP </th>
+        <td mat-cell *matCellDef="let element"> {{element.FACTURASAP}} </td>
+      </ng-container>
+      <!-- Folio Inicial Column -->
+      <ng-container matColumnDef="cFolioIni">
+        <th mat-header-cell *matHeaderCellDef> Folio Inicial </th>
+        <td mat-cell *matCellDef="let element"> {{element.FOLIOINI}} </td>
+      </ng-container>
+      <!-- Folio Final Column -->
+      <ng-container matColumnDef="cFolioFin">
+        <th mat-header-cell *matHeaderCellDef> Folio Final </th>
+        <td mat-cell *matCellDef="let element"> {{element.FOLIOFIN}} </td>
+      </ng-container>
+      <!-- Nombre del cliente Column -->
+      <ng-container matColumnDef="cNombreCliente">
+        <th mat-header-cell *matHeaderCellDef> Nombre del cliente </th>
+        <td mat-cell *matCellDef="let element"> {{element.NOMBRECLIENTE}} </td>
+      </ng-container>
+      <!-- Región Column -->
+      <ng-container matColumnDef="cRegionCliente">
+        <th mat-header-cell *matHeaderCellDef> Región </th>
+        <td mat-cell *matCellDef="let element"> {{element.REGIONCLIENTE}} </td>
+      </ng-container>
+      <!-- Teléfono Column -->
+      <ng-container matColumnDef="cTelefono">
+        <th mat-header-cell *matHeaderCellDef> Teléfono </th>
+        <td mat-cell *matCellDef="let element"> {{element.TELEFONO}} </td>
+      </ng-container>
+      <!-- Total Column -->
+      <ng-container matColumnDef="cTotal">
+        <th mat-header-cell *matHeaderCellDef> Total </th>
+        <td mat-cell *matCellDef="let element"> {{element.TOTAL}} </td>
+      </ng-container>
+      <!-- numero batch Column -->
+      <ng-container matColumnDef="cnumBatch">
+        <th mat-header-cell *matHeaderCellDef> Número BATCH </th>
+        <td mat-cell *matCellDef="let element"> {{element.NUMBATCH}} </td>
+      </ng-container>
+      <!-- id posision Column -->
+      <ng-container matColumnDef="cIdPosicion">
+        <th mat-header-cell *matHeaderCellDef> ID Posición </th>
+        <td mat-cell *matCellDef="let element"> {{element.IDPOSICION}} </td>
+      </ng-container>
+      <!-- Folio ECAC Column -->
+      <ng-container matColumnDef="cFolioEcac">
+        <th mat-header-cell *matHeaderCellDef> Folio ECAC </th>
+        <td mat-cell *matCellDef="let element"> {{element.FOLIOECAC}} </td>
+      </ng-container>
+      <!-- Estatus Column -->
+      <ng-container matColumnDef="cEstatus">
+        <th mat-header-cell *matHeaderCellDef> Estatus </th>
+        <td mat-cell *matCellDef="let element"> {{element.ESTATUS}} </td>
+      </ng-container>
+      <!-- Código M2K Column -->
+      <ng-container matColumnDef="cCodigoM2K">
+        <th mat-header-cell *matHeaderCellDef> Código M2K </th>
+        <td mat-cell *matCellDef="let element"> {{element.CODIGO_M2K}} </td>
+      </ng-container>
+      <!-- Número Orden Column -->
+      <ng-container matColumnDef="cNumeroOrden">
+        <th mat-header-cell *matHeaderCellDef> Número Orden </th>
+        <td mat-cell *matCellDef="let element"> {{element.ORDER_ID}} </td>
+      </ng-container>
+      <!-- Plataforma Column -->
+      <ng-container matColumnDef="cPlataforma">
+        <th mat-header-cell *matHeaderCellDef> Plataforma </th>
+        <td mat-cell *matCellDef="let element"> {{element.cPlataforma}} </td>
+      </ng-container>
+      <!-- Estatus BES Column -->
+      <ng-container matColumnDef="cEstatusBes">
+        <th mat-header-cell *matHeaderCellDef> Estatus BES </th>
+        <td mat-cell *matCellDef="let element"> {{element.ESTATUS_BES}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
   
-    <!-- Caja Column -->
-    <ng-container matColumnDef="cCaja">
-      <th mat-header-cell *matHeaderCellDef> Caja </th>
-      <td mat-cell *matCellDef="let element"> {{element.CAJA}} </td>
-    </ng-container>
-    <!-- Cantidad Column -->
-    <ng-container matColumnDef="cCantidad">
-      <th mat-header-cell *matHeaderCellDef> Cantidad </th>
-      <td mat-cell *matCellDef="let element"> {{element.CANTIDAD}} </td>
-    </ng-container>
-    <!-- Concepto Column -->
-    <ng-container matColumnDef="cConcepto">
-      <th mat-header-cell *matHeaderCellDef> Concepto </th>
-      <td mat-cell *matCellDef="let element"> {{element.CONCEPTO_DESC}} </td>
-    </ng-container>
-    <!-- Cuenta Column -->
-    <ng-container matColumnDef="cCuenta">
-      <th mat-header-cell *matHeaderCellDef> Cuenta </th>
-      <td mat-cell *matCellDef="let element"> {{element.CUENTA}} </td>
-    </ng-container>
-    <!-- Cuenta Original Column -->
-    <ng-container matColumnDef="cCuentaOriginal">
-      <th mat-header-cell *matHeaderCellDef> Cuenta Original </th>
-      <td mat-cell *matCellDef="let element"> {{element.cCuentaOriginal}} </td>
-    </ng-container>
-    <!-- Factura SAP Column -->
-    <ng-container matColumnDef="cFacturaSap">
-      <th mat-header-cell *matHeaderCellDef> Factura SAP </th>
-      <td mat-cell *matCellDef="let element"> {{element.FACTURASAP}} </td>
-    </ng-container>
-    <!-- Folio Inicial Column -->
-    <ng-container matColumnDef="cFolioIni">
-      <th mat-header-cell *matHeaderCellDef> Folio Inicial </th>
-      <td mat-cell *matCellDef="let element"> {{element.FOLIOINI}} </td>
-    </ng-container>
-    <!-- Folio Final Column -->
-    <ng-container matColumnDef="cFolioFin">
-      <th mat-header-cell *matHeaderCellDef> Folio Final </th>
-      <td mat-cell *matCellDef="let element"> {{element.FOLIOFIN}} </td>
-    </ng-container>
-    <!-- Nombre del cliente Column -->
-    <ng-container matColumnDef="cNombreCliente">
-      <th mat-header-cell *matHeaderCellDef> Nombre del cliente </th>
-      <td mat-cell *matCellDef="let element"> {{element.NOMBRECLIENTE}} </td>
-    </ng-container>
-    <!-- Región Column -->
-    <ng-container matColumnDef="cRegionCliente">
-      <th mat-header-cell *matHeaderCellDef> Región </th>
-      <td mat-cell *matCellDef="let element"> {{element.REGIONCLIENTE}} </td>
-    </ng-container>
-    <!-- Teléfono Column -->
-    <ng-container matColumnDef="cTelefono">
-      <th mat-header-cell *matHeaderCellDef> Teléfono </th>
-      <td mat-cell *matCellDef="let element"> {{element.TELEFONO}} </td>
-    </ng-container>
-    <!-- Total Column -->
-    <ng-container matColumnDef="cTotal">
-      <th mat-header-cell *matHeaderCellDef> Total </th>
-      <td mat-cell *matCellDef="let element"> {{element.TOTAL}} </td>
-    </ng-container>
-    <!-- numero batch Column -->
-    <ng-container matColumnDef="cnumBatch">
-      <th mat-header-cell *matHeaderCellDef> Número BATCH </th>
-      <td mat-cell *matCellDef="let element"> {{element.NUMBATCH}} </td>
-    </ng-container>
-    <!-- id posision Column -->
-    <ng-container matColumnDef="cIdPosicion">
-      <th mat-header-cell *matHeaderCellDef> ID Posición </th>
-      <td mat-cell *matCellDef="let element"> {{element.IDPOSICION}} </td>
-    </ng-container>
-    <!-- Folio ECAC Column -->
-    <ng-container matColumnDef="cFolioEcac">
-      <th mat-header-cell *matHeaderCellDef> Folio ECAC </th>
-      <td mat-cell *matCellDef="let element"> {{element.FOLIOECAC}} </td>
-    </ng-container>
-    <!-- Estatus Column -->
-    <ng-container matColumnDef="cEstatus">
-      <th mat-header-cell *matHeaderCellDef> Estatus </th>
-      <td mat-cell *matCellDef="let element"> {{element.ESTATUS}} </td>
-    </ng-container>
-    <!-- Código M2K Column -->
-    <ng-container matColumnDef="cCodigoM2K">
-      <th mat-header-cell *matHeaderCellDef> Código M2K </th>
-      <td mat-cell *matCellDef="let element"> {{element.CODIGO_M2K}} </td>
-    </ng-container>
-    <!-- Número Orden Column -->
-    <ng-container matColumnDef="cNumeroOrden">
-      <th mat-header-cell *matHeaderCellDef> Número Orden </th>
-      <td mat-cell *matCellDef="let element"> {{element.ORDER_ID}} </td>
-    </ng-container>
-    <!-- Plataforma Column -->
-    <ng-container matColumnDef="cPlataforma">
-      <th mat-header-cell *matHeaderCellDef> Plataforma </th>
-      <td mat-cell *matCellDef="let element"> {{element.cPlataforma}} </td>
-    </ng-container>
-    <!-- Estatus BES Column -->
-    <ng-container matColumnDef="cEstatusBes">
-      <th mat-header-cell *matHeaderCellDef> Estatus BES </th>
-      <td mat-cell *matCellDef="let element"> {{element.ESTATUS_BES}} </td>
-    </ng-container>
+  <div class="header-title-div">
+    <h4 class="spacerLeft"> Forma de Pago </h4>
+  </div>
+  
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-  <br>
-  <h4> Forma de Pago </h4>
-  <br>
-<table mat-table [dataSource]="dataSourceDetailPayment" class="mat-elevation-z6" Style="    box-shadow: 0px 5px 5px -3px rgba(255, 255, 255, 0.2)
-, 0px 8px 10prgba(255, 255, 255, 0.14) 0.14
-, 0px 3px 14px 2px rgba(255, 255, 255, 0.12);">
-    <!-- Tipo de pago Column -->
-    <ng-container matColumnDef="fTipoPago">
-      <th mat-header-cell *matHeaderCellDef> Tipo de pago </th>
-      <td mat-cell *matCellDef="let row"> {{row.TIPOPAGO_DESC}} </td>
-    </ng-container>
-    <!-- Institución Column -->
-    <ng-container matColumnDef="fInstitucion">
-      <th mat-header-cell *matHeaderCellDef> Institución </th>
-      <td mat-cell *matCellDef="let row"> {{row.fInstitucion}} </td>
-    </ng-container>
-    <!-- Estatus Column -->
-    <ng-container matColumnDef="fEstatus">
-      <th mat-header-cell *matHeaderCellDef> Estatus </th>
-      <td mat-cell *matCellDef="let row"> {{row.ESTATUSFP}} </td>
-    </ng-container>
-    <!-- Abonado Column -->
-    <ng-container matColumnDef="fAbonado">
-      <th mat-header-cell *matHeaderCellDef> Abonado </th>
-      <td mat-cell *matCellDef="let row"> {{row.ABONADO}} </td>
-    </ng-container>
-    <!-- Número de documento Column -->
-    <ng-container matColumnDef="fNumDoc">
-      <th mat-header-cell *matHeaderCellDef> Número de documento </th>
-      <td mat-cell *matCellDef="let row"> {{row.NUMDOC}} </td>
-    </ng-container>
-    <!-- ID Institución SAP Column -->
-    <ng-container matColumnDef="fIdInstitucion">
-      <th mat-header-cell *matHeaderCellDef> ID Institución </th>
-      <td mat-cell *matCellDef="let row"> {{row.IDINSTITUCION}} </td>
-    </ng-container>
+  <div class="divContainer">
+    <table mat-table [dataSource]="dataSourceDetailPayment">
+      <!-- Tipo de pago Column -->
+      <ng-container matColumnDef="fTipoPago">
+        <th mat-header-cell *matHeaderCellDef> Tipo de pago </th>
+        <td mat-cell *matCellDef="let row"> {{row.TIPOPAGO_DESC}} </td>
+      </ng-container>
+      <!-- Institución Column -->
+      <ng-container matColumnDef="fInstitucion">
+        <th mat-header-cell *matHeaderCellDef> Institución </th>
+        <td mat-cell *matCellDef="let row"> {{row.fInstitucion}} </td>
+      </ng-container>
+      <!-- Estatus Column -->
+      <ng-container matColumnDef="fEstatus">
+        <th mat-header-cell *matHeaderCellDef> Estatus </th>
+        <td mat-cell *matCellDef="let row"> {{row.ESTATUSFP}} </td>
+      </ng-container>
+      <!-- Abonado Column -->
+      <ng-container matColumnDef="fAbonado">
+        <th mat-header-cell *matHeaderCellDef> Abonado </th>
+        <td mat-cell *matCellDef="let row"> {{row.ABONADO}} </td>
+      </ng-container>
+      <!-- Número de documento Column -->
+      <ng-container matColumnDef="fNumDoc">
+        <th mat-header-cell *matHeaderCellDef> Número de documento </th>
+        <td mat-cell *matCellDef="let row"> {{row.NUMDOC}} </td>
+      </ng-container>
+      <!-- ID Institución SAP Column -->
+      <ng-container matColumnDef="fIdInstitucion">
+        <th mat-header-cell *matHeaderCellDef> ID Institución </th>
+        <td mat-cell *matCellDef="let row"> {{row.IDINSTITUCION}} </td>
+      </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumnsPayment"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumnsPayment;"></tr>
-  </table>
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsPayment"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsPayment;"></tr>
+    </table>
+  </div>
 
 </mat-dialog-content>
 <mat-dialog-actions align="end">

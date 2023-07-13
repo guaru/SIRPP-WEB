@@ -1,24 +1,25 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { EPlataformType } from '@sicatel/shared/enums/plataform-type.enum'
-import { IMovimiento, IPlataformaMovimiento } from '@sicatel/shared/models/report/report-move';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { TelcelErrorStateMatcher } from '@sicatel/configs/error-state-matcher';
 import { Observable, Subscription } from 'rxjs';
-import { ModalDetailMoveComponent } from '@sicatel/modules/reports/report-move/components/modals/modal-detail-move.component';
 import { MatDialog } from '@angular/material/dialog';
 import { SelectionModel } from '@angular/cdk/collections';
-import { ReportMoveActions } from '@sicatel/modules/reports/report-move/store';
 import Swal from 'sweetalert2';
 import { Store } from '@ngrx/store';
+import { ModalDetailMoveComponent } from '@sicatel/modules/reports/report-move/components/modals/modal-detail-move.component';
+import { TelcelErrorStateMatcher } from '@sicatel/configs/error-state-matcher';
+import { IMovimiento, IPlataformaMovimiento } from '@sicatel/shared/models/report/report-move';
+import { EPlataformType } from '@sicatel/shared/enums/plataform-type.enum'
+import  * as ReportMoveActions from '@sicatel/modules/reports/report-move/store/actions/report-move.actios';
 import * as fromReportMove from '@sicatel/modules/reports/report-move/store/reducers/report-move.reducer';
 import { IToken } from '@sicatel/shared/models/user/user';
 import { environment } from '@sicatel/env/environment';
 import { IreportRequest } from '@sicatel/shared/models/report/report-move';
 import { IreportResponse } from '@sicatel/shared/models/report/report-move';
 import { ReportMoveService } from '@sicatel/core/http/report/report-move/reportmove.service';
-import { formatDate } from '@angular/common';
+
+
 
 
 @Component({
@@ -64,14 +65,14 @@ export class ReportMoveComponent implements OnInit {
   selection = new SelectionModel<any>(true, []);
   minDate = new Date();
   maxDate = new Date();
-  dateInitValue?: string = 'YYYY-MM-DD'
-  dateEndValue?: string = 'YYYY-MM-DD'
+  dateInitValue?: string = 'MM-DD-YYYY'
+  dateEndValue?: string = 'MM-DD-YYYY'
   ELEMENT_DATA: IPlataformaMovimiento[] = [];
   plataformaBes: IMovimiento[] = [];
   plataformaMobile: IMovimiento[] = [];
   plataformaMig: IMovimiento[] = [];
   sinPlataforma: IMovimiento[] = [];
-  daySubtration = 40;
+  daySubtration = 30;
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -146,7 +147,6 @@ export class ReportMoveComponent implements OnInit {
         userName: this.token.user.idUsuario,
         dateEnd: this.getDateEnd(),
         dateInit: this.getDateInit(),
-        region: this.token.user.idRegion.toString(),
         plataformSelect: this.plataform
       } as IreportRequest;
 
@@ -158,11 +158,9 @@ export class ReportMoveComponent implements OnInit {
         timer: 2000,
         didOpen: () => {
           Swal.showLoading()
-          // this.store.dispatch(ReportMoveActions.loadData({ reportRequest }));
+           //this.store.dispatch(ReportMoveActions.loadData({ reportRequest }));
           this.reportMoveService.loadDataReport(reportRequest, this.token.accessToken).subscribe(data => {
-
             this.ELEMENT_DATA = data.plataformaMovimientos;
-
           })
         },
         willClose: () => {
@@ -231,7 +229,7 @@ export class ReportMoveComponent implements OnInit {
     let dataObject: any = { 'data': (data !== null ? [data] : this.selection.selected) };
     const dialogRef = this._dialog.open(ModalDetailMoveComponent, {
       panelClass: 'custom-dialog-container-user',
-      width: ('1000px'),
+      width: ('170%'),
       data: dataObject,
       disableClose: true
     });

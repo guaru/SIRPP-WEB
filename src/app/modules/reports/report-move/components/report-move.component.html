@@ -1,5 +1,5 @@
 <section class="d-flex flex-column h-100">
-  <h4 class="font-weight-bold"> Reportes / <span>Reporte de movimientos</span> </h4>
+  <h4 class="font-weight-bold" class ="header-Title-black"> Reportes / <span class="header-Title-blue">Reporte de movimientos</span> </h4>
 
   <form class="my-5" [formGroup]="searchReportForm" (ngSubmit)="onSubmit()">
 
@@ -37,25 +37,21 @@
     </mat-form-field>
     <!--<div class="d-flex justify-content-center my-3">-->
 
-    <ng-template #actions>
+    
       <button type="submit" mat-flat-button class="w-40 btn btn-warning btnWarning">
         Consultar
       </button>
-    </ng-template>
 
-    <ng-container *ngIf="loading; else actions">
-      <mat-spinner class="font-weight-bold w-40" color="accent" diameter="10"></mat-spinner>
-    </ng-container>
     <!---- </div>-->
   </form>
 
+  <div Style=" padding: 20px;"></div>
+
   <!-- Sin platafroma -->
-  <div class="mat-elevation-z8" *ngIf="showTableDetail;">
-    <br>
-    <br>
-    <br>
+  <div class="divContainer" *ngIf="showTableDetail ;">
+
     <h5 class="font-weight-bold" style="padding-left:20px  !important"> </h5>
-    <table mat-table [dataSource]="dataSource">
+    <table mat-table [dataSource]="dataSource ">
 
       <!-- Sec. Column -->
       <ng-container matColumnDef="sec">
@@ -116,16 +112,11 @@
     </mat-paginator>
   </div>
 
-
-  <br>
-  <br>
+  <div Style=" padding: 20px;"></div>
 
   <!-- BES -->
-
-  <div class="mat-elevation-z8" *ngIf="showTableDetailBes;">
-    <br>
-    <br>
-    <br>
+  <div class="divContainer"  *ngIf="showTableDetailBes;">
+    
     <h5 class="font-weight-bold" style="padding-left:20px  !important"> Plataforma - BES </h5>
     <table mat-table [dataSource]="dataSourceBes">
 
@@ -187,13 +178,11 @@
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of elements">
     </mat-paginator>
   </div>
-  <br>
-  <br>
+  
+  <div Style=" padding: 20px;"></div>
+  
   <!-- Platafroma MOBILE  -->
-  <div class="mat-elevation-z8" *ngIf="showTableDetailMobile;">
-    <br>
-    <br>
-    <br>
+  <div class="divContainer"  *ngIf="showTableDetailMobile;">
     <h5 class="font-weight-bold" style="padding-left:20px  !important"> Plataforma - MOBILE </h5>
     <table mat-table [dataSource]="dataSourceMobile">
 
@@ -256,23 +245,13 @@
     </mat-paginator>
   </div>
 
-  
+  <div Style=" padding: 20px;"></div>
 
   <!-- Plataforma Por Definir, En proceso de Migracion -->
-  <div class="mat-elevation-z8" *ngIf="showTableDetailMig;">
-    <br>
-    <br>
-    <br>
+  <div class="divContainer"  *ngIf="showTableDetailMig;">
     <h5 class="font-weight-bold" style="padding-left:20px  !important">Plataforma Por Definir - en Proceso de Migracion
       MOBILE a BES</h5>
     <table mat-table [dataSource]="dataSource">
-      <thead>
-        <tr>
-          <th>Descripción</th>
-          <th>Mes</th>
-          <th>Costo</th>
-        </tr>
-      </thead>
       <!-- Sec. Column -->
       <ng-container matColumnDef="sec">
         <th mat-header-cell *matHeaderCellDef style="padding-left:20px  !important"> Sec. </th>
