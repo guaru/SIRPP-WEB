@@ -44,9 +44,7 @@
 
     <!---- </div>-->
   </form>
-
-  <div Style=" padding: 20px;"></div>
-
+  <div Style=" padding: 10px;" *ngIf="showTableDetail ;"></div>
   <!-- Sin platafroma -->
   <div class="divContainer" *ngIf="showTableDetail ;">
 
@@ -68,7 +66,7 @@
       <!-- Fecha/Hora Column -->
       <ng-container matColumnDef="fecha-Hora">
         <th mat-header-cell *matHeaderCellDef> Fecha/Hora </th>
-        <td mat-cell *matCellDef="let element"> {{element.folio | date:'short'}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.fecha | date:'short'}} </td>
       </ng-container>
 
       <!-- ID centro Column -->
@@ -108,16 +106,16 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of elements">
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Seleccionar página">
     </mat-paginator>
   </div>
 
-  <div Style=" padding: 20px;"></div>
+  <div Style=" padding: 10px;" *ngIf="showTableDetailBes ;"></div>
 
   <!-- BES -->
   <div class="divContainer"  *ngIf="showTableDetailBes;">
     
-    <h5 class="font-weight-bold" style="padding-left:20px  !important"> Plataforma - BES </h5>
+    <h5 class="font-weight-bold aling-label" style="padding-left:20px  !important; "> Plataforma - BES </h5>
     <table mat-table [dataSource]="dataSourceBes">
 
       <!-- Sec. Column -->
@@ -135,7 +133,7 @@
       <!-- Fecha/Hora Column -->
       <ng-container matColumnDef="fecha-Hora">
         <th mat-header-cell *matHeaderCellDef> Fecha/Hora </th>
-        <td mat-cell *matCellDef="let element"> {{element.folio | date:'short'}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.fecha | date:'short'}} </td>
       </ng-container>
 
       <!-- ID centro Column -->
@@ -165,8 +163,8 @@
       <!-- Detalle Column -->
       <ng-container matColumnDef="detalle">
         <th mat-header-cell *matHeaderCellDef width="7%" class="header-th">Detalle</th>
-        <td mat-cell *matCellDef="let row">
-          <button mat-flat-button class=" butonVer mat-flat-button " (click)="openModalShowDetail(row)">Ver
+        <td mat-cell *matCellDef="let rowBes">
+          <button mat-flat-button class=" butonVer mat-flat-button " (click)="openModalShowDetail(rowBes)">Ver
           </button>
         </td>
       </ng-container>
@@ -175,11 +173,11 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of elements">
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Seleccionar página">
     </mat-paginator>
   </div>
   
-  <div Style=" padding: 20px;"></div>
+  <div Style=" padding: 10px;" *ngIf="showTableDetailMobile ;"></div>
   
   <!-- Platafroma MOBILE  -->
   <div class="divContainer"  *ngIf="showTableDetailMobile;">
@@ -201,7 +199,7 @@
       <!-- Fecha/Hora Column -->
       <ng-container matColumnDef="fecha-Hora">
         <th mat-header-cell *matHeaderCellDef> Fecha/Hora </th>
-        <td mat-cell *matCellDef="let element"> {{element.folio | date:'short'}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.fecha | date:'short'}} </td>
       </ng-container>
 
       <!-- ID centro Column -->
@@ -231,8 +229,8 @@
       <!-- Detalle Column -->
       <ng-container matColumnDef="detalle">
         <th mat-header-cell *matHeaderCellDef width="7%" class="header-th">Detalle</th>
-        <td mat-cell *matCellDef="let row">
-          <button mat-flat-button class=" butonVer mat-flat-button " (click)="openModalShowDetail(row)">Ver
+        <td mat-cell *matCellDef="let rowMoB">
+          <button mat-flat-button class=" butonVer mat-flat-button " (click)="openModalShowDetail(rowMoB)">Ver
           </button>
         </td>
       </ng-container>
@@ -241,11 +239,11 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of elements">
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Seleccionar página">
     </mat-paginator>
   </div>
 
-  <div Style=" padding: 20px;"></div>
+  <div Style=" padding: 10px;" *ngIf="showTableDetailMig ;"></div>
 
   <!-- Plataforma Por Definir, En proceso de Migracion -->
   <div class="divContainer"  *ngIf="showTableDetailMig;">
@@ -267,7 +265,7 @@
       <!-- Fecha/Hora Column -->
       <ng-container matColumnDef="fecha-Hora">
         <th mat-header-cell *matHeaderCellDef> Fecha/Hora </th>
-        <td mat-cell *matCellDef="let element"> {{element.folio | date:'short'}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.fecha | date:'short'}} </td>
       </ng-container>
 
       <!-- ID centro Column -->
@@ -297,17 +295,16 @@
       <!-- Detalle Column -->
       <ng-container matColumnDef="detalle">
         <th mat-header-cell *matHeaderCellDef width="7%" class="header-th">Detalle</th>
-        <td mat-cell *matCellDef="let row">
-          <button mat-flat-button class=" butonVer mat-flat-button " (click)="openModalShowDetail(row)">Ver
+        <td mat-cell *matCellDef="let rowMig">
+          <button mat-flat-button class=" butonVer mat-flat-button " (click)="openModalShowDetail(rowMig)">Ver
           </button>
         </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>  
     </table>
-
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of elements">
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Seleccionar página">
     </mat-paginator>
   </div>
 

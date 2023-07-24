@@ -22,6 +22,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     ReportMoveComponent,
     ModalDetailMoveComponent
   ],
+  
   imports: [
     CommonModule, 
     ReportMoveRoutingModule,
