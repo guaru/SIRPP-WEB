@@ -1,8 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
 import  * as ReportMoveActions from '@sicatel/modules/reports/report-move/store/actions/report-move.actios';
-import { IError } from '@sicatel/shared/models/request/error.interface';
 import { IreportResponse } from '@sicatel/shared/models/report/report-move';
 import { IreportRequest } from '@sicatel/shared/models/report/report-move';
+import { IError } from '@sicatel/shared/models/request/error.interface';
 
 export const  featureKey =  'reporMoveReducer';
 
@@ -11,7 +11,6 @@ export interface State {
    loading: boolean;
    error: IError;
    reportResponse: IreportResponse;
-   
 };
 
 export const initialState: State = {

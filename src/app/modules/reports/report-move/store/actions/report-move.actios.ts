@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
-import { IError } from '@sicatel/shared/models/request/error.interface';
 import { IreportResponse } from '@sicatel/shared/models/report/report-move';
 import { IreportRequest } from '@sicatel/shared/models/report/report-move';
+import { IError } from '@sicatel/shared/models/request/error.interface';
 
 
 export const loadData = createAction('[ReporMove] Load Data ',props<{reportRequest: IreportRequest}>());

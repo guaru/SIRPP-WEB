@@ -1,73 +1,95 @@
 
-/**
-* interface para request del endpoint.
-* @interface
-*/
+  /*** interface for request of endpoind
+  * @interface
+  */
 export interface IreportRequest {
-  userName: String;
+  userName: string;
   dateInit: string;
   dateEnd: string;
-  plataformSelect: String;
+  plataformSelect: string;
 }
 
-/**
-* interface para respuesta de endpoint.
-* @interface
-*/
+  /*** interface for response of endpoint.
+  * @interface
+  */
 export interface IreportResponse {
-  codigoRespuesta: string
-  mensaje: string
-  uuid: string
-  error: any
-  folios: number
-  plataformaMovimientos: IPlataformaMovimiento[]
+  codigoRespuesta: string;
+  mensaje: string;
+  uuid: string;
+  error: IerrorResponseReportMove;
+  folios: number;
+  plataformaMovimientos: Array<IPlataformaMovimiento>;
 }
 
+  /*** interface for move
+  * @interface
+  */
 export interface IPlataformaMovimiento {
-  nombrePlataforma: string
-  movimientos: IMovimiento[]
+  nombrePlataforma: string;
+  movimientos: Array<IMovimiento>;
 }
 
+  /*** interface for IMovimiento
+  * @interface
+  */
 export interface IMovimiento {
-  folio: number
-  region: number
-  idCentro: number
-  foliosicatel: number
-  plataforma: string
-  fecha: string
-  infoConceptoList: IInfoConceptoList[]
-  infoFormaList: IInfoFormaList[]
+  folio: number;
+  region: number;
+  idCentro: number;
+  foliosicatel: number;
+  plataforma: string;
+  fecha: string;
+  infoConceptoList: Array<IInfoConceptoList>;
+  infoFormaList: Array<IInfoFormaList>;
 }
 
+  /*** interface for concept
+  * @interface
+  */
 export interface IInfoConceptoList {
-  TOTAL: string
-  CONCEPTO_DESC: string
-  FOLIOINI?: string
-  IDCONCEPTO: string
-  NUMBATCH: string
-  CAJA: string
-  CUENTA: string
-  REGIONCLIENTE: string
-  FOLIOECAC: string
-  FACTURASAP: string
-  ESTATUS: string
-  TOTALCONCEPTOS: string
-  TELEFONO: string
-  FOLIOFIN?: string
-  IDPOSICION: string
-  NOMBRECLIENTE: string
-  CODIGO_M2K: string
-  CANTIDAD: string
-  PAGOBES: string
-  ESTATUS_BES?: string
-  ORDER_ID?: string
+  total: string;
+  conceptoDesc: string;
+  folioini?: string;
+  idconcepto: string;
+  numbatch: string;
+  caja: string;
+  cuenta: string;
+  regioncliente: string;
+  folioecac: string;
+  facturasap: string;
+  estatus: string;
+  totalconceptos: string;
+  telefono: string;
+  foliofin?: string;
+  idposicion: string;
+  nombrecliente: string;
+  codigoM2k: string;
+  cantidad: string;
+  pagobes: string;
+  estatusBes?: string;
+  orderId?: string;
 }
 
+  /*** interface for payment
+  * @interface
+  */
 export interface IInfoFormaList {
-  ESTATUSFP: string
-  IDTIPOPAGO: string
-  TIPOPAGO_DESC: string
-  NUMDOC: string
-  IDINSTITUCION: string
-  ABONADO: string
+  estatusfp: string;
+  idtipopago: string;
+  tipopagoDesc: string;
+  numdoc: string;
+  idinstitucion: string;
+  abonado: string;
+}
+
+  /*** interface for error
+  * @interface
+  */
+export interface IerrorResponseReportMove {
+  codigoError: string;
+  descError: string;
+}
+
+export interface IDataReportMove {
+  data: Array<IMovimiento>;
 }

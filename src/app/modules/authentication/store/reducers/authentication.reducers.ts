@@ -8,7 +8,6 @@ import { IToken } from '@sicatel/shared/models/user/user';
 
 export const  featureKey  =  'authenticationReducer';
 
-
 export interface  State {
     userRequest: IUserRequest;
     loading: boolean;

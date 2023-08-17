@@ -1,41 +1,34 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable, Subscription, } from 'rxjs';
-import { MatDialog } from '@angular/material/dialog';
-import { SelectionModel } from '@angular/cdk/collections';
-import Swal from 'sweetalert2';
 import { Store } from '@ngrx/store';
-import { Router } from '@angular/router';
-import { ModalDetailMoveComponent } from '@sicatel/modules/reports/report-move/components/modals/modal-detail-move.component';
 import { TelcelErrorStateMatcher } from '@sicatel/configs/error-state-matcher';
-import { IMovimiento, IPlataformaMovimiento, IreportRequest, IreportResponse } from '@sicatel/shared/models/report/report-move';
-import { EPlataformType } from '@sicatel/shared/enums/plataform-type.enum'
-import * as ReportMoveActions from '@sicatel/modules/reports/report-move/store/actions/report-move.actios';
-import * as fromReportMove from '@sicatel/modules/reports/report-move/store/reducers/report-move.reducer';
-import { IToken } from '@sicatel/shared/models/user/user';
-import { environment } from '@sicatel/env/environment';
 import { ReportMoveService } from '@sicatel/core/http/report/report-move/reportmove.service';
-import { SicatelCommons } from '@sicatel/configs/commons.constants';
-
-
+import * as AuthenticationSelectors from '@sicatel/modules/authentication/store/selectors/authentication.selectors';
+import * as fromReportMove from '@sicatel/modules/reports/report-move/store/reducers/report-move.reducer';
+import { ModalDetailMoveComponent } from '@sicatel/shared/dialogs/report-move/modal-detail-move.component';
+import { EPlataformType } from '@sicatel/shared/enums/plataform-type.enum';
+import { IDataReportMove, IMovimiento, IPlataformaMovimiento, IreportRequest } from '@sicatel/shared/models/report/report-move';
+import { IToken } from '@sicatel/shared/models/user/user';
+import Utils from '@sicatel/shared/utils/utils';
+import { Observable, Subscription } from 'rxjs';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'sicatel-report-move',
   templateUrl: './report-move.component.html',
   styleUrls: ['./report-move.component.scss']
 })
-export class ReportMoveComponent implements OnInit {
 
-  @Input() token: IToken = {} as IToken;
-  @Output() signOffEvent = new EventEmitter();
+@ViewChild(MatPaginator)
 
-  store$!: Observable<IreportResponse>;
-
-  constructor(private _dialog: MatDialog, private store: Store<fromReportMove.State>, private route: Router,
-    private reportMoveService: ReportMoveService) {
-  }
-
+export class ReportMoveComponent implements OnInit, AfterViewInit {
+  @Output()
+  addAttende = new EventEmitter<IreportRequest>();
+  user!: IToken;
+  user$!: Observable<IToken>;
+  store$!: Observable<{ state: fromReportMove.State}>;
   loading?: boolean = false;
   matcher: TelcelErrorStateMatcher = new TelcelErrorStateMatcher();
 
@@ -53,105 +46,63 @@ export class ReportMoveComponent implements OnInit {
     type: new FormControl(this.plataform, Validators.required)
   });
 
-  displayedColumns: string[] = ['sec', 'folio', 'fecha-Hora', 'id-centro', 'id-region', 'folio-sicatel', 'plataforma', 'detalle'];
+  displayedColumns: Array<string> = ['sec', 'folio', 'fecha-Hora', 'id-centro', 'id-region', 'folio-sicatel', 'plataforma', 'detalle'];
   dataSourceMig = new MatTableDataSource<IMovimiento>();
   dataSourceBes = new MatTableDataSource<IMovimiento>();
   dataSourceMobile = new MatTableDataSource<IMovimiento>();
   dataSource = new MatTableDataSource<IMovimiento>();
 
-  selection = new SelectionModel<any>(true, []);
+
   minDate = new Date();
   maxDate = new Date();
-  dateInitValue?: string = 'MM/DD/YYYY'
-  dateEndValue?: string = 'MM/DD/YYYY'
-  ELEMENT_DATA: IPlataformaMovimiento[] = [];
-  plataformaBes: IMovimiento[] = [];
-  plataformaMobile: IMovimiento[] = [];
-  plataformaMig: IMovimiento[] = [];
-  sinPlataforma: IMovimiento[] = [];
-  daySubtration = 30;
-
-  @ViewChild(MatPaginator)
+  dateInitValue?: string = 'MM/DD/YYYY';
+  dateEndValue?: string = 'MM/DD/YYYY';
+  elementData!: Array<IPlataformaMovimiento> ;
+  plataformaBes!: Array<IMovimiento>;
+  plataformaMobile!: Array<IMovimiento> ;
+  plataformaMig!: Array<IMovimiento>;
+  sinPlataforma!: Array<IMovimiento>;
+  daySubtration = 90;
   paginator!: MatPaginator;
+  authenticationSelectors: any;
 
-  /**
-  * Close sesión user
-  *
-  * @summary Make event close session
-  * @returns void
-  */
-  onClickSignOff(): void {
-    this.signOffEvent.emit();
+  constructor(private dialog: MatDialog, private store: Store<fromReportMove.State>,
+    private reportMoveService: ReportMoveService) {
   }
-  /**
-  * Init window
+
+  /*** Init window
   *
-  * @summary Make event gnOnInit 
+  * @summary Make event gnOnInit
   * @returns void
   */
   ngOnInit(): void {
-    //const ConvertedDate = this.myDatepipe.transform(this.searchReportForm.controls.dateEnd.value, 'yyyy-MM-dd');
-    this.minDate = this.calculateMonthBefore();
-
-
-    if (!environment.production) {
-      console.log("fecha value :  ", this.searchReportForm.controls.dateEnd.value);
-      console.log("USER : ", this.token.user.permisos);
-      console.log("accessToken : ", this.token.accessToken);
-    }
-    //TODO permisos de pantalla
-    if (!this.token.user.permisos.includes('109')) {
-      // no se tienen permisos
-      this.route.navigate([SicatelCommons.pathDashboard]);
-      console.log("Sin permiso");
-
-    }
+    this.minDate = Utils.calculateMonthBefore(this.daySubtration);
+    this.user$= this.store.select(AuthenticationSelectors.selectAuthenticationToken);
+    const userSubscription = this.user$.subscribe(users => {
+      this.user = users;
+    });
 
   }
 
-  /**
- * init paginator
- *
- * @summary Make event after init
- * @returns void
- */
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSourceMig.paginator = this.paginator;
-    this.dataSourceBes.paginator = this.paginator;
-    this.dataSourceMobile.paginator = this.paginator;
-    this.dataSource.paginator = this.paginator;
-  }
-
-
-  ngOnDestroy(): void {
-    this.storeSubscribe.unsubscribe();
-  }
 
   /**
    * Control change type plataform
    *
-   * @summary Make change type 
+   * @summary Make change type
    * @returns void
    */
   changeType(): void {
-
     this.plataform = this.searchReportForm.controls.type.value || this.ePlataformaType.TODAS;
-
   }
 
-  /**
-  * Summit Request 
+  /*** Summit Request
   *
   * @summary: get results for filter selected into the application
   * @returns void
   */
   onSubmit(): void {
-
-    if (this.searchReportForm.valid) {
-
       const reportRequest = {
-        userName: this.token.user.idUsuario,
+        userName: this.user.user.idUsuario,
         dateEnd: this.getDateEnd(),
         dateInit: this.getDateInit(),
         plataformSelect: this.plataform
@@ -165,6 +116,8 @@ export class ReportMoveComponent implements OnInit {
         timer: 2000,
         didOpen: () => {
           Swal.showLoading();
+          this.reportMoveService.loadDataReport(reportRequest).subscribe(data => {this.elementData = data.plataformaMovimientos;});
+
           this.plataformaBes = [];
           this.plataformaMobile = [];
           this.plataformaMig = [];
@@ -180,54 +133,50 @@ export class ReportMoveComponent implements OnInit {
           this.showTableDetailMig = false;
           this.showTableDetail = false;
 
-          this.store.dispatch(ReportMoveActions.loadData({ reportRequest }));
-
-            if (this.ELEMENT_DATA.length === 0) {
-              Swal.fire({
-                title: '',
-                text: 'No se encontraron registros',
-                icon: 'error',
-                confirmButtonColor: '#f39c12',
-                confirmButtonText: 'Aceptar',
-                footer: ''
-              });
+          this.addAttende.emit(reportRequest);
 
 
-            } else {
+        },didClose: () => {
 
-              //recorer Json buscando las plataformas 
-              var clave = "nombrePlataforma";
-              console.log("DATOS pos 0 ->", this.ELEMENT_DATA[0]);
-              console.log("DATOS length ->", this.ELEMENT_DATA.length);
+          if (this.elementData.length === 0) {
+            Swal.fire({
+              title: '',
+              text: 'No se encontraron registros',
+              icon: 'error',
+              confirmButtonColor: '#f39c12',
+              confirmButtonText: 'Aceptar',
+              footer: ''
+            });
 
-              this.ELEMENT_DATA.map((movimiento) => {
-                if (movimiento.nombrePlataforma == "BES") {
-                  //Bes
-                  this.plataformaBes = movimiento.movimientos;
-                  this.showTableDetailBes = true;
-                  this.dataSourceBes = new MatTableDataSource<IMovimiento>(this.plataformaBes);
-                } else if (movimiento.nombrePlataforma == "MOBILE") {
-                  //mobile
-                  this.plataformaMobile = movimiento.movimientos;
-                  this.showTableDetailMobile = true;
-                  this.dataSourceMobile = new MatTableDataSource<IMovimiento>(this.plataformaMobile);
-                } else if (movimiento.nombrePlataforma == "Por Definir") {
-                  //Mig Lineas en proceso de Migracion
-                  this.plataformaMig = movimiento.movimientos;
-                  this.showTableDetailMig = true;
-                  this.dataSourceMig = new MatTableDataSource<IMovimiento>(this.plataformaMig);
-                } else {
-                  //sin platafroma
-                  this.sinPlataforma = movimiento.movimientos;
-                  this.showTableDetail = true;
-                  this.dataSource = new MatTableDataSource<IMovimiento>(this.sinPlataforma);
-                }
-              });
-            }
+          } else {
+            //recorer Json buscando las plataformas
+
+            this.elementData.map((movimiento) => {
+              if (movimiento.nombrePlataforma === 'BES') {
+                //Bes
+                this.plataformaBes = movimiento.movimientos;
+                this.showTableDetailBes = true;
+                this.dataSourceBes = new MatTableDataSource<IMovimiento>(this.plataformaBes);
+              } else if (movimiento.nombrePlataforma === 'MOBILE') {
+                //mobile
+                this.plataformaMobile = movimiento.movimientos;
+                this.showTableDetailMobile = true;
+                this.dataSourceMobile = new MatTableDataSource<IMovimiento>(this.plataformaMobile);
+              } else if (movimiento.nombrePlataforma === 'Por Definir') {
+                //Mig Lineas en proceso de Migracion
+                this.plataformaMig = movimiento.movimientos;
+                this.showTableDetailMig = true;
+                this.dataSourceMig = new MatTableDataSource<IMovimiento>(this.plataformaMig);
+              } else {
+                //any plataform
+                this.sinPlataforma = movimiento.movimientos;
+                this.showTableDetail = true;
+                this.dataSource = new MatTableDataSource<IMovimiento>(this.sinPlataforma);
+              }
+            });
+          }
         }
       });
-
-    }
   }
 
   /**
@@ -236,11 +185,10 @@ export class ReportMoveComponent implements OnInit {
    * @summary Make open modal deatils
    * @returns void
    */
-  openModalShowDetail(data: any): void {
+  openModalShowDetail(data: IMovimiento): void {
 
-    let dataObject: any = { 'data': ([data]) };
-    console.log("DATA :", data);
-    const dialogRef = this._dialog.open(ModalDetailMoveComponent, {
+    const dataObject = { data:  ([data]) } as IDataReportMove;
+    const dialogRef = this.dialog.open(ModalDetailMoveComponent, {
       panelClass: 'custom-dialog-container-user',
       width: ('97%'),
       data: dataObject,
@@ -249,63 +197,48 @@ export class ReportMoveComponent implements OnInit {
     });
   }
 
+
   /**
-   * Control days -30
+   * Get date for control dateInit
    *
-   * @summary Make event days -30
+   * @summary Make event
    * @returns void
    */
-  calculateMonthBefore(): Date {
-    var f = new Date();
-    f.setDate(f.getDate() - this.daySubtration);
-    return f;
-  }
-
-
-
-  /**
-    * Get date for control dateInit
-    *
-    * @summary Make event 
-    * @returns void
-    */
   getDateInit(): string {
     const body = this.searchReportForm.value;
-    const date = body.dateInit?.toLocaleString("sv-SE");
-    if (date) {
-      return this.returnDate(date)
-    } else {
-      return ''
-    }
+    return this.splitDate(body.dateInit!);
   }
 
   /**
-  * Get date for control dateInit
-  *
-  * @summary Make event 
-  * @returns void
-  */
+   * Get date for control dateInit
+   *
+   * @summary Make event
+   * @param TODO
+   * @returns void
+   */
   getDateEnd(): string {
     const body = this.searchReportForm.value;
-    const date = body.dateEnd?.toLocaleString("sv-SE");
-    if (date) {
-      return this.returnDate(date)
-    } else {
-      return ''
-    }
+    return this.splitDate(body.dateEnd!);
   }
 
   /**
-  * Get date 
-  *
-  * @summary Make date  
-  * @returns void
-  */
-  returnDate(date: string): string {
-    return date.split(' ')[0];
+   * Get date
+   *
+   * @summary Make date
+   * @returns void
+   */
+  splitDate(date: Date): string {
+    const stringDate = date.toLocaleString('sv-SE').split(' ')[0];
+    return stringDate;
   }
 
-
+  /*** init paginator
+   *
+   * @summary Make event after init
+   * @returns void
+   */
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+  }
 
 }
-
