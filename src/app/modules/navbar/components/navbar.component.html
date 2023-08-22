@@ -1,17 +1,13 @@
 <nav class="navbar navbar-expand-lg sticky-top">
 	<div class="container-fluid">
-		<div class="d-flex flex-row">
-			<div class="navbar-brand logo-telcel px-5 col-8">
-				<img src="./assets/icons/logo_Telcel.png" alt="Logo" height="24"
-					class="d-inline-block align-text-top">
-			</div>
-			<button class="navbar-toggler ms-5 col-4" type="button" data-bs-toggle="collapse"
-				data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
-				aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+		<button mat-flat-button aria-label="Menu" matToolTip="Menu" (click)="toggleMenu = !toggleMenu" color="accent" class="btn btn-primary">
+			<mat-icon class="align-baseline h-auto" fontSet="fas" fontIcon="fa-bars"></mat-icon>
+		</button>
+		<div class="ps-2">
+			<a routerLink="dashboard" href="/home/caja/dashboard" class="ps-4">
+				<img src="./assets/icons/logo_Telcel.png" alt="Logo" height="24" class="d-inline-block align-text-top">
+			</a>
 		</div>
-		<div class="d-flex flex-row"></div>
 		<div class="d-flex flex-row">
 			<ul class="navbar-nav me-auto  mb-lg-0 row">
 				<li class="nav-item dropdown col-4 ">
@@ -82,4 +78,13 @@
 			</ul>
 		</div>
 	</div>
-</nav>
+</nav>  
+<sicatel-menu-component
+	[toggleMenu]="toggleMenu"
+	[menu]="menu"
+	[loading]="loading"
+></sicatel-menu-component>
+
+<ng-template #mask>
+	<sicatel-mask @fadeTrigger [fullScreen]="true"></sicatel-mask>
+</ng-template>

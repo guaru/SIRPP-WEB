@@ -1,0 +1,42 @@
+@import "src/assets/scss/colors";
+
+.loading-spinner {
+  border-radius: 50%;
+  border-top: 6px solid $azulMiTelcel;
+  width: 160px;
+  height: 160px;
+  -webkit-animation: spin 2s linear infinite;
+  /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.overlay {
+  position: absolute;
+  background-color: #343a40;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  z-index: 5000;
+  opacity: .80;
+}
