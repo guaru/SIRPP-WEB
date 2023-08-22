@@ -1,6 +1,5 @@
 <ng-container *ngIf="showMask; else outlet" >
-    <!-- add mask -->
-    <span>Inside {{ showMask }}</span>
+    <sicatel-mask @fadeTrigger [fullScreen]="true"></sicatel-mask>
 </ng-container>
 <ng-template #outlet>
     <router-outlet></router-outlet>

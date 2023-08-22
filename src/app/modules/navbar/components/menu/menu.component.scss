@@ -1,0 +1,11 @@
+@import "src/assets/scss/colors";
+
+.mat-sidenav-container {
+    position: absolute;
+    z-index: 1000;
+    background-color: transparent;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

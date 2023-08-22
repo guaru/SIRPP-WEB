@@ -1,18 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { CoreModule } from '@sicatel/core/core.module';
 import { AppLayoutRoutingModule } from '@sicatel/core/layout/app-layout/app-layout-routing.module';
 import { AppLayoutComponent } from '@sicatel/core/layout/app-layout/app.layout';
-import { NavbarComponent } from '@sicatel/core/layout/app-layout/navbar/navbar.component';
-import { SidebarComponent } from '@sicatel/core/layout/app-layout/sidebar/sidebar.component';
+import { NavbarModule } from '@sicatel/modules/navbar/navbar.module';
 
 @NgModule({
-    declarations: [ AppLayoutComponent, NavbarComponent, SidebarComponent ],
+    declarations: [AppLayoutComponent],
+    exports: [AppLayoutComponent],
     imports: [
         AppLayoutRoutingModule,
         CoreModule,
-        CommonModule
-    ],
-    exports: [ AppLayoutComponent ]
+        CommonModule,
+        MatSidenavModule,
+        NavbarModule
+    ]
 })
 export class AppLayoutModule {}

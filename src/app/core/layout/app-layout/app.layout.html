@@ -1,18 +1,8 @@
-<sicatel-navbar *ngIf="user$ | async as user" [user]="user" (signOffEvent)="signOff()" ></sicatel-navbar>
-<div class="container-fluid" >
-        <div class="row flex-nowrap">
-            <div class="col-auto col-md-3 col-xl-2  bg-dark  position-fixed ">
-                <div class="d-flex flex-column text-white min-vh-100">
-                    
-                    <sicatel-sidebar  *ngIf="menu$ | async as menu"  [menu]="menu"></sicatel-sidebar>
-
-                </div>
-            </div>
-            <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-3">
-                <router-outlet></router-outlet>
-            </div>
+<mat-sidenav-container class="h-100">
+    <mat-sidenav-content class="d-flex flex-column overflow-hidden bg-beige h-100">
+        <sicatel-navbar-container></sicatel-navbar-container>
+		<div #mainWrapper class="d-flex flex-column flex-fill overflow-auto h-100">
+            <router-outlet (activate)="mainWrapper.scrollTop = 0"></router-outlet>
         </div>
-</div>
-
-
-
+    </mat-sidenav-content>
+</mat-sidenav-container>
