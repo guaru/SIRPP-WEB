@@ -8,14 +8,12 @@ import * as DashboardSelectors from '@sicatel/modules/dashboard/store/selectors/
 import { ISliderConfig } from '@sicatel/shared/models/slider/slider-config.interface';
 import { Observable } from 'rxjs';
 
-
 @Component({
   selector: 'sicatel-dashboard-container',
   templateUrl: './dashboard.container.html',
   styleUrls: ['./dashboard.container.scss']
 })
 export class DashboardContainer {
-  messageToShow = 'This is a meesage from container';
   store$: Observable<{ state: fromDashboard.State }>;
 
   constructor(private store: Store<fromDashboard.State>, private storeCarousel: Store<fromCarousel.State>) {
@@ -23,13 +21,4 @@ export class DashboardContainer {
     this.store$ = this.store.select(DashboardSelectors.selectDashoardState);
   }
 
-  /**
-   * Change customer Data Event
-   *
-   * @summary: Make a dispatch to load customer data
-   * @returns: void
-   */
-  changeCustomerDataEvent(): void {
-      this.store.dispatch(DashboardActions.loadCustomer());
-  }
 }

@@ -62,6 +62,7 @@ export class AuthenticationComponent implements OnDestroy  {
    * @returns void
    */
   onSubmit(): void {
+    debugger;
     if (this.loginForm.valid) {
       const userRequest =  {
         userName : this.loginForm.controls.userName.value,

@@ -7,17 +7,5 @@ import { IDashboardSettings } from '@sicatel/modules/dashboard/models/dashboard-
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
-  @Input() message?: string;
-  @Input() userSettings?: IDashboardSettings;
-  @Output() changeCustomerDataEvent = new EventEmitter();
 
-  /**
-   * Change Customer Data
-   *
-   * @summary: Change customer data
-   * @returns: void
-   */
-  changeCustomerData(): void {
-    this.changeCustomerDataEvent.emit();
-  }
 }

@@ -15,6 +15,7 @@ export class SicatelMenuComponent implements OnChanges {
   @Input() menu!: Array<Menu>;
   @Input() toggleMenu!: boolean;
   @Input() loading!: boolean;
+  @Input() toolbar!: boolean;
 
   constructor() { }
 
