@@ -1,17 +1,9 @@
 @import "/src/assets/scss/colors";
 
-.logo-telcel{
-    width: 130px;
-    margin-top: 0 !important;
-    text-align: center;
-    align-items: center;
-}
-
 .toolbar {
     button {
-        letter-spacing: 2px;
         color: $blue;
-        
+
         &.active {
             border-bottom: 1px solid $blue;
             color: $blue;
@@ -22,8 +14,4 @@
             border-bottom: 1px solid $blue;
         }
     }
-}
-
-.mat-toolbar {
-    height: auto;
 }
