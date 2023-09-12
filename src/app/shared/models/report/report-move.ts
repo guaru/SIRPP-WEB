@@ -68,6 +68,7 @@ export interface IInfoConceptoList {
   pagobes: string;
   estatusBes?: string;
   orderId?: string;
+  plataforma: string;
 }
 
   /*** interface for payment

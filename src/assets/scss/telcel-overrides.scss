@@ -164,7 +164,8 @@ button.active:focus {
   border-radius: 0px !important;
 }
 
-a.mat-stroked-button, a.mat-button {
+a.mat-stroked-button,
+a.mat-button {
   &.telcel-link {
     text-decoration: underline;
 
@@ -217,7 +218,8 @@ a.mat-stroked-button, a.mat-button {
 }
 
 /* IE10+ CSS styles go here */
-@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+@media all and (-ms-high-contrast: none),
+(-ms-high-contrast: active) {
   @media all and (min-width: 1200px) {
     .menu {
       &.mat-menu-panel {
@@ -244,12 +246,13 @@ a.mat-stroked-button, a.mat-button {
   width: 26rem;
   height: 40rem;
 
-  & > .mat-menu-content {
+  &>.mat-menu-content {
     height: 100%;
   }
 }
 
-@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+@media all and (-ms-high-contrast: none),
+(-ms-high-contrast: active) {
   .menu-dropdown.mat-menu-panel {
     max-width: 40rem;
     width: 39rem;
@@ -303,7 +306,8 @@ a.mat-stroked-button, a.mat-button {
     top: 42px !important;
   }
 
-  .mat-horizontal-stepper-header:not(:last-child)::after, .mat-horizontal-stepper-header:not(:first-child)::before {
+  .mat-horizontal-stepper-header:not(:last-child)::after,
+  .mat-horizontal-stepper-header:not(:first-child)::before {
     top: 42px !important;
   }
 }
@@ -372,11 +376,11 @@ mat-tab-group.ns-dark {
   min-width: 770px !important;
   height: 400px;
 
-  & > .mat-menu-content {
+  &>.mat-menu-content {
     height: 95%;
     width: 100%;
 
-    & > div {
+    &>div {
       height: 100%;
     }
   }
@@ -434,24 +438,18 @@ mat-form-field {
   background-color: white !important;
 }
 
-table {
-  background-color: white;
-  text-align: left;
-  border-collapse: collapse;
-  width: 100%;
 
-}
 
 th,
 td {
   padding: 1px;
 }
 
-tr:nth-child(even) {
+.table-content tr:nth-child(even) {
   background-color: #ddd;
 }
 
-tr:hover td {
+.table-content tr:hover td {
   background-color: #f5f7f6;
   color: black;
 }
@@ -462,23 +460,15 @@ tr:hover td {
   background-color: transparent !important;
 }
 
-.mat-table::ng-deep {
-  border: 1px solid red;
-}
-
 .mat-header-row {
   background-color: black;
-}
-
-.mat-table {
-  border: 1px solid red;
 }
 
 .divContainer {
   padding: 1px;
 }
 
-.mat-mdc-table .mdc-data-table__header-row {
+.mdc-data-table__header-row_ {
   height: 56px;
   border-bottom: 3px solid #02b0ef;
 }
@@ -492,29 +482,24 @@ tr:hover td {
   font-weight: bold;
 }
 
-.espacer20{padding-left:20px  !important;}
+.espacer20 {
+  padding-left: 20px !important;
+}
 
 .divSeparator {
-
   background-color: #02b0ef;
   padding: 1px;
   border: 1px solid #02b0ef !important;
   margin-left: 20px;
+  font-weight: bold;
   width: 97%;
 }
 
 .header-title-div {
-  background-color: #98a7bc;
-  text-align: left;
-  border-collapse: collapse;
-  width: 99%;
-  color: white;
+  height: 15px !important;
+  background-color: #98a7bc !important;
+  color: white !important;
   font-weight: bold;
-  border-bottom: 2px solid white !important;
-  margin-bottom: -20px;
-  margin-top: 10px;
-  padding-left: 1px !important;
-  margin-left: 3PX !important;
 }
 
 .spacerLeft {
@@ -533,4 +518,34 @@ tr:hover td {
   letter-spacing: normal;
   text-align: left;
   padding: 3px;
+}
+
+.title-table {
+  background-color: #ffff !important;
+}
+.font-title{
+  color: white !important;
+  font-weight: bold;
+}
+.decorator10 {
+  padding-bottom: 10px !important;
+  padding-top: 10px !important;
+  width: 100%;
+}
+
+table.table-content{
+  background-color: white;
+  text-align: left;
+  border-collapse: collapse;
+  width: 100% !important;
+  max-width: 120% !important;
+}
+.table-payment{
+  max-width: 120% !important;
+  width: 120%  !important;
+}
+
+.container-tables{
+  max-width: 120% !important;
+  width: 120%  !important;
 }

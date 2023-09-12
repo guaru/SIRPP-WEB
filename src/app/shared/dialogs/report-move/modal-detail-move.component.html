@@ -1,12 +1,17 @@
 <h3 mat-dialog-title class="header-title-modal">Detalle de movimientos</h3>
 <div class="divSeparator"></div>
 
-<mat-dialog-content class="mat-typography">
-  <div class="header-title-div">
-    <h4 class="spacerLeft"> Concepto </h4>
-  </div>
-  <div class="divContainer">
-    <table mat-table [dataSource]="dataSourceDetail">
+<div class="divContainer">
+ 
+  <mat-dialog-content class="mat-typography">
+    <div class="row container-tables">
+    <table mat-table class="table-content" [dataSource]="dataSourceDetail">
+
+      <ng-container matColumnDef="header-row-first-group" class="font-title">
+        <div class="decorator10">
+          <th class="font-title" mat-header-cell *matHeaderCellDef [attr.colspan]="20">Concepto</th>
+        </div>
+      </ng-container>
 
       <ng-container matColumnDef="cCaja">
         <th mat-header-cell *matHeaderCellDef> Caja </th>
@@ -100,7 +105,7 @@
 
       <ng-container matColumnDef="cPlataforma">
         <th mat-header-cell *matHeaderCellDef> Plataforma </th>
-        <td mat-cell *matCellDef="let element"> {{element.cPlataforma}} </td>
+        <td mat-cell *matCellDef="let element"> {{itemTable.plataforma}} </td>
       </ng-container>
 
       <ng-container matColumnDef="cEstatusBes">
@@ -108,18 +113,20 @@
         <td mat-cell *matCellDef="let element"> {{element.ESTATUS_BES}} </td>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-header-row *matHeaderRowDef="['header-row-first-group']" class="header-title-div"></tr>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns" class="title-table mdc-data-table__header-row_"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-  </div>
 
-  <div class="header-title-div">
-    <h4 class="spacerLeft"> Forma de Pago </h4>
-  </div>
+    <span class="espacer20"></span>
 
+    <table mat-table class="table-content table-payment" [dataSource]="dataSourceDetailPayment" >
 
-  <div class="divContainer">
-    <table mat-table [dataSource]="dataSourceDetailPayment">
+      <ng-container matColumnDef="header-row-first-group">
+        <div class="decorator10">
+        <th class=" font-title" mat-header-cell *matHeaderCellDef [attr.colspan]="20">Forma de Pago</th>
+        </div>
+      </ng-container>
 
       <ng-container matColumnDef="fTipoPago">
         <th mat-header-cell *matHeaderCellDef> Tipo de pago </th>
@@ -128,7 +135,7 @@
 
       <ng-container matColumnDef="fInstitucion">
         <th mat-header-cell *matHeaderCellDef> Institución </th>
-        <td mat-cell *matCellDef="let row"> {{row.fInstitucion}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.INSTITUCION}} </td>
       </ng-container>
 
       <ng-container matColumnDef="fEstatus">
@@ -151,12 +158,12 @@
         <td mat-cell *matCellDef="let row"> {{row.IDINSTITUCION}} </td>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumnsPayment"></tr>
+      <tr mat-header-row *matHeaderRowDef="['header-row-first-group']" class="header-title-div"></tr>
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsPayment" class="title-table mdc-data-table__header-row_"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumnsPayment;"></tr>
     </table>
   </div>
-
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button class="w-40 btn btn-warning btnWarning" mat-button mat-dialog-close>Aceptar</button>
-</mat-dialog-actions>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button class="w-40 btn btn-warning btnWarning" mat-button mat-dialog-close>Aceptar</button>
+  </mat-dialog-actions>

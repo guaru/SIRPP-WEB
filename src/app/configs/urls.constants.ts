@@ -15,5 +15,5 @@ export class SicatelUrlsConstants {
 
     //Report move
     static readonly reportMoveBaseUrl = environment.sicatel_report_move_api;
-    static readonly dataGetReportMove = `${SicatelUrlsConstants.reportMoveBaseUrl}/move`;
+    static readonly dataGetReportMove = `${SicatelUrlsConstants.reportMoveBaseUrl}/report/move`;
 }

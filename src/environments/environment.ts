@@ -6,7 +6,8 @@ export const environment = {
     enableMocks: true,
     key: 'Py1LCRF@%75k$$',
     sicatel_authentication_api:'/api/v1/authentication',
-    sicatel_report_move_api:'/v1/report'
+    //sicatel_report_move_api:'/api/v1/report'//this prodcuction
+    sicatel_report_move_api:'/api/v1'
 };
 /*
 * For easier debugging in development mode, you can import the following file

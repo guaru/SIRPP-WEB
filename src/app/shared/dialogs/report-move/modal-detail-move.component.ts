@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { IDataReportMove, IInfoConceptoList } from '@sicatel/shared/models/report/report-move';
+import { IInfoConceptoList } from '@sicatel/shared/models/report/report-move';
 import { IMovimiento } from '@sicatel/shared/models/report/report-move';
 import { IInfoFormaList } from '@sicatel/shared/models/report/report-move';
 
@@ -24,12 +24,12 @@ export class ModalDetailMoveComponent implements OnInit  {
   dataSourceDetailPayment = new MatTableDataSource<IInfoFormaList>();
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: IDataReportMove,
+    @Inject(MAT_DIALOG_DATA) public data: IMovimiento,
     public dialogRef: MatDialogRef <ModalDetailMoveComponent>
   ) {}
 
   ngOnInit() {
-    this.itemTable = this.data.data[0];
+    this.itemTable = this.data;
     this.dataSourceDetail = new MatTableDataSource<IInfoConceptoList>(this.itemTable.infoConceptoList);
     this.dataSourceDetailPayment = new MatTableDataSource<IInfoFormaList>(this.itemTable.infoFormaList);
   }
