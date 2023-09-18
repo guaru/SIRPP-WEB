@@ -1,8 +1,7 @@
 /* Add application styles & imports to this file! */
 @import './assets/scss/telcel-material.scss';
 
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
-@import "~bootstrap/dist/css/bootstrap.css";
+@import "bootstrap";
 
 /* main variables */
 @import './assets/scss/colors';
@@ -30,6 +29,15 @@ $theme-colors: (
   "lavender": $lavender,
   "teal": $teal
 );
+
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/reboot";
+@import "bootstrap/scss/containers";
+@import "bootstrap/scss/grid";
+@import "bootstrap/scss/utilities"; // Configures the utility classes that should be generated
 
 /* custom ng-material */
 @import './assets/scss/telcel-overrides.scss';

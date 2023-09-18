@@ -1,0 +1,17 @@
+@import "/src/assets/scss/colors";
+
+.toolbar {
+    button {
+        color: $blue;
+
+        &.active {
+            border-bottom: 1px solid $blue;
+            color: $blue;
+        }
+
+        &:hover {
+            color: $blue;
+            border-bottom: 1px solid $blue;
+        }
+    }
+}

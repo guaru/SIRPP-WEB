@@ -1,0 +1,6 @@
+<sicatel-navbar-component *ngIf="store$ | async as store"
+    [menu]="store.state.links"
+    [user]="store.user"
+    [loading]="store.state.loading"
+    (signOffEvent)="signOff()">
+</sicatel-navbar-component>

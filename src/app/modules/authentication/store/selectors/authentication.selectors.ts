@@ -19,10 +19,6 @@ export const selectAuthenticationStateLoading = createSelector(
     selectReferenceAuthenticationState,
             (state: fromAuthentication.State) => state.loading );
 
-export const selectAuthenticationMenu = createSelector(
-    selectReferenceAuthenticationState,
-        (state: fromAuthentication.State) => state.menu);
-
 
 export const selectAuthenticationToken= createSelector(
             selectReferenceAuthenticationState,

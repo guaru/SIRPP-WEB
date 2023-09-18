@@ -8,6 +8,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { AuthenticationRoutingModule } from '@sicatel/modules/authentication/authentication-routing.module';
 import { AuthenticationComponent } from '@sicatel/modules/authentication/components/authentication.component';
 import { AuthenticationContainer } from '@sicatel/modules/authentication/containers/authentication.container';
+import { CarouselModule } from '@sicatel/modules/carousel/carousel.module';
 import { DirectivesModule } from '@sicatel/shared/directives/directives.module';
 
 
@@ -24,7 +25,8 @@ import { DirectivesModule } from '@sicatel/shared/directives/directives.module';
         MatIconModule,
         MatProgressSpinnerModule,
         MatSelectModule,
-        DirectivesModule
+        DirectivesModule,
+        CarouselModule
     ]
 })
 export class AuthenticationModule {}

@@ -1,6 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
 import * as AuthenticationActions from '@sicatel/modules/authentication/store/actions/authentication.actions';
-import { Menu } from '@sicatel/shared/models/menu/menu.interface';
 import { IError } from '@sicatel/shared/models/request/error.interface';
 import { IUserRequest } from '@sicatel/shared/models/request/user.interface';
 import { IUserResponse } from '@sicatel/shared/models/response/user.response';
@@ -14,7 +13,6 @@ export interface  State {
     error: IError;
     userResponse: IUserResponse;
     token: IToken;
-    menu: Array<Menu>;
     isAuthenticate: boolean;
 }
 
@@ -24,7 +22,6 @@ export const initialState: State = {
     error: {} as IError,
     userResponse: {} as IUserResponse,
     token: {} as IToken,
-    menu:  [],
     isAuthenticate: false
 };
 
@@ -62,20 +59,5 @@ initialState,
    ...state,
    token: {} as IToken,
    isAuthenticate: false
- })),
- on(AuthenticationActions.loadMenu, (state) => ({
-  ...state,
-  loading: true,
-  menu: []
- })),
- on(AuthenticationActions.loadMenuSuccess, (state,{menu}) => ({
-  ...state,
-  loading: false,
-  menu
- })),
- on(AuthenticationActions.loadMenuFailure, (state) => ({
-  ...state,
-  loading: false,
-  menu: []
  }))
  );

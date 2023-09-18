@@ -1,0 +1,56 @@
+@import "/src/assets/scss/colors";
+
+.mat-sidenav-container {
+    position: absolute;
+    z-index: 1000;
+    background-color: transparent;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu {
+    button {
+        letter-spacing: 2px;
+        color: $blue;
+
+        &.active {
+            border-bottom: 1px solid $blue;
+            color: $blue;
+        }
+
+        &:hover {
+            color: $blue;
+            border-bottom: 1px solid $blue;
+        }
+    }
+}
+
+.mat-mdc-menu-item {
+    font-weight:  100;
+    font-size: 13px;
+    color: $white;
+    height: 25%;
+    line-height: 25px;
+    min-width: 15rem;
+    text-decoration: none;
+    padding: 0 4px;
+
+    &:focus {
+        outline: none;
+        text-decoration: none;
+    }
+
+    &:hover {
+        color: $black;
+        background-color: $light;
+        text-decoration: none;
+    }
+
+    &:active {
+        color: $light;
+        background-color: transparent;
+        text-decoration: none;
+    }
+}

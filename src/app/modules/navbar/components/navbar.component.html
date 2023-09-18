@@ -1,0 +1,60 @@
+<mat-toolbar>
+	<div class="ps-2">
+		<a routerLink="/caja/dashboard" class="ps-4">
+			<img src="./assets/icons/logo_Telcel.png" alt="Logo" height="24" class="d-inline-block align-text-top">
+		</a>
+	</div>
+
+	<sicatel-menu-component
+		[toggleMenu]="toggleMenu"
+		[menu]="menu"
+		[loading]="loading"
+		[toolbar]="true"
+	></sicatel-menu-component>
+
+	<div class="d-flex justify-content-end w-100 toolbar">
+		<button mat-icon-button class="btn" aria-label="Home" matTooltip="Home" routerLink="/home">
+			<mat-icon class="align-baseline h-auto" fontSet="fas" fontIcon="fa-home"></mat-icon>
+		</button>
+		<div class="shortcut ms-3">
+			<button mat-icon-button [matMenuTriggerFor]="shortcuts" class="btn" aria-label="Shortcuts" matTooltip="Shortcuts">
+				<mat-icon class="align-baseline h-auto" fontSet="fas" fontIcon="fa-ellipsis-v"></mat-icon>
+			</button>
+			<mat-menu #shortcuts="matMenu" class="shortcut ms-3 mw-100">
+				<mat-nav-list class="pt-0 pe-3">
+					<a mat-menu-item rel="noopener">
+						<span>Item 1</span>
+						<mat-icon class="align-baseline h-auto" fontSet="fas" fontIcon="fa-angle-right"></mat-icon>
+					</a>
+					<a mat-menu-item rel="noopener">
+						<span>Item 2</span>
+						<mat-icon class="align-baseline h-auto" fontSet="fas" fontIcon="fa-angle-right"></mat-icon>
+					</a>
+				</mat-nav-list>
+			</mat-menu>
+		</div>
+		<div class="ms-3">
+			<button mat-icon-button class="btn" aria-label="Help" matTooltip="Help">
+				<mat-icon class="align-baseline h-auto fa-1x" fontSet="fas" fontIcon="fa-question"></mat-icon>
+			</button>
+		</div>
+		<div class="ms-3">
+			<sicatel-profile-menu-component
+				[user]="user"
+				(signOffEvent)="onClickSignOff()"
+			>
+			</sicatel-profile-menu-component>
+		</div>
+	</div>
+</mat-toolbar>
+
+<sicatel-menu-component
+	[toggleMenu]="toggleMenu"
+	[menu]="menu"
+	[loading]="loading"
+	[toolbar]="false"
+></sicatel-menu-component>
+
+<ng-template #mask>
+	<sicatel-mask @fadeTrigger [fullScreen]="true"></sicatel-mask>
+</ng-template>
