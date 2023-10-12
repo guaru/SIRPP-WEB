@@ -30,9 +30,15 @@ export class PermissionGuard implements CanActivate {
         return true;
     }
 
-
+    /***
+    * permisse from token
+    *
+    * @summary Get permisse from token
+    * @param
+    * @returns void
+    */
     getPermisse(): Array<string> {
-        //TODO jsdoc
+
         let permission!: string;
         this.permission$ = this.store.select(AuthenticationSelectors.selectAuthenticationUserPermision);
         const userSubscription = this.permission$.subscribe(permissions => {

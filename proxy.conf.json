@@ -16,7 +16,7 @@
         }
     },
     "/api/v1/report": {
-        "target": "http://localhost:9091/sicatel-reporte-movimientos-api",
+        "target": "http://sicatel-ws.telcelinstitucional.com/sicatel-reporte-movimientos-api",
         "changeOrigin": true,
         "secure": false,
         "pathRewrite": {

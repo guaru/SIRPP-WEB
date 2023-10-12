@@ -16,16 +16,12 @@ import { ReportMoveRoutingModule } from '@sicatel/modules/reports/report-move/re
 import { ModalDetailMoveComponent } from '@sicatel/shared/dialogs/report-move/modal-detail-move.component';
 import { DirectivesModule } from '@sicatel/shared/directives/directives.module';
 
-import { ReportMoveFormComponent } from './form/report-move-form.component';
-import { ReportMoveTableComponent } from './table/report-move-table.component';
 
 @NgModule({
   declarations: [
     ReportMoveContainer,
     ReportMoveComponent,
-    ModalDetailMoveComponent,
-    ReportMoveTableComponent,
-    ReportMoveFormComponent
+    ModalDetailMoveComponent
   ],
   imports: [
     CommonModule,

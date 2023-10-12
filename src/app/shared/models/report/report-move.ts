@@ -2,7 +2,7 @@
   /*** interface for request of endpoind
   * @interface
   */
-export interface IreportRequest {
+export interface IReportRequest {
   userName: string;
   dateInit: string;
   dateEnd: string;
@@ -12,11 +12,11 @@ export interface IreportRequest {
   /*** interface for response of endpoint.
   * @interface
   */
-export interface IreportResponse {
+export interface IReportResponse {
   codigoRespuesta: string;
   mensaje: string;
   uuid: string;
-  error: IerrorResponseReportMove;
+  error: IErrorResponseReportMove;
   folios: number;
   plataformaMovimientos: Array<IPlataformaMovimiento>;
 }
@@ -86,7 +86,7 @@ export interface IInfoFormaList {
   /*** interface for error
   * @interface
   */
-export interface IerrorResponseReportMove {
+export interface IErrorResponseReportMove {
   codigoError: string;
   descError: string;
 }

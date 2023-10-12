@@ -21,9 +21,7 @@ export class SessionGuard implements CanActivate,CanLoad {
      */
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
         if(this.authService.isAuthenticate())
-             {
-                this.router.navigate([SicatelCommons.pathDashboard]);
-            }
+             {this.router.navigate([SicatelCommons.pathDashboard]);}
         return true;
     }
 
@@ -37,9 +35,7 @@ export class SessionGuard implements CanActivate,CanLoad {
      */
     canLoad(route: Route, segments: Array<UrlSegment>): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
         if(this.authService.isAuthenticate())
-          {
-           this.router.navigate([SicatelCommons.pathDashboard]);
-        }
+          {this.router.navigate([SicatelCommons.pathDashboard]);}
         return true;
     }
 }

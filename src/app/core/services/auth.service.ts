@@ -145,7 +145,4 @@ export class AuthService {
         const now =  new Date().getTime() / 1000;
         return token.exp < now;
     }
-
-
-    //TODO validarPermiso  readToken() para obtenr el token
 }

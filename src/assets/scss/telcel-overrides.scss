@@ -479,11 +479,13 @@ td {
 }
 
 .header-Title-black {
-  font-weight: bold;
+  font-weight: bold !important;
 }
 
 .espacer20 {
+  padding-top: 20px !important;
   padding-left: 20px !important;
+  padding-bottom: 20px !important;
 }
 
 .divSeparator {
@@ -552,4 +554,8 @@ table.table-content{
 
 .container-div{
   padding-left: 20px !important; padding-top: 40px !important; padding-right: 20px !important;
+}
+
+.spacerRight{
+  padding-right:  20px !important;
 }

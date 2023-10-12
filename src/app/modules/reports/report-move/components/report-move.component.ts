@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import { AfterViewInit, Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -11,7 +10,7 @@ import * as AuthenticationSelectors from '@sicatel/modules/authentication/store/
 import * as fromReportMove from '@sicatel/modules/reports/report-move/store/reducers/report-move.reducer';
 import { ModalDetailMoveComponent } from '@sicatel/shared/dialogs/report-move/modal-detail-move.component';
 import { EPlataformType } from '@sicatel/shared/enums/plataform-type.enum';
-import { IMovimiento, IPlataformaMovimiento, IreportRequest } from '@sicatel/shared/models/report/report-move';
+import { IMovimiento, IPlataformaMovimiento, IReportRequest } from '@sicatel/shared/models/report/report-move';
 import { IToken } from '@sicatel/shared/models/user/user';
 import Utils from '@sicatel/shared/utils/utils';
 import { Observable,  Subscription } from 'rxjs';
@@ -25,7 +24,7 @@ import Swal from 'sweetalert2';
 
 export default class ReportMoveComponent implements OnInit, AfterViewInit {
   @Output()
-  addAttende = new EventEmitter<IreportRequest>();
+  addAttende = new EventEmitter<IReportRequest>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatPaginator) paginatorMobile!: MatPaginator;
   @ViewChild(MatPaginator) paginatorMig!: MatPaginator;
@@ -58,7 +57,7 @@ export default class ReportMoveComponent implements OnInit, AfterViewInit {
   dataSource = new MatTableDataSource<IMovimiento>();
 
 
-  itemCell = 0;
+  itemCell = 1;
   minDate = new Date();
   maxDate = new Date();
   dateInitValue?: string = 'MM/DD/YYYY';
@@ -116,7 +115,7 @@ export default class ReportMoveComponent implements OnInit, AfterViewInit {
       dateEnd: this.getDateEnd(),
       dateInit: this.getDateInit(),
       plataformSelect: this.plataform
-    } as IreportRequest;
+    } as IReportRequest;
 
     Swal.fire({
       title: '',
@@ -267,13 +266,13 @@ export default class ReportMoveComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
-    this.paginator._intl.itemsPerPageLabel=this.itemsPerPageLabel;
     this.dataSourceBes.paginator = this.paginatorBes;
-    this.paginatorBes._intl.itemsPerPageLabel=this.itemsPerPageLabel;
     this.dataSourceMig.paginator = this.paginatorMig;
-    this.paginatorMig._intl.itemsPerPageLabel=this.itemsPerPageLabel;
     this.dataSourceMobile.paginator = this.paginatorMobile;
-    this.paginatorMobile._intl.itemsPerPageLabel=this.itemsPerPageLabel;
+  }
+
+  incrementCell(cell: number): number{
+  return cell++;
   }
 
 }

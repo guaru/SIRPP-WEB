@@ -34,9 +34,13 @@ export class ModalDetailMoveComponent implements OnInit  {
     this.dataSourceDetailPayment = new MatTableDataSource<IInfoFormaList>(this.itemTable.infoFormaList);
   }
 
-  /**Método para cerrar la modal **/
+  /*** Close modal
+   *
+   * @summary Event for close modal
+   * @param param: boolean
+   * @returns void
+   */
   closeModal(param: boolean): void {
-    //TODO poner jsdoc
     this.dialogRef.close(param);
   }
 }
