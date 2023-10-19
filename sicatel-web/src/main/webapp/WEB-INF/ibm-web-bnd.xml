@@ -4,6 +4,6 @@
 	xsi:schemaLocation="http://websphere.ibm.com/xml/ns/javaee http://websphere.ibm.com/xml/ns/javaee/ibm-web-bnd_1_2.xsd"
 	version="1.2">
 
-	<virtual-host name="SicatelWebVirtualHost" />
+	<virtual-host name="SicatelWSVirtualHost" />
 
 </web-bnd>
