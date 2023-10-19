@@ -14,5 +14,13 @@
         "pathRewrite": {
             "^/api/v1/authentication": "/v1/"
         }
+    },
+    "/api/v1/report": {
+        "target": "http://sicatel-ws.telcelinstitucional.com/sicatel-reporte-movimientos-api",
+        "changeOrigin": true,
+        "secure": false,
+        "pathRewrite": {
+            "^/api/v1/report": "/v1/report"
+        }
     }
 }

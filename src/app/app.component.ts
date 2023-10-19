@@ -13,7 +13,6 @@ export class AppComponent implements OnInit {
 
   constructor(private store: Store<fromAuthentication.State>){}
 
-
   ngOnInit(): void {
     this.store.dispatch(AuthenticationActions.isAuthenticate());
   }
