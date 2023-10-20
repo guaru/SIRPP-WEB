@@ -1,6 +1,6 @@
 {
     "/api/v1/dashboard": {
-        "target": "http://localhost:9090/sicatel-dashboard-api",
+        "target": "http://sicatel-ws.telcelinstitucional.com/sicatel-dashboard-api",
         "changeOrigin": true,
         "secure": false,
         "pathRewrite": {
@@ -8,7 +8,7 @@
         }
     },
     "/api/v1/authentication": {
-        "target": "http://localhost:9090/sicatel-authentication-api",
+        "target": "http://sicatel-ws.telcelinstitucional.com/sicatel-authentication-api",
         "changeOrigin": true,
         "secure": false,
         "pathRewrite": {
