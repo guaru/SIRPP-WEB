@@ -22,3 +22,7 @@ export const selectAuthenticationStateLoading = createSelector(
 export const selectAuthenticationToken= createSelector(
             selectReferenceAuthenticationState,
                 (state: fromAuthentication.State) => state.token);
+
+export const selectAuthenticationUserPermision= createSelector(
+    selectReferenceAuthenticationState,
+        (state: fromAuthentication.State) => state.token.user.permisos);

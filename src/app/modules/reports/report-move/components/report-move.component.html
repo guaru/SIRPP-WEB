@@ -1,0 +1,265 @@
+<section class="d-flex flex-column h-100 container-div">
+  <h4 class="header-Title-black header-Title-black"> Reportes / <span class="header-Title-blue">Reporte de
+      movimientos</span> </h4>
+
+  <form class="my-5" [formGroup]="searchReportForm" (ngSubmit)="onSubmit()">
+
+    <mat-form-field color="accent" appearance="fill" class="w-10">
+      <mat-label >Fecha Inicial</mat-label>
+      <input formControlName="dateInit" matInput [matDatepicker]="dateInit" [min]="minDate" [max]="maxDate"
+        data-date-format="dd/mm/yyyy">
+      <mat-hint>{{ dateInitValue }}</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="dateInit"></mat-datepicker-toggle>
+      <mat-datepicker #dateInit></mat-datepicker>
+      <mat-error  *ngIf="searchReportForm.controls.dateInit.invalid">Fecha inválida</mat-error>
+    </mat-form-field>
+
+    <mat-form-field color="accent" appearance="fill" class=" w-10">
+      <mat-label >Fecha Final</mat-label>
+      <input formControlName="dateEnd" matInput [matDatepicker]="dateEnd" [min]="minDate" [max]="maxDate">
+      <mat-hint>{{ dateEndValue }}</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="dateEnd"></mat-datepicker-toggle>
+      <mat-datepicker #dateEnd></mat-datepicker>
+      <mat-datepicker #dateEnd color="primary"></mat-datepicker>
+      <mat-error  *ngIf="searchReportForm.controls.dateEnd.invalid">Fecha inválida</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="header-Title-black w-10" color="accent">
+      <mat-label >Plataforma</mat-label>
+      <mat-select formControlName="type" [errorStateMatcher]="matcher" (selectionChange)="changeType()">
+        <mat-option *ngFor="let type of typesPlataforma" [value]="type">
+          {{ type }}
+        </mat-option>
+      </mat-select>
+      <mat-error  *ngIf="searchReportForm.controls.type.invalid">
+        Seleccione un tipo valido
+      </mat-error>
+    </mat-form-field>
+
+    <button [disabled]="searchReportForm.controls.type.invalid ? true : false" type="submit" mat-flat-button class="w-40 btn btn-warning btnWarning">
+      Consultar
+    </button>
+
+  </form>
+  <div class="espacio10" *ngIf="showTableDetail ;"></div>
+
+  <div class="divContainer" *ngIf="showTableDetail ;">
+
+    <table mat-table [dataSource]="dataSource " class="table-content">
+
+      <ng-container matColumnDef="sec">
+        <th mat-header-cell *matHeaderCellDef> Sec. </th>
+    <td mat-cell *matCellDef="let element; let i = index"> {{i + 1}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="folio">
+        <th mat-header-cell *matHeaderCellDef> Folio </th>
+        <td mat-cell *matCellDef="let element"> {{element.folio}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="fecha-Hora">
+        <th mat-header-cell *matHeaderCellDef> Fecha/Hora </th>
+        <td mat-cell *matCellDef="let element"> {{element.fecha | date:'short'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="id-centro">
+        <th mat-header-cell *matHeaderCellDef> ID Centro </th>
+        <td mat-cell *matCellDef="let element"> {{element.idCentro}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="id-region">
+        <th mat-header-cell *matHeaderCellDef> ID Región </th>
+        <td mat-cell *matCellDef="let element"> {{element.region}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="folio-sicatel">
+        <th mat-header-cell *matHeaderCellDef> Folio Sicatel </th>
+        <td mat-cell *matCellDef="let element"> {{element.foliosicatel}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="plataforma">
+        <th mat-header-cell *matHeaderCellDef> Plataforma </th>
+        <td mat-cell *matCellDef="let element"> {{element.plataforma===''?'----':element.plataforma}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="detalle">
+        <th mat-header-cell *matHeaderCellDef width="7%" class="header-th">Detalle</th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-flat-button class=" btnSee mat-flat-button " (click)="openModalShowDetail(row)">Ver
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns" class="mdc-data-table__header-row_"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+  </div>
+
+  <div class="espacio20" *ngIf="showTableDetailBes ;"></div>
+
+  <div class="divContainer" *ngIf="showTableDetailBes;">
+
+    <h5 class="header-Title-black espacer20"> Plataforma - BES </h5>
+    <table mat-table [dataSource]="dataSourceBes" class="table-content">
+
+      <ng-container matColumnDef="sec">
+        <th mat-header-cell *matHeaderCellDef > Sec. </th>
+        <td mat-cell *matCellDef="let element; let i = index"> {{i + 1}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="folio">
+        <th mat-header-cell *matHeaderCellDef> Folio </th>
+        <td mat-cell *matCellDef="let element"> {{element.folio}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="fecha-Hora">
+        <th mat-header-cell *matHeaderCellDef> Fecha/Hora </th>
+        <td mat-cell *matCellDef="let element"> {{element.fecha | date:'short'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="id-centro">
+        <th mat-header-cell *matHeaderCellDef> ID Centro </th>
+        <td mat-cell *matCellDef="let element"> {{element.idCentro}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="id-region">
+        <th mat-header-cell *matHeaderCellDef> ID Región </th>
+        <td mat-cell *matCellDef="let element"> {{element.region}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="folio-sicatel">
+        <th mat-header-cell *matHeaderCellDef> Folio Sicatel </th>
+        <td mat-cell *matCellDef="let element"> {{element.foliosicatel}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="plataforma">
+        <th mat-header-cell *matHeaderCellDef> Plataforma </th>
+        <td mat-cell *matCellDef="let element"> {{element.plataforma}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="detalle">
+        <th mat-header-cell *matHeaderCellDef width="7%" class="header-th">Detalle</th>
+        <td mat-cell *matCellDef="let rowBes">
+          <button mat-flat-button class=" btnSee mat-flat-button " (click)="openModalShowDetail(rowBes)">Ver
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns" class="mdc-data-table__header-row_"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+  </div>
+
+  <div class="espacio20" *ngIf="showTableDetailMobile ;"></div>
+  <div class="divContainer" *ngIf="showTableDetailMobile;">
+    <h5 class="header-Title-black espacer20" > Plataforma - MOBILE </h5>
+    <table mat-table [dataSource]="dataSourceMobile" class="table-content">
+
+      <ng-container matColumnDef="sec">
+        <th mat-header-cell *matHeaderCellDef > Sec. </th>
+        <td mat-cell *matCellDef="let element; let i = index"> {{i + 1}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="folio">
+        <th mat-header-cell *matHeaderCellDef> Folio </th>
+        <td mat-cell *matCellDef="let element"> {{element.folio}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="fecha-Hora">
+        <th mat-header-cell *matHeaderCellDef> Fecha/Hora </th>
+        <td mat-cell *matCellDef="let element"> {{element.fecha | date:'short'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="id-centro">
+        <th mat-header-cell *matHeaderCellDef> ID Centro </th>
+        <td mat-cell *matCellDef="let element"> {{element.idCentro}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="id-region">
+        <th mat-header-cell *matHeaderCellDef> ID Región </th>
+        <td mat-cell *matCellDef="let element"> {{element.region}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="folio-sicatel">
+        <th mat-header-cell *matHeaderCellDef> Folio Sicatel </th>
+        <td mat-cell *matCellDef="let element"> {{element.foliosicatel}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="plataforma">
+        <th mat-header-cell *matHeaderCellDef> Plataforma </th>
+        <td mat-cell *matCellDef="let element"> {{element.plataforma}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="detalle">
+        <th mat-header-cell *matHeaderCellDef width="7%" class="header-th">Detalle</th>
+        <td mat-cell *matCellDef="let rowMoB">
+          <button mat-flat-button class=" btnSee mat-flat-button " (click)="openModalShowDetail(rowMoB)">Ver
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns" class="mdc-data-table__header-row_"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    
+  </div>
+
+  <div class="espacio20" *ngIf="showTableDetailMig ;"></div>
+
+  <div class="divContainer" *ngIf="showTableDetailMig;">
+    <h5 class="header-Title-black espacer20" >Plataforma Por Definir - en Proceso de Migracion
+      MOBILE a BES</h5>
+    <table mat-table [dataSource]="dataSource" class="table-content">
+
+      <ng-container matColumnDef="sec">
+        <th mat-header-cell *matHeaderCellDef > Sec. </th>
+        <td mat-cell *matCellDef="let element; let i = index"> {{i + 1}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="folio">
+        <th mat-header-cell *matHeaderCellDef> Folio </th>
+        <td mat-cell *matCellDef="let element"> {{element.folio}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="fecha-Hora">
+        <th mat-header-cell *matHeaderCellDef> Fecha/Hora </th>
+        <td mat-cell *matCellDef="let element"> {{element.fecha | date:'short'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="id-centro">
+        <th mat-header-cell *matHeaderCellDef> ID Centro </th>
+        <td mat-cell *matCellDef="let element"> {{element.idCentro}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="id-region">
+        <th mat-header-cell *matHeaderCellDef> ID Región </th>
+        <td mat-cell *matCellDef="let element"> {{element.region}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="folio-sicatel">
+        <th mat-header-cell *matHeaderCellDef> Folio Sicatel </th>
+        <td mat-cell *matCellDef="let element"> {{element.foliosicatel}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="plataforma">
+        <th mat-header-cell *matHeaderCellDef> Plataforma </th>
+        <td mat-cell *matCellDef="let element"> {{element.plataforma}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="detalle">
+        <th mat-header-cell *matHeaderCellDef width="7%" class="header-th">Detalle</th>
+        <td mat-cell *matCellDef="let rowMig">
+          <button mat-flat-button class=" btnSee mat-flat-button " (click)="openModalShowDetail(rowMig)">Ver
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns" class="mdc-data-table__header-row_"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+ 
+  </div>
+</section>
