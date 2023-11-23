@@ -1,0 +1,18 @@
+<h2>
+    Movimientos /
+    <small class="text-info">Consulta de Saldos</small>
+</h2>
+
+
+<mat-tab-group animationDuration="0ms" *ngIf="state$ | async as store">
+    <mat-tab *ngFor="let saldo of store.state.saldos.saldos" label="{{ saldo.plataforma }}-{{ saldo.nombreCliente}}">
+        <sicatel-consulta-saldo [saldo]="saldo" [telefono]="telefono" [cuenta]="cuenta"
+            [enabledCs]="store.state.enabledCs" [enabledRegion]="store.state.enabledRegion"
+            [enabledPay]="store.state.enabledPay" (resetEvent)="onReset()" (consultaEvent)="onConsulta($event)"
+            (consultaComplementoEvent)="onConsultaComplemento($event)"></sicatel-consulta-saldo>
+    </mat-tab>
+</mat-tab-group>
+
+<ng-container *ngIf="(state$ | async)?.state?.loading">
+    <sicatel-mask  [fullScreen]="true"></sicatel-mask>
+</ng-container>

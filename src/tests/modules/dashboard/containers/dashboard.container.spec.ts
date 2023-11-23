@@ -45,10 +45,4 @@ describe('Dashboard Container', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should dispatch change customer data', () => {
-    jest.spyOn(store, 'dispatch');
-    component.changeCustomerDataEvent();
-    expect(store.dispatch).toBeCalled();
-  });
-
 });

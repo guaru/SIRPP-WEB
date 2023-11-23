@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { SicatelCommons } from '@sicatel/configs/commons.constants';
 import { SicatelMessages } from '@sicatel/configs/messsages.constant';
+import { SicatelUrlsConstants } from '@sicatel/configs/urls.constants';
 import { UtilsService } from '@sicatel/core/services/utils/utils.service';
 import * as AuthenticationActions from '@sicatel/modules/authentication/store/actions/authentication.actions';
 import * as fromAuthentication from '@sicatel/modules/authentication/store/reducers/authentication.reducers';
@@ -30,7 +31,7 @@ export class AuthService {
             this.writeToken(user.accessToken,user.type);
             if(this.isAuthenticate()){
               this.store.dispatch(AuthenticationActions.setToken({ token: this.readToken() }));
-              this.router.navigate([SicatelCommons.pathDashboard]);
+              this.router.navigate([SicatelUrlsConstants.pathDashboard]);
             }
         } else {
             this.store.dispatch(AuthenticationActions.signInFailure({error : SicatelMessages.errorGeneral }));

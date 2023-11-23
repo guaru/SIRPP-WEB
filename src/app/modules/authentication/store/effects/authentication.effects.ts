@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { SicatelCommons } from '@sicatel/configs/commons.constants';
+import { SicatelUrlsConstants } from '@sicatel/configs/urls.constants';
 import { LoginService } from '@sicatel/core/http/login/login.service';
 import { AuthService } from '@sicatel/core/services/auth.service';
 import { UtilsService } from '@sicatel/core/services/utils/utils.service';
@@ -33,7 +33,7 @@ export class AuthenticationEffects {
   signOff$ = createEffect(() => this.actions$.pipe(ofType(AuthenticationActions.signOff),
     tap(() => {
       this.authService.signOff();
-      this.router.navigate([SicatelCommons.pathLogin]);
+      this.router.navigate([SicatelUrlsConstants.pathLogin]);
     }))
     , { dispatch: false });
 

@@ -38,4 +38,22 @@ describe('UtilService', () => {
     it('should open an success default', () => {
         service.showSuccessMessage();
     });
+
+    it('should open an info swal', () => {
+        service.showInfoMessage(SicatelTestMessages.infoTest);
+    });
+
+    it('should copy not empty properties twon object', () => {
+        const source = { a: 'DEMO', b: '' };
+        const target = { a: '', b: '' };
+        service.copyIsNotEmptyProperties(source,target);
+        expect(target.a).toEqual(source.a);
+        expect(target.b).toEqual(source.b);
+    });
+
+    it('should is empty value', () => {
+        expect(service.isEmpty('')).toEqual(true);
+        expect(service.isEmpty(undefined)).toEqual(true);
+        expect(service.isEmpty('  ')).toEqual(true);
+    });
 });

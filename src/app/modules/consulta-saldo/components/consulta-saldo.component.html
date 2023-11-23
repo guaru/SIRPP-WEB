@@ -1,0 +1,337 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-subtitle>Consulta</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="pt-1">
+        <div class="row">
+            <div class="col-3">
+                <mat-form-field appearance="outline" class="font-weight-bold mat-xs w-100 mt-1" color="accent">
+                    <mat-label>Cuenta</mat-label>
+                    <input matInput [(ngModel)]="cuenta" id="cuenta" value="{{ cuenta }}">
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="font-weight-bold mat-xs w-100 mt-1" color="accent">
+                    <mat-label>Teléfono</mat-label>
+                    <input matInput [(ngModel)]="telefono"  value="{{ telefono }}" >
+                </mat-form-field>
+            </div>
+            <div class="col-2">
+                <button class="btn btn-warning btn-sm mt-3" (click)="onConsulta($event)" [disabled]="!enabledCs"
+                    aria-label="Consultar (F8)">Consultar Saldo (F8)</button>
+            </div>
+            <div class="col-7">
+                <div class="alert alert-primary  p-1" role="alert">
+                    * Digite el telefono o la cuenta para realizar la consulta.
+                </div>
+                <h4 class="text-danger">Plataforma: {{ saldo.plataforma }} </h4>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+<mat-card>
+    <mat-card-header>
+        <mat-card-subtitle>Pantalla REACT</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="pt-1">
+        <ng-container *ngTemplateOutlet="react"></ng-container>
+    </mat-card-content>
+</mat-card>
+
+<mat-card>
+    <mat-card-header>
+        <mat-card-subtitle>Pantalla SPREP</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="px-5 pt-1">
+        <ng-container *ngTemplateOutlet="sprep"></ng-container>
+    </mat-card-content>
+</mat-card>
+
+
+<ng-template #react>
+    <div class="row">
+        <div class="col-3">
+            <mat-form-field appearance="outline" class="font-weight-bold mat-xs w-100 mt-2" color="accent">
+                <mat-label>Saldo estimado a Pagar</mat-label>
+                <input matInput disabled value="{{ saldo.saldoEstmAlDia }}">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="font-weight-bold mat-xs w-100 mt-2" color="accent">
+                <mat-label>Saldo a Pagar</mat-label>
+                <input matInput  disabled value="{{ saldo.saldoAPagar }}">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="font-weight-bold mat-xs w-100 mt-2" color="accent">
+                <mat-label>Saldo telecomunicaciones vencido</mat-label>
+                <input matInput disabled value="{{ saldo.telcomVencido }}">
+            </mat-form-field>
+        </div>
+        <div class="col-2">
+            <div class="btn-group-vertical">
+                <button class="btn btn-warning btn-sm mt-1" [disabled]="!enabledPay" aria-label="(F5)"
+                    (click)="onSaldoEstimadoAPagar($event)">(F5)</button>
+                <button class="btn btn-warning btn-sm mt-2" [disabled]="!enabledPay" aria-label="(F9)"
+                    (click)="onSaldoPagar($event)">(F9)</button>
+                <button class="btn btn-warning btn-sm mt-2" [disabled]="!enabledPay" aria-label="(F12)"
+                    (click)="onSaldoTelecomunicaciones($event)">(F12)</button>
+            </div>
+        </div>
+        <div class="col-5">
+            <div class="mt-5"></div>
+            <mat-form-field appearance="outline" class="font-weight-bold mat-xs w-100 mt-5" color="accent">
+                <mat-label>Limite de consumo</mat-label>
+                <input matInput disabled  value="{{ saldo.limiteConsumo }}">
+            </mat-form-field>
+        </div>
+        <div class="row mt-1">
+            <div class="col-6">
+                <mat-form-field appearance="outline" class="font-weight-bold mat-xs w-100" color="accent">
+                    <input matInput disabled  value="{{ saldo.mensajeError1 }}">
+                </mat-form-field>
+            </div>
+            <div class="col-6">
+                <mat-form-field appearance="outline" class="font-weight-bold mat-xs w-100" color="accent">
+                    <input matInput disabled value="{{ saldo.errorReactivacion2 }}">
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+
+</ng-template>
+
+
+<ng-template #sprep>
+    <div class="row">
+        <div class="col-3">
+            <mat-form-field appearance="outline" class="font-weight-bold mat-xs w-100 mt-1" color="accent">
+                <mat-label>Cuenta</mat-label>
+                <input matInput  disabled value="{{ saldo.cuenta }}">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="font-weight-bold mat-xs w-100 mt-1" color="accent">
+                <mat-label>Teléfono</mat-label>
+                <input matInput disabled value="{{ saldo.telefono }}">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="font-weight-bold mat-xs w-100 mt-1" color="accent">
+                <mat-label>Región</mat-label>
+                <mat-select name="region" [(ngModel)]="saldo.region" [disabled]="!enabledRegion"
+                    (selectionChange)="onConsultaChange()">
+                    <mat-option *ngFor="let region of regiones" [value]="region.value">
+                        {{ region.label }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-2"></div>
+        <div class="col-6">
+            <mat-form-field appearance="outline" class="font-weight-bold mat-xs w-100 mt-1" color="accent">
+                <mat-label>Nombre del Cliente</mat-label>
+                <input matInput  disabled value="{{ saldo.nombreCliente }}">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="font-weight-bold mat-xs w-100 mt-1" color="accent">
+                <mat-label>Estatus de la Cuenta</mat-label>
+                <input matInput  disabled value="{{ saldo.estatusDeCuenta }}">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="font-weight-bold mat-xs w-100 mt-1" color="accent">
+                <mat-label>Cuenta Padre</mat-label>
+                <input matInput  disabled value="{{ saldo.cuentaPadre }}">
+            </mat-form-field>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-3">
+            <mat-form-field appearance="outline" class="font-weight-bold mat-xs w-100 mt-1" color="accent">
+                <mat-label>Clase de Crédito</mat-label>
+                <input matInput  disabled value="{{ saldo.claseDeCredito }}">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="font-weight-bold mat-xs w-100 mt-1" color="accent">
+                <mat-label>Tipo de Cuenta</mat-label>
+                <input matInput  disabled value="{{ saldo.tipoDeCuenta }}">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="font-weight-bold mat-xs w-100 mt-1" color="accent">
+                <mat-label>Fecha Ultimo Pago</mat-label>
+                <input matInput  disabled value="{{ saldo.fechaUltimoPago  }}">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="font-weight-bold mat-xs w-100 mt-1" color="accent">
+                <mat-label>Estatus de Cobranza</mat-label>
+                <input matInput disabled value="{{ saldo.estatusDeCobranza }}">
+            </mat-form-field>
+        </div>
+        <div class="col-2"></div>
+        <div class="col-6">
+            <mat-form-field appearance="outline" class="font-weight-bold mat-xs w-100 mt-1" color="accent">
+                <mat-label>Ciclo de Facturación</mat-label>
+                <input matInput  disabled value="{{ saldo.cicloFacturacion }}">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="font-weight-bold mat-xs w-100 mt-1" color="accent">
+                <mat-label>Fecha Alta</mat-label>
+                <input matInput  disabled value="{{ saldo.fechaDeAlta }}">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="font-weight-bold mat-xs w-100 mt-1" color="accent">
+                <mat-label>Importe</mat-label>
+                <input matInput  disabled value="{{ saldo.importe }}">
+            </mat-form-field>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-8">
+            <div class="row">
+                <div class="col-12">
+                    <ng-container *ngTemplateOutlet="tableConsumos"></ng-container>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-3">
+                    <mat-form-field appearance="outline" class="font-weight-bold mat-xs w-100" color="accent">
+                        <mat-label>Saldo Estimado</mat-label>
+                        <input matInput disabled value="{{ saldo.saldoEstimado }}">
+                    </mat-form-field>
+                </div>
+                <div class="col-3">
+                    <mat-form-field appearance="outline" class="font-weight-bold mat-xs w-100" color="accent">
+                        <mat-label>Saldo con Penalización</mat-label>
+                        <input matInput disabled value="{{ saldo.saldoPenalizado }}">
+                    </mat-form-field>
+                </div>
+                <div class="col-3">
+                    <mat-form-field appearance="outline" class="font-weight-bold mat-xs w-100" color="accent">
+                        <mat-label>Limite de Consumo</mat-label>
+                        <input matInput disabled value="{{ saldo.limiteConsumo }}">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row mt-2">
+                <div class="col-12">
+                    <ng-container *ngTemplateOutlet="tableFacturas"></ng-container>
+                </div>
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="btn-group-vertical mt-4">
+                <button class="btn btn-warning btn-sm mt-1" (click)="onConsulta($event)" [disabled]="!enabledCs"
+                    aria-label="Consulta saldo (F8)">Consulta Saldo (F8)</button>
+
+                <button class="btn btn-warning btn-sm mt-2" [disabled]="!enabledPay" aria-label="Saldo estimado (F5)"
+                    (click)="onSaldoEstimadoAPagar($event)">Saldo estimado (F5)</button>
+
+                <button class="btn btn-warning btn-sm mt-2" [disabled]="!enabledPay" aria-label="Saldo a Pagar (F9)"
+                    (click)="onSaldoPagar($event)">Saldo a Pagar (F9)</button>
+
+                <button class="btn btn-warning btn-sm mt-2" [disabled]="!enabledPay"
+                    aria-label="Telecomunicaciones (F12)" (click)="onSaldoTelecomunicaciones($event)">Telecomunicaciones
+                    (F12)</button>
+                    
+                <button class="btn btn-warning btn-sm mt-2" (click)="onSalir($event)" aria-label="Salir (ESC)">Salir
+                    (ESC)</button>
+            </div>
+        </div>
+        <div class="col-2" *ngIf="saldo.plataforma === 'BES' ">
+            <div class="btn-group-vertical mt-4">
+                <button class="btn btn-warning btn-sm mt-1" [disabled]="!enabledPay" (click)="onTelecomServ($event)">Ver
+                    Telecom y Serv (F1)</button>
+                <button class="btn btn-warning btn-sm mt-2" [disabled]="!enabledPay" (click)="onFacturacion($event)">Ver
+                    Facturación (F2)</button>
+                <button class="btn btn-warning btn-sm mt-2" [disabled]="!enabledPay" (click)="onCobranza($event)">Ver
+                    Cobranza (F3)</button>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+
+<ng-template #tableConsumos>
+    <table class="table table-striped">
+        <thead>
+            <th></th>
+            <th>Total</th>
+            <th>Telecomuniciones</th>
+            <th>Otro Servicio Telcel</th>
+            <th>Servicios Terceros</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Actual</td>
+                <td>$ {{ saldo.actualTotal }}</td>
+                <td>$ {{ saldo.actualTelecomunicaciones }}</td>
+                <td>$ {{ saldo.actualOtrosServ }}</td>
+                <td>$ {{ saldo.actualServTerceros }}</td>
+            </tr>
+            <tr>
+                <td>Del Mes</td>
+                <td>$ {{ saldo.delMesTotal }}</td>
+                <td>$ {{ saldo.delMesTelecomunicaciones }}</td>
+                <td>$ {{ saldo.delMesOtrosServTelcel }}</td>
+                <td>$ {{ saldo.delMesServTerceros }}</td>
+            </tr>
+            <tr>
+                <td>30 Días</td>
+                <td>$ {{ saldo.treintaDiasTotal }}</td>
+                <td>$ {{ saldo.treintaDiasTelecomunicaciones }}</td>
+                <td>$ {{ saldo.treintaDiasOtrosServTelcel }}</td>
+                <td>$ {{ saldo.treintaDiasServTerceros }}</td>
+            </tr>
+            <tr>
+                <td>60 Días</td>
+                <td>$ {{ saldo.sesentaDiasTotal }}</td>
+                <td>$ {{ saldo.sesentaDiasTelecomunicaciones }}</td>
+                <td>$ {{ saldo.sesentaDiasOtrosServTelcel }}</td>
+                <td>$ {{ saldo.sesentaDiasServTerceros }}</td>
+            </tr>
+            <tr>
+                <td>90 Días</td>
+                <td>$ {{ saldo.noventaDiasTotal }}</td>
+                <td>$ {{ saldo.noventaDiasTelecomunicaciones }}</td>
+                <td>$ {{ saldo.noventaDiasOtrosServTelcel }}</td>
+                <td>$ {{ saldo.noventaDiasServTerceros }}</td>
+            </tr>
+            <tr>
+                <td>120 Días</td>
+                <td>$ {{ saldo.cientoVeinteDiasTotal }}</td>
+                <td>$ {{ saldo.cientoVeinteDiasTelecomunicaciones }}</td>
+                <td>$ {{ saldo.cientoVeinteDiasOtrosServTelcel }}</td>
+                <td>$ {{ saldo.cientoVeinteDiasServTerceros }}</td>
+            </tr>
+        </tbody>
+    </table>
+</ng-template>
+
+<ng-template #tableFacturas>
+    <table class="table table-striped">
+        <thead></thead>
+        <tbody>
+            <tr>
+                <td class="text-left">Fecha Factura</td>
+                <td>{{ saldo.fechaFact1 }}</td>
+                <td>{{ saldo.fechaFact2 }}</td>
+                <td>{{ saldo.fechaFact3 }}</td>
+                <td>{{ saldo.fechaFact4 }}</td>
+            </tr>
+            <tr>
+                <td class="text-left">Importe Factura</td>
+                <td>$ {{ saldo.importeFactura1 }}</td>
+                <td>$ {{ saldo.importeFactura2 }}</td>
+                <td>$ {{ saldo.importeFactura3 }}</td>
+                <td>$ {{ saldo.importeFactura4 }}</td>
+            </tr>
+            <tr>
+                <td class="text-left">4 Ultimas Fechas Factura</td>
+                <td> {{ saldo.ultimaFechaFact1 }}</td>
+                <td> {{ saldo.ultimaFechaFact2 }}</td>
+                <td> {{ saldo.ultimaFechaFact3 }}</td>
+                <td> {{ saldo.ultimaFechaFact4 }}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="4" class="text-left">
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="4" class="text-left">
+                    {{ saldo.mensajeError1 }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</ng-template>

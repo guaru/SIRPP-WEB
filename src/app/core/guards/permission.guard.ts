@@ -3,6 +3,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTr
 import { Store } from '@ngrx/store';
 import { SicatelCommons } from '@sicatel/configs/commons.constants';
 import { SicatelPermissions } from '@sicatel/configs/sicatel-permissions';
+import { SicatelUrlsConstants } from '@sicatel/configs/urls.constants';
 import { AuthService } from '@sicatel/core/services/auth.service';
 import * as fromAuthentication from '@sicatel/modules/authentication/store/reducers/authentication.reducers';
 import * as AuthenticationSelectors from '@sicatel/modules/authentication/store/selectors/authentication.selectors';
@@ -25,7 +26,7 @@ export class PermissionGuard implements CanActivate {
      */
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
         if (state.url.includes(SicatelCommons.reportMove) && (this.getPermisse().indexOf(SicatelPermissions.reportMove) === -1)) {
-            this.router.navigate([SicatelCommons.pathDashboard]);
+            this.router.navigate([SicatelUrlsConstants.pathDashboard]);
         }
         return true;
     }

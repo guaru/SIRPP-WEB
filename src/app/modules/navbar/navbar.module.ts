@@ -8,6 +8,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CoreModule } from '@sicatel/core/core.module';
@@ -37,7 +38,8 @@ import { PipesModule } from '@sicatel/shared/pipes/pipes.module';
         EffectsModule.forFeature(MenuEffects),
         StoreModule.forFeature(featureKey, reducer),
         PipesModule,
-        SicatelMaskModule
+        SicatelMaskModule,
+        RouterModule
     ],
     exports: [ SicatelNavbarContainer ]
 })

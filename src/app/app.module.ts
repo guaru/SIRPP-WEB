@@ -12,34 +12,35 @@ import { RootModule } from '@sicatel/core/root.module';
 import { environment } from '@sicatel/env/environment';
 import { ROOT_REDUCERS } from '@sicatel/store';
 
+
 @NgModule({
-    declarations: [
-        AppComponent
-    ],
-    providers: [],
-    bootstrap: [AppComponent],
-    imports: [
-        AppRoutingModule,
-        CommonModule,
-        RootModule,
-        StoreModule.forRoot(ROOT_REDUCERS, {
-            runtimeChecks: {
-                strictStateImmutability: true,
-                strictActionImmutability: true /*, TODO: fix it
-                strictActionSerializability: true,
-                strictStateSerializability: true*/
-            }
-        }),
-        StoreRouterConnectingModule.forRoot({
-            routerState: RouterState.Minimal
-        }),
-        EffectsModule.forRoot(),
-        StoreDevtoolsModule.instrument({
-            maxAge: 25,
-            logOnly: environment.production
-        }),
-        SicatelMaskModule,
-        NgbModule
-    ]
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    AppRoutingModule,
+    CommonModule,
+    RootModule,
+    StoreModule.forRoot(ROOT_REDUCERS, {
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true/*, TODO: fix it
+        strictActionSerializability: true,
+        strictStateSerializability: true*/
+      }
+    }),
+    StoreRouterConnectingModule.forRoot({
+      routerState: RouterState.Minimal
+    }),
+    EffectsModule.forRoot(),
+    StoreDevtoolsModule.instrument({
+       maxAge: 25,
+       logOnly: environment.production
+    }),
+   SicatelMaskModule,
+   NgbModule
+  ],
+  providers: [],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }

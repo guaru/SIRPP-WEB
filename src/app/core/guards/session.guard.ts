@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, CanLoad, Route, Router, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
-import { SicatelCommons } from '@sicatel/configs/commons.constants';
+import { SicatelUrlsConstants } from '@sicatel/configs/urls.constants';
 import { AuthService } from '@sicatel/core/services/auth.service';
 import { Observable } from 'rxjs';
 
@@ -21,7 +21,7 @@ export class SessionGuard implements CanActivate,CanLoad {
      */
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
         if(this.authService.isAuthenticate())
-             {this.router.navigate([SicatelCommons.pathDashboard]);}
+             {this.router.navigate([SicatelUrlsConstants.pathDashboard]);}
         return true;
     }
 
@@ -35,7 +35,7 @@ export class SessionGuard implements CanActivate,CanLoad {
      */
     canLoad(route: Route, segments: Array<UrlSegment>): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
         if(this.authService.isAuthenticate())
-          {this.router.navigate([SicatelCommons.pathDashboard]);}
+          {this.router.navigate([SicatelUrlsConstants.pathDashboard]);}
         return true;
     }
 }

@@ -6,6 +6,7 @@ export const environment = {
     enableMocks: true,
     key: 'Py1LCRF@%75k$$',
     sicatel_authentication_api:'/api/v1/authentication',
+    sicatel_consulta_saldo_api:'/api/v1/consulta-saldo',
     sicatel_report_move_api:'/api/v1/report'
 };
 /*

@@ -1,0 +1,27 @@
+<h1 mat-dialog-title class="text-primary">Consultar Saldo</h1>
+<form [formGroup]="consultaForm" (submit)="onSubmit($event)"  >
+  <mat-dialog-content>
+    <div class="row">
+      * Digite el Teléfono/Cuenta para realizar la consulta.
+      <mat-form-field appearance="outline" class="font-weight-bold w-100 mt-2" color="accent">
+        <mat-label>Cuenta</mat-label>
+        <input matInput sicatelNumber maxlength="30" formControlName="cuenta">
+        <mat-error class="font-weight-bold" *ngIf="consultaForm.controls.cuenta.invalid">
+          Ingrese una cuenta valida (10 digitos)
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="font-weight-bold w-100" color="accent">
+        <mat-label>Teléfono</mat-label>
+        <input matInput sicatelNumber maxlength="20" formControlName="telefono">
+        <mat-error class="font-weight-bold" *ngIf="consultaForm.controls.telefono.invalid">
+          Ingrese un teléfono valido (10 digitos)
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button class="btn btn-sm btn-warning" type="submit"  mat-button>Consultar (F8)</button>
+    <button class="btn btn-sm btn-light ms-1" mat-button mat-dialog-close>Cerrar</button>
+  </mat-dialog-actions>
+</form>

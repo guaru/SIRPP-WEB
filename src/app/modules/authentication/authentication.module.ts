@@ -11,6 +11,8 @@ import { AuthenticationContainer } from '@sicatel/modules/authentication/contain
 import { CarouselModule } from '@sicatel/modules/carousel/carousel.module';
 import { DirectivesModule } from '@sicatel/shared/directives/directives.module';
 
+import { SicatelMaskModule } from '../mask/mask.module';
+
 
 @NgModule({
     declarations: [
@@ -26,7 +28,8 @@ import { DirectivesModule } from '@sicatel/shared/directives/directives.module';
         MatProgressSpinnerModule,
         MatSelectModule,
         DirectivesModule,
-        CarouselModule
+        CarouselModule,
+        SicatelMaskModule
     ]
 })
 export class AuthenticationModule {}
