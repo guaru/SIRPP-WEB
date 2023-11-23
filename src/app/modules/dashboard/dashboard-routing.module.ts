@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SicatelCommons } from '@sicatel/configs/commons.constants';
+import { SicatelUrlsConstants } from '@sicatel/configs/urls.constants';
 import { DashboardContainer } from '@sicatel/modules/dashboard/containers/dashboard.container';
 
 
@@ -12,7 +12,7 @@ const routes: Routes = [
     },
     {
      path: '**',
-     redirectTo: SicatelCommons.dashboard,
+     redirectTo: SicatelUrlsConstants.dashboard,
      pathMatch: 'full'
    }
 ];

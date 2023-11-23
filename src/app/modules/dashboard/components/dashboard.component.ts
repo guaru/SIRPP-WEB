@@ -1,5 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { IDashboardSettings } from '@sicatel/modules/dashboard/models/dashboard-settings.interface';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'sicatel-dashboard',

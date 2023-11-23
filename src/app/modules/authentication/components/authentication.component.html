@@ -51,3 +51,7 @@
 <div class="carrucel mt-1">
     <sicatel-carousel-container></sicatel-carousel-container>
 </div>
+
+<ng-container *ngIf="loading">
+    <sicatel-mask [fullScreen]="true"></sicatel-mask>
+</ng-container>

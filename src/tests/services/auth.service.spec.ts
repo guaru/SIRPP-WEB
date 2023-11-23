@@ -2,7 +2,7 @@ import { TestBed, waitForAsync } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import { SicatelCommons } from '@sicatel/configs/commons.constants';
+import { SicatelUrlsConstants } from '@sicatel/configs/urls.constants';
 import { AuthService } from '@sicatel/core/services/auth.service';
 import * as fromAuthentication from '@sicatel/modules/authentication/store/reducers/authentication.reducers';
 import { DashboardContainer } from '@sicatel/modules/dashboard/containers/dashboard.container';
@@ -55,7 +55,7 @@ describe('AuthService', () =>{
         expect(writeTokenSpy).toHaveBeenCalled();
         expect(isAuthenticateSpy).toHaveBeenCalled();
         expect(store.dispatch).toBeCalled();
-        expect(navigateSpy).toHaveBeenCalledWith([SicatelCommons.pathDashboard]);
+        expect(navigateSpy).toHaveBeenCalledWith([SicatelUrlsConstants.pathDashboard]);
     });
 
     it('should be is authenticated', ()=>{

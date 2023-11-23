@@ -12,6 +12,7 @@ import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { AuthenticationComponent } from '@sicatel/modules/authentication/components/authentication.component';
 import * as fromAuthentication from '@sicatel/modules/authentication/store/reducers/authentication.reducers';
 import * as AuthenticationSelectors from '@sicatel/modules/authentication/store/selectors/authentication.selectors';
+import { CarouselModule } from '@sicatel/modules/carousel/carousel.module';
 import { ELoginType } from '@sicatel/shared/enums/login-type.enum';
 import { MockModule, MockProvider } from 'ng-mocks';
 
@@ -33,7 +34,8 @@ describe('AuthenticationComponent', () => {
         MockModule(FormsModule),
         MockModule(ReactiveFormsModule),
         MockModule(MatButtonModule),
-        MockModule(MatProgressSpinnerModule)
+        MockModule(MatProgressSpinnerModule),
+        MockModule(CarouselModule)
       ],
       providers: [
         MockProvider(Router, routerSpy),

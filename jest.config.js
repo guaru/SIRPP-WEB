@@ -27,6 +27,7 @@ module.exports = {
     coveragePathIgnorePatterns: [
       "/node_modules/",
       "<rootDir>/src/app/configs",
+      "<rootDir>/src/app/store/index.ts",
       "<rootDir>/src/tests/configs"
     ],
     transformIgnorePatterns: [

@@ -16,7 +16,7 @@
 			<ng-container *ngFor="let subMenu of link.items; let i = index">
 				<mat-nav-list class="pt-0">
 					<ng-container>
-						<a mat-menu-item routerLink="#" [href]="subMenu.url" routerLinkActive="active">
+						<a mat-menu-item [routerLink]="subMenu.url" routerLinkActive="active">
 							<mat-icon fontSet="fas" [fontIcon]="subMenu.icon | substringIcon"></mat-icon>
 							<span mat-line>{{ subMenu.name }}</span>
 						</a>

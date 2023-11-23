@@ -6,6 +6,7 @@ import { AppLayoutRoutingModule } from '@sicatel/core/layout/app-layout/app-layo
 import { AppLayoutComponent } from '@sicatel/core/layout/app-layout/app.layout';
 import { NavbarModule } from '@sicatel/modules/navbar/navbar.module';
 
+
 @NgModule({
     declarations: [AppLayoutComponent],
     exports: [AppLayoutComponent],
