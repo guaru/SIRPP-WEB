@@ -7,7 +7,8 @@ export const environment = {
     key: 'Py1LCRF@%75k$$',
     sicatel_authentication_api:'/api/v1/authentication',
     sicatel_consulta_saldo_api:'/api/v1/consulta-saldo',
-    sicatel_report_move_api:'/api/v1/report'
+    sicatel_report_move_api:'/api/v1/report',
+    sicatel_consulta_orden_api:'/api/v1/consulta-orden'
 };
 /*
 * For easier debugging in development mode, you can import the following file

@@ -30,6 +30,14 @@
         "pathRewrite": {
             "^/api/v1/report": "/v1/report"
         }
+    },
+    "/api/v1/consulta-orden": {
+        "target": "http://localhost:9091/sicatel-consulta-orden-api",
+        "changeOrigin": true,
+        "secure": false,
+        "pathRewrite": {
+            "^/api/v1/consulta-orden": "/v1/"
+        }
     }
 
 

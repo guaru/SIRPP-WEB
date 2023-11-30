@@ -1,0 +1,21 @@
+<h1 mat-dialog-title class="text-primary">Consultar Orden</h1>
+<form [formGroup]="searchForm" (submit)="onSubmit()">
+  <mat-dialog-content >
+    <div class="row">
+      <div class="col-8">
+        * Digite la orden para consultar
+        <mat-form-field  required appearance="outline" class="font-weight-bold w-100 mt-2" color="accent">
+          <mat-label>Orden de Compra</mat-label>
+          <input matInput sicatelNumber #inputOrden maxlength="50" formControlName="orden">
+          <mat-error class="font-weight-bold" *ngIf="searchForm.controls.orden.invalid">
+            Orden de compra requerida
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button class="btn btn-sm btn-warning" type="submit" mat-button>Consultar (F8)</button>
+    <button class="btn btn-sm btn-light ms-1" mat-button mat-dialog-close>Cerrar</button>
+  </mat-dialog-actions>
+</form>

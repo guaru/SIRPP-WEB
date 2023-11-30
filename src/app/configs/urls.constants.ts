@@ -18,6 +18,9 @@ export class SicatelUrlsConstants {
     static readonly consultaSaldoUrl =  `${SicatelUrlsConstants.consultaSaldoBaseUrl}/consulta-saldo/view`;
     static readonly consultaSaldoComplementoUrl =  `${SicatelUrlsConstants.consultaSaldoBaseUrl}/consulta-saldo/complemento`;
 
+    //CONSULTA ORDEN
+    static readonly consultaOrdenBaseUrl = environment.sicatel_consulta_orden_api;
+    static readonly consultaOrdenInfoUrl = `${SicatelUrlsConstants.consultaOrdenBaseUrl}/order-detail/info`;
 
     static readonly caja = 'caja';
     static readonly dashboard = 'dashboard';
@@ -25,9 +28,11 @@ export class SicatelUrlsConstants {
     static readonly login = 'login';
     static readonly registroConsulta = 'registro-consulta';
     static readonly consultaSaldo = 'consulta-de-saldos';
+    static readonly consultaOrden = 'consulta-orden';
     static readonly pathDashboard = `/${SicatelUrlsConstants.caja}/${SicatelUrlsConstants.dashboard}`;
     static readonly pathLogin = `/${SicatelUrlsConstants.auth}/${SicatelUrlsConstants.login}`;
     static readonly pathConsultaSaldo = `${SicatelUrlsConstants.registroConsulta}/${SicatelUrlsConstants.consultaSaldo}`;
+    static readonly pathConsultaOrden = `${SicatelUrlsConstants.registroConsulta}/${SicatelUrlsConstants.consultaOrden}`;
     //Report move
     static readonly reportMoveBaseUrl = environment.sicatel_report_move_api;
     static readonly dataGetReportMove = `${SicatelUrlsConstants.reportMoveBaseUrl}/report/move`;

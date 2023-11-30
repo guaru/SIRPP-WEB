@@ -16,6 +16,11 @@ export const applicationRoutes: Routes = [
         canActivate: [LoginGuard]
     },
     {
+        path: SicatelUrlsConstants.pathConsultaOrden,
+        loadChildren: () => import('@sicatel/modules/consulta-orden/consulta-orden.module').then(m => m.ConsultaOrdenModule),
+        canActivate: [LoginGuard]
+    },
+    {
         path: SicatelCommons.reportMove,
         loadChildren: () => import('@sicatel/modules/reports/report-move/report-move.module').then(m => m.ReportMoveModule),
         canActivate: [PermissionGuard]
