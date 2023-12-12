@@ -1,21 +1,63 @@
 <h1 mat-dialog-title class="text-primary">Consultar Orden</h1>
-<form [formGroup]="searchForm" (submit)="onSubmit()">
-  <mat-dialog-content >
-    <div class="row">
-      <div class="col-8">
-        * Digite la orden para consultar
-        <mat-form-field  required appearance="outline" class="font-weight-bold w-100 mt-2" color="accent">
-          <mat-label>Orden de Compra</mat-label>
-          <input matInput sicatelNumber #inputOrden maxlength="50" formControlName="orden">
-          <mat-error class="font-weight-bold" *ngIf="searchForm.controls.orden.invalid">
-            Orden de compra requerida
-          </mat-error>
-        </mat-form-field>
+<ng-container *ngIf="state$ | async as store">
+  <form [formGroup]="searchForm" (submit)="onSubmit()">
+    <mat-dialog-content>
+      <div class="row">
+        <div class="col-6">
+          * Digite la orden para consultar
+          <mat-form-field required appearance="outline" class="font-weight-bold w-100 mt-2" color="accent">
+            <mat-label>Orden de Compra</mat-label>
+            <input matInput sicatelNumber #inputOrden maxlength="50" formControlName="orden">
+            <mat-error class="font-weight-bold" *ngIf="searchForm.controls.orden.invalid">
+              Orden de compra requerida
+            </mat-error>
+          </mat-form-field>
+
+        </div>
+        <div class="col-3 mt-1">
+          <mat-checkbox formControlName="detail">Ver Detalle</mat-checkbox>
+        </div>
+        <div class="col-3 mt-1">
+          <h4 *ngIf="store.state.response.orderInvoice as invoice">Estatus: {{invoice.statusDesc}} </h4>
+        </div>
       </div>
-    </div>
-  </mat-dialog-content>
-  <mat-dialog-actions align="end">
-    <button class="btn btn-sm btn-warning" type="submit" mat-button>Consultar (F8)</button>
-    <button class="btn btn-sm btn-light ms-1" mat-button mat-dialog-close>Cerrar</button>
-  </mat-dialog-actions>
-</form>
+
+      <div class="row" *ngIf="store.state.response.invoiceItems as items">
+        <div class="col-12">
+          <table class="table table-striped table-hover">
+            <thead>
+              <th>No. Concepto</th>
+              <th>Concepto</th>
+              <th>Importe</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of items">
+                <td>{{item.concept.idConpeto}}</td>
+                <td>{{item.concept.concepto}}</td>
+                <td>${{item.amount}}</td>
+              </tr>
+
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+
+      <ng-container *ngIf="store.state.response.orderInvoice as invoice">
+        <h5 class="mx-5 fw-bold"> Total a Pagar: ${{invoice.amount}}</h5>
+        <button class="btn  btn-warning  mx-2" *ngIf="store.state.response.orderInvoice.statusDesc==='CREADA'"
+          [disabled]="store.state.response.orderInvoice.statusDesc!=='CREADA'" type="button" mat-button>Pagar
+          (F9)</button>
+      </ng-container>
+      <button class="btn  btn-warning" type="submit" mat-button>Consultar (F8)</button>
+      <button class="btn  btn-light ms-1" mat-button mat-dialog-close>Cerrar</button>
+    </mat-dialog-actions>
+  </form>
+</ng-container>
+
+<ng-container *ngIf="(state$ | async)?.state?.loading">
+  <sicatel-mask [fullScreen]="true"></sicatel-mask>
+</ng-container>

@@ -117,4 +117,8 @@ export class UtilsService {
         });
     }
 
+    indexOfInArray(array: Array<string>, value: string): boolean {
+        return array.indexOf(value) > -1;
+    }
+
 }

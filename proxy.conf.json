@@ -8,7 +8,7 @@
         }
     },
     "/api/v1/authentication": {
-        "target": "http://localhost:9090/sicatel-authentication-api",
+        "target": "http://www.telceltest85.telcel.com:9001/sicatel-authentication-api",
         "changeOrigin": true,
         "secure": false,
         "pathRewrite": {
@@ -32,7 +32,7 @@
         }
     },
     "/api/v1/consulta-orden": {
-        "target": "http://localhost:9091/sicatel-consulta-orden-api",
+        "target": "http://localhost:9092/sicatel-consulta-orden-api",
         "changeOrigin": true,
         "secure": false,
         "pathRewrite": {

@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { ConsultaOrdenService } from '@sicatel/core/http/consulta-orden/consulta-orden.service';
+import { UtilsService } from '@sicatel/core/services/utils/utils.service';
+import {ConsultaOrdenActions} from '@sicatel/modules/consulta-orden/store';
 import { IOrdenDetailResponse } from '@sicatel/shared/models/consulta-orden/orden-detail-response.interface';
 import { IError } from '@sicatel/shared/models/request/error.interface';
-import { catchError, exhaustMap, map, of } from 'rxjs';
-
-import { ConsultaOrdenActions } from '..';
-
+import { catchError, exhaustMap, map, of, tap } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -21,6 +20,12 @@ export class ConsultaOrdenEffects {
         ))
     ));
 
-    constructor(private actions$: Actions, private consultaOrdenService: ConsultaOrdenService) { }
+    consultaOrdenError$ =  createEffect(() => this.actions$.pipe(
+        ofType(ConsultaOrdenActions.consultaOrdenError),
+        tap(error => this.utilService.showErrorMessage(error.error))
+    ), {dispatch: false});
+
+
+    constructor(private actions$: Actions, private consultaOrdenService: ConsultaOrdenService, private utilService: UtilsService) { }
 
 }

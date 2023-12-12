@@ -14,7 +14,7 @@ export interface  State {
     userResponse: IUserResponse;
     token: IToken;
     isAuthenticate: boolean;
-}
+};
 
 export const initialState: State = {
     userRequest :  {} as IUserRequest,

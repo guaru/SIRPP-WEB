@@ -11,12 +11,12 @@ import { IUserResponse } from '@sicatel/shared/models/response/user.response';
 import { IToken } from '@sicatel/shared/models/user/user';
 
 @Injectable({
-     providedIn: 'root'
+    providedIn: 'root'
 })
 export class AuthService {
 
 
-    constructor(private store: Store<fromAuthentication.State>, private utilService: UtilsService, private router: Router) {}
+    constructor(private store: Store<fromAuthentication.State>, private utilService: UtilsService, private router: Router) { }
 
     /**
      * Authenticated logic for user
@@ -25,16 +25,16 @@ export class AuthService {
      * @param user:IUserResponse
      * @returns void
      */
-     signIn(user: IUserResponse): void {
+    signIn(user: IUserResponse): void {
         const token = this.parseToken(user.accessToken);
-        if(token!.user) {
-            this.writeToken(user.accessToken,user.type);
-            if(this.isAuthenticate()){
-              this.store.dispatch(AuthenticationActions.setToken({ token: this.readToken() }));
-              this.router.navigate([SicatelUrlsConstants.pathDashboard]);
+        if (token!.user) {
+            this.writeToken(user.accessToken, user.type);
+            if (this.isAuthenticate()) {
+                this.store.dispatch(AuthenticationActions.setToken({ token: this.readToken() }));
+                this.router.navigate([SicatelUrlsConstants.pathDashboard]);
             }
         } else {
-            this.store.dispatch(AuthenticationActions.signInFailure({error : SicatelMessages.errorGeneral }));
+            this.store.dispatch(AuthenticationActions.signInFailure({ error: SicatelMessages.errorGeneral }));
         }
     }
 
@@ -47,7 +47,7 @@ export class AuthService {
     isAuthenticate(): boolean {
         const token = this.readToken();
         const expired = this.isExpiredToken(token);
-        return (token!.user  &&  !expired) ? true : false;
+        return (token!.user && !expired) ? true : false;
     }
 
     /**
@@ -57,9 +57,9 @@ export class AuthService {
      * @return void
      */
     setTokenIsAuthenticated(): void {
-      if (this.isAuthenticate()) {
-        this.store.dispatch(AuthenticationActions.setToken({ token: this.readToken() }));
-      }
+        if (this.isAuthenticate()) {
+            this.store.dispatch(AuthenticationActions.setToken({ token: this.readToken() }));
+        }
     }
 
     /**
@@ -69,7 +69,7 @@ export class AuthService {
      * @returns void
      */
     signOff(): void {
-      this.removeToken();
+        this.removeToken();
     }
 
     /**
@@ -82,14 +82,31 @@ export class AuthService {
         try {
             const tokenString: string | null = this.utilService.decrypt(localStorage.getItem('token') || '');
             const token = this.parseToken(tokenString || '');
-            if(token.user){
-                token.accessToken =  tokenString;
-            }else{
+            if (token.user) {
+                token.accessToken = tokenString;
+            } else {
                 throw new Error('Not Authenticated');
             }
             return token;
-        } catch(e) {
-            return { } as IToken;
+        } catch (e) {
+            return {} as IToken;
+        }
+    }
+
+    /**
+     * Check is user contain with permission
+     *
+     * @param permision
+     * @returns boolean
+     */
+    checkPermission(permision: string, alert: boolean): boolean {
+        if (this.utilService.indexOfInArray(this.readToken().user.permisos.split(','), permision)) {
+            return true;
+        } else {
+            if (alert) {
+                this.utilService.showErrorMessage(SicatelMessages.errorForbidden);
+            }
+            return false;
         }
     }
 
@@ -102,7 +119,7 @@ export class AuthService {
      */
     private writeToken(token: string, type: string): void {
         token = this.utilService.encrypt(token);
-        type =  this.utilService.encrypt(type);
+        type = this.utilService.encrypt(type);
         localStorage.setItem('token', token);
         localStorage.setItem('type', type);
     }
@@ -126,13 +143,13 @@ export class AuthService {
      */
     private parseToken(token: string): IToken {
         let parseToken: IToken = {} as IToken;
-        if(token === undefined || token === '') {return parseToken;}
-        const values: Array<string>  =  token.split(SicatelCommons.punto);
-        if(values.length > 2){
+        if (token === undefined || token === '') { return parseToken; }
+        const values: Array<string> = token.split(SicatelCommons.punto);
+        if (values.length > 2) {
             const obj = window.atob(values[1]);
-            parseToken =  JSON.parse(obj) as IToken;
+            parseToken = JSON.parse(obj) as IToken;
         }
-        return  parseToken;
+        return parseToken;
     }
 
     /**
@@ -143,7 +160,7 @@ export class AuthService {
      * @returns boolean
      */
     private isExpiredToken(token: IToken): boolean {
-        const now =  new Date().getTime() / 1000;
+        const now = new Date().getTime() / 1000;
         return token.exp < now;
     }
 }

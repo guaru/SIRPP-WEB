@@ -1,3 +1,4 @@
-<sicatel-authentication>
-    
-</sicatel-authentication>
+<sicatel-authentication (loginEvent)="login($event)"> </sicatel-authentication>
+<ng-container *ngIf="loading$ | async">
+    <sicatel-mask [fullScreen]="true"></sicatel-mask>
+</ng-container>

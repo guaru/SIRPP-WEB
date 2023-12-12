@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { SicatelCommons } from '@sicatel/configs/commons.constants';
+import { SicatelPermissions } from '@sicatel/configs/sicatel-permissions';
 import { SicatelUrlsConstants } from '@sicatel/configs/urls.constants';
 import { LoginGuard } from '@sicatel/core/guards/login.guard';
 import { PermissionGuard } from '@sicatel/core/guards/permission.guard';
@@ -13,7 +14,8 @@ export const applicationRoutes: Routes = [
     {
         path: SicatelUrlsConstants.pathConsultaSaldo,
         loadChildren: () => import('@sicatel/modules/consulta-saldo/consulta-saldo.module').then(m => m.ConsultaSaldoModule),
-        canActivate: [LoginGuard]
+        canActivate: [LoginGuard, PermissionGuard],
+        data: {permiso: SicatelPermissions.consultaSaldo}
     },
     {
         path: SicatelUrlsConstants.pathConsultaOrden,
@@ -23,8 +25,8 @@ export const applicationRoutes: Routes = [
     {
         path: SicatelCommons.reportMove,
         loadChildren: () => import('@sicatel/modules/reports/report-move/report-move.module').then(m => m.ReportMoveModule),
-        canActivate: [PermissionGuard]
-
+        canActivate: [PermissionGuard],
+        data: {permiso: SicatelPermissions.reportMove}
     },{
         path: '**',
         redirectTo: SicatelUrlsConstants.dashboard,

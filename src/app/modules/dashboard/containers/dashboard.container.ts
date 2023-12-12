@@ -16,7 +16,7 @@ export class DashboardContainer {
   store$: Observable<{ state: fromDashboard.State }>;
 
   constructor(private store: Store<fromDashboard.State>, private storeCarousel: Store<fromCarousel.State>) {
-    this.storeCarousel.dispatch(CarouselActions.init({ setting: { bgDefault: false,dark:true,height:300 } as ISliderConfig }));
+    this.storeCarousel.dispatch(CarouselActions.init({ setting: { bgDefault: false,dark:true,height:500 } as ISliderConfig }));
     this.store$ = this.store.select(DashboardSelectors.selectDashoardState);
   }
 

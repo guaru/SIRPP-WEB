@@ -9,3 +9,5 @@ export const consultaOrdenSuccess =  createAction('[ConsultaOrden] Consulta orde
 
 export const consultaOrdenError =  createAction('[ConsultaOrden] Consulta orden faild', props<{error: IError}>());
 
+export const consultaOrdenReset =  createAction('[ConsultaOrden] Consulta orden reset');
+
